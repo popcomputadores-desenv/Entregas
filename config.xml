@@ -3,7 +3,7 @@
     xmlns:gap = "http://phonegap.com/ns/1.0"
     xmlns:android = "http://schemas.android.com/apk/res/android"
     id        		= "app.masterhub.entrega"
-	versionCode   	= "30503"
+	versionCode   	= "30504"
     version   		= "3.5.2">
     <name>Entregas</name>
     <description>
