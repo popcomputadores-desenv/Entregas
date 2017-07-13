@@ -231,7 +231,7 @@ document.addEventListener("online", hasNetConnection, false);
 
 function hasNetConnection()
 {	
-	//toastMsg( getTrans("Connected","connected") );
+	toastMsg( getTrans("Connected","connected") );
 	//callAjax("DeviceConnected",'');
 }
 
