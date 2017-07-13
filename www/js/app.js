@@ -230,7 +230,10 @@ function noNetConnection()
 document.addEventListener("online", hasNetConnection, false);
 
 function hasNetConnection()
+
 {	
+
+checkGPS();
 	//toastMsg( getTrans("Connected","connected") );
 	//callAjax("DeviceConnected",'');
 }
