@@ -230,10 +230,7 @@ function noNetConnection()
 document.addEventListener("online", hasNetConnection, false);
 
 function hasNetConnection()
-
 {	
-
-checkGPS();
 	//toastMsg( getTrans("Connected","connected") );
 	//callAjax("DeviceConnected",'');
 }
@@ -463,7 +460,6 @@ document.addEventListener("init", function(event) {
 			case "taskDetails":
 			case "viewTaskDescription":
 			$(".toolbar-title").html( getTrans("Getting info...",'getting_info')  );
-						
 			break;
 			
 			case "CalendarView":
