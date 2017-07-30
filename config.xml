@@ -3,7 +3,7 @@
     xmlns:gap = "http://phonegap.com/ns/1.0"
     xmlns:android = "http://schemas.android.com/apk/res/android"
     id        		= "app.masterhub.entrega"
-	versionCode   	= "30505"
+	versionCode   	= "30506"
     version   		= "3.5.2">
     <name>Entregas</name>
     <description>
@@ -18,9 +18,11 @@
 	<preference name="orientation" value="portrait" />
 	<preference name="android-build-tool" value="gradle" />
 	<preference name="permissions" value="none"/>
-		
+	<preference name="windows-appx-target" value="8.1-phone" />
+	<preference name="WindowsToastCapable" value="true" />   	
+
 	<gap:plugin name="cordova-plugin-whitelist" source="npm" />
-    
+	<gap:plugin name="onesignal-cordova-plugin" spec="^2.1.1" source="npm" />
 	<gap:plugin name="phonegap-plugin-push" source="npm" spec="1.10.5" >
       <param name="SENDER_ID" value="700766185398" />
     </gap:plugin>
