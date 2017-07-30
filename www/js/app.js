@@ -57,7 +57,7 @@ function empty(data)
 function isDebug()
 {
 	//on/off
-	//return true;
+	//return true; 
 	return false;
 }
 
