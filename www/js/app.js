@@ -93,8 +93,6 @@ document.addEventListener("deviceready", function() {
     .handleNotificationOpened(notificationOpenedCallback)
     .endInit();
 
-	
-	
 	navigator.splashscreen.hide();
 	
 	app_running_status="active";
