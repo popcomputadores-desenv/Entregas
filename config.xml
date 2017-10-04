@@ -3,7 +3,7 @@
     xmlns:gap = "http://phonegap.com/ns/1.0"
     xmlns:android = "http://schemas.android.com/apk/res/android"
     id        		= "app.masterhub.entrega"
-	versionCode   	= "30506"
+	versionCode   	= "30507"
     version   		= "3.5.2">
     <name>Entregas</name>
     <description>
@@ -23,9 +23,7 @@
 
 	<gap:plugin name="cordova-plugin-whitelist" source="npm" />
 	<gap:plugin name="onesignal-cordova-plugin" spec="^2.1.1" source="npm" />
-	<gap:plugin name="phonegap-plugin-push" source="npm" spec="1.10.5" >
-      <param name="SENDER_ID" value="700766185398" />
-    </gap:plugin>
+	<gap:plugin name="phonegap-plugin-push" source="npm" spec="1.5.3" />
 	
     <gap:plugin name="cordova-plugin-device" source="npm" />		
 	<gap:plugin name="cordova-plugin-inappbrowser" source="npm" />		
