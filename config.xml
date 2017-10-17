@@ -5,7 +5,7 @@
     id        		= "app.masterhub.entrega"
 	versionCode   	= "30507"
     version   		= "3.5.2">
-    <name>Entregas</name>
+    <name>Entregas - Piloto</name>
     <description>
         Aplicativo - Módulo Entregadores para interação com o sistema Master Hub, Um MUNDO na palma da sua mão!
     </description>
