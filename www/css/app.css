@@ -587,6 +587,12 @@ width:175px;
 background:url("../images/mapa.jpg") no-repeat center center;
 margin: auto;
 border-radius: 100px;
+margin-bottom: 30px;
+}
+
+.enviodocs{
+	margin-top: -40px !important;
+    margin-right: 10px !important;
 }
 
 .financeiro-bkg{

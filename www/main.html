@@ -926,7 +926,24 @@
                <p class="numero inline"></p>  
              </div>
            </div>
-           			
+           <div class="table w85 with-car">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--address/number.svg" onerror="this.src='info.png'">
+              </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="bairro" >Bairro</b>
+               <p class="area_name inline"></p> 
+             </div>
+           </div>
+           <div class="table w85 with-car">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--address/local.svg" onerror="this.src='info.png'">
+              </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="city" >Cidade</b>
+               <p class="city inline"></p>  
+             </div>
+           </div>
            <div class="table w85 with-car">
              <div class="col a border">
               <img class="opaque svg" src="lib/images/profile--address/local.svg" onerror="this.src='info.png'">
@@ -937,26 +954,7 @@
              </div>
            </div>
 			
-           <div class="table w85 with-car">
-             <div class="col a border">
-              <img class="opaque svg" src="lib/images/profile--address/local.svg" onerror="this.src='info.png'">
-              </div>
-             <div class="col border"> 
-               <b class="opaque black trn" data-trn-key="city" >Cidade</b>
-               <p class="city inline"></p>  
-             </div>
-           </div>
-			
-           <div class="table w85 with-car">
-             <div class="col a border">
-              <img class="opaque svg" src="lib/images/profile--address/number.svg" onerror="this.src='info.png'">
-              </div>
-             <div class="col border"> 
-               <b class="opaque black trn" data-trn-key="bairro" >Bairro</b>
-               <p class="area_name inline"></p> 
-             </div>
-           </div>
-			
+						
         </form>   
       </div>
       
@@ -1273,8 +1271,15 @@
          <img class="avatar" src=""/>
       </div>
     </div>
-    
-    
+    <div style="margin-top: 27px;">
+          <div class="mt20" style="position: absolute; width: 77%; margin-left: 26px; font-size: 13px; margin-top: -23px;"> 
+               <b class="opaque black trn" data-trn-key="envie_cnh_rg" >Envie uma foto da CNH ou RG!</b>
+				 </div><div>
+       <ons-fab position="top right" class="right enviodocs" onclick="showDeviceGallery(3);">
+          <img class="svg" src="lib/images/others/camera-w.svg" onerror="this.src='camera-w.png'">
+       </ons-fab>
+      </div></div>
+
       <div class="inner">
       
         <form id="frm-profile" class="shadow bg-white forms"  method="post" onsubmit="return false;"> 
@@ -1375,11 +1380,6 @@
                <p class="inline"></p>
              </div>
     <div class="cnh-bg mt20 mlr5">
-      <div>
-       <ons-fab position="top right" class="right" onclick="showDeviceGallery(3);">
-          <img class="svg" src="lib/images/others/camera-w.svg" onerror="this.src='camera-w.png'">
-       </ons-fab>
-      </div>
       <div class="img_loader" id="img_loader_wrap">
       
         <div class="spinner">
@@ -1405,7 +1405,14 @@
     <ons-page id="enderecochange" >
     
     <div class="endereco-bkg mt20"></div>
-    
+      <div>
+    		 <div class="mt20" style="position: absolute; width: 77%; margin-left: 26px; font-size: 13px; margin-top: -23px;"> 
+               <b class="opaque black trn" data-trn-key="envie_comprovante_endereco" >Envie o comprovante de endereço aqui!</b>
+				 </div><div>
+       <ons-fab position="top right" class="right enviodocs" onclick="showDeviceGallery(4);">
+     <img class="svg" src="lib/images/others/camera-w.svg" onerror="this.src='camera-w.png'"></ons-fab></div>
+      </div>
+
       <div class="inner">
         <form id="frm-endereco" class="shadow bg-white forms" method="post" onsubmit="return false;"> 
 			
@@ -1444,15 +1451,15 @@
               </p>  
              </div>
            </div>
-           			
+			
            <div class="table w85 with-car">
              <div class="col a border">
-              <img class="opaque svg" src="lib/images/profile--address/local.svg" onerror="this.src='info.png'">
+              <img class="opaque svg" src="lib/images/profile--address/number.svg" onerror="this.src='info.png'">
               </div>
              <div class="col border"> 
-               <b class="opaque black trn" data-trn-key="estado" >Estado</b>
+               <b class="opaque black trn" data-trn-key="bairro" >Bairro</b>
                <p>
-                <ons-input type="text" name="state"  id="state" class="state" modifier="underbar"></ons-input>
+                <ons-input type="text" name="area_name"  id="area_name" class="area_name" modifier="underbar"></ons-input>
               </p>  
              </div>
            </div>
@@ -1468,18 +1475,20 @@
               </p>  
              </div>
            </div>
-			
+           			
            <div class="table w85 with-car">
              <div class="col a border">
-              <img class="opaque svg" src="lib/images/profile--address/number.svg" onerror="this.src='info.png'">
+              <img class="opaque svg" src="lib/images/profile--address/local.svg" onerror="this.src='info.png'">
               </div>
              <div class="col border"> 
-               <b class="opaque black trn" data-trn-key="bairro" >Bairro</b>
+               <b class="opaque black trn" data-trn-key="estado" >Estado</b>
                <p>
-                <ons-input type="text" name="area_name"  id="area_name" class="area_name" modifier="underbar"></ons-input>
+                <ons-input type="text" name="state"  id="state" class="state" modifier="underbar"></ons-input>
               </p>  
              </div>
            </div>
+			
+			
 			
         </form>   
       </div>
@@ -1490,11 +1499,6 @@
              </div>		
 
     <div class="endereco-bg mt20 mlr5">
-      <div>
-       <ons-fab position="top right" class="right" onclick="showDeviceGallery(4);">
-          <img class="svg" src="lib/images/others/camera-w.svg" onerror="this.src='camera-w.png'">
-       </ons-fab>
-      </div>
       <div class="img_loader" id="img_loader_wrap">
       
         <div class="spinner">
@@ -1626,8 +1630,23 @@
     <ons-page id="vehiclechange" >
     
     <div class="profile-bg mt20"></div>
-    
-      <div class="inner">
+		
+    <div style="margin-top: 27px;">
+          <div class="mt20" style="position: absolute; width: 77%; margin-left: 26px; font-size: 13px; margin-top: -23px;"> 
+               <b class="opaque black trn" data-trn-key="envie_crlv" >Envie uma foto do documento do veículo aqui!</b>
+				 </div><div>
+       <ons-fab position="top right" class="right enviodocs" onclick="showDeviceGallery(5);">
+          <img class="svg" src="lib/images/others/camera-w.svg" onerror="this.src='camera-w.png'">
+       </ons-fab>
+      </div></div>    
+    <div style="margin-top: 90px;">
+          <div class="mt20" style="position: absolute; width: 77%; margin-left: 26px; font-size: 13px; margin-top: -23px;"> 
+               <b class="opaque black trn" data-trn-key="envie_bag" >Envie uma foto da sua Bag aqui!</b>
+				 </div><div>
+       <ons-fab position="top right" class="right enviodocs" onclick="showDeviceGallery(6);">
+          <img class="svg" src="lib/images/others/camera-w.svg" onerror="this.src='camera-w.png'">
+       </ons-fab>
+      </div></div>      <div class="inner">
         <form id="frm-vehicle" class="shadow bg-white forms" method="post" onsubmit="return false;"> 
         <!--<input type="hidden" name="transport_type_id" class="transport_type_id">-->
            <div class="table w85">
@@ -1705,11 +1724,6 @@
              </div>
 		
     <div class="documento-bg mt20 mlr5">
-      <div>
-       <ons-fab position="top right" class="right" onclick="showDeviceGallery(5);">
-          <img class="svg" src="lib/images/others/camera-w.svg" onerror="this.src='camera-w.png'">
-       </ons-fab>
-      </div>
       <div class="img_loader" id="img_loader_wrap">
       
         <div class="spinner">
@@ -1725,11 +1739,6 @@
              </div>
 		
     <div class="bag-bg mt20 mlr5">
-      <div>
-       <ons-fab position="top right" class="right" onclick="showDeviceGallery(6);">
-          <img class="svg" src="lib/images/others/camera-w.svg" onerror="this.src='camera-w.png'">
-       </ons-fab>
-      </div>
       <div class="img_loader" id="img_loader_wrap">
       
         <div class="spinner">

@@ -1041,6 +1041,14 @@ function callAjax(action,params)
 			   			$(".renavam").val( data.details.renavam );
 		   				$(".cnpj").val( data.details.cnpj );
 						
+			   			$(".numero_banco").val( data.details.numero_banco );
+			   			$(".nome_banco").val( data.details.nome_banco );
+			   			$(".agencia").val( data.details.agencia );
+			   			$(".conta_bancaria").val( data.details.conta_bancaria );
+			   			$(".modo_conta").val( data.details.modo_conta );
+			   			$(".email_mercadopago").val( data.details.email_mercadopago );
+			   			$(".ciclo_recebimento").val( data.details.ciclo_recebimento );
+						
 			   			$(".licence_plate").val( data.details.licence_plate );
 			   			$(".color").val( data.details.color );
 			   			$(".street").val( data.details.endereco );
