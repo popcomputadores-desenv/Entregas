@@ -3262,7 +3262,7 @@ function showDistanceInfo(data)
 	var soma_duration=somaHora(data.delivery_distance.duration, data.merchant_distance.duration, false);
 	var tipo_do_veiculo ='';
 	if (data.tipo_do_veiculo=='car'){tipo_do_veiculo='Carro'} else
-	if (data.tipo_do_veiculo=='truck'){tipo_do_veiculo='Caminhão'} else
+	if (data.tipo_do_veiculo=='truck'){tipo_do_veiculo='Caminhao'} else
 	if (data.tipo_do_veiculo=='scooter'){tipo_do_veiculo='Moto'} else
 	if (data.tipo_do_veiculo=='bicycle'){tipo_do_veiculo='Bicicleta'} else
 	if (data.tipo_do_veiculo=='walk'){tipo_do_veiculo='Andando'}
