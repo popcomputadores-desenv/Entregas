@@ -35,7 +35,7 @@
 	<gap:plugin name="cordova-plugin-media" source="npm" spec="5.0.2" />
 		       
     <plugin name="cordova-plugin-insomnia" version="4.1.0" source="npm" />    
-    <gap:plugin name="cordova-plugin-buildinfo" source="npm" spec="2.0.1"  />
+    <gap:plugin name="cordova-plugin-buildinfo" source="npm" spec="4.0.0"  />
     <gap:plugin name="cordova-plugin-vibration" source="npm" spec="2.1.4" />	
     <gap:plugin name="cordova-plugin-camera" source="npm" spec="4.0.3" />
     <gap:plugin name="cordova-plugin-file-transfer" source="npm" spec="1.7.1" /> 
