@@ -19,7 +19,7 @@ var app_running_status='active';
 var push;
 
 var device_platform;
-var app_version = "3.0.14";
+var app_version = "3.0.15";
 var map_bounds;
 var map_marker;
 var map_style = [ {stylers: [ { "saturation":-100 }, { "lightness": 0 }, { "gamma": 1 } ]}];
