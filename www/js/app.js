@@ -19,7 +19,7 @@ var app_running_status='active';
 var push;
 
 var device_platform;
-var app_version = "3.0.0 vc. 14";
+var app_version = "3.0.14";
 var map_bounds;
 var map_marker;
 var map_style = [ {stylers: [ { "saturation":-100 }, { "lightness": 0 }, { "gamma": 1 } ]}];
@@ -525,7 +525,7 @@ document.addEventListener("init", function(event) {
 			if (isDebug()){
 		    	$(".software_version").html( app_version );
 		    } else {
-		    	$(".software_version").html( BuildInfo.version + " vc. " + BuildInfo.versionCode);
+		    	$(".software_version").html( BuildInfo.version );
 		    }
 		    
 		    device_id=getStorage('device_id');
