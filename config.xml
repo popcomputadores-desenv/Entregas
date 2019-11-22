@@ -41,7 +41,7 @@
     <gap:plugin name="cordova-plugin-file-transfer" source="npm" spec="1.7.1" /> 
         
     <plugin name="@mauron85/cordova-plugin-background-geolocation" spec="3.1.0" >
-      <variable name="GOOGLE_PLAY_SERVICES_VERSION" value="11+" />
+      <variable name="GOOGLE_PLAY_SERVICES_VERSION" value="11.0.2" />
 	  <variable name="ANDROID_SUPPORT_LIBRARY_VERSION" value="28" />
 	  <variable name="ICON" value="@mipmap/icon" />
 	  <variable name="SMALL_ICON" value="@mipmap/icon" />
