@@ -5,7 +5,7 @@
     id        = "app.masterhub.wjk.entregador"
     version   = "3.0.14"
 	android-versionCode="14"
-  	ios-CFBundleVersion="3">
+  	ios-CFBundleVersion="14">
     <!-- Driver App 1.7.1 -->
     <name>WJK Entregas</name>
     <description>
