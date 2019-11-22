@@ -909,7 +909,7 @@ function callAjax(action,params)
 		   			setStorage("task_full_data",JSON.stringify(data.details));
 		   			$("#task-details").html( 
 		   			   formatTaskDetails(data.details) + 	  // customer details 
-						
+		   			   OrderDetails(data.details) +           // order details
 		   			   TaskDetailsChevron_1_precoleta(data.details)  +  // pre-coleta address
 		   			   //MercadoPoint_pagamento(data.details)  +  // coleta address
 		   			   TaskDetailsChevron_1_coleta(data.details)  +  // coleta address
@@ -920,7 +920,6 @@ function callAjax(action,params)
 						
 		   			   TaskDetailsChevron_4(data.details)  +  // merchant address
 		   			   TaskDetailsChevron_2(data.details) +   // task description
-		   			   OrderDetails(data.details) +           // order details
 		   			   TaskAddSignature( data.details ) +	  // task signature
 		   			   DriverNotes( data.history_notes , data.details ) +	// driver notes	   			   
 		   			   addPhotoChevron(data.details) +  // take picture
@@ -1459,7 +1458,7 @@ function callAjax(action,params)
 		   			  	 placeholder(".recipient_name",'recipient_name');
 	  	 	             $(".signature-action").show();	
 	  	 	             $(".recipient_name").show();  	 	               
-	  	 	             sigdiv = $("#signature-pan") ;	  	 	           
+	  	 	             sigdiv = $("#signature-pan");	  	 	           
 
 	  	 	             if(!empty(data.details.data.receive_by)){
 		   			       $(".recipient_name").val( data.details.data.receive_by );		   			     
@@ -1607,7 +1606,7 @@ function callAjax(action,params)
 		   			case "loadSignature":
 		   			 $(".toolbar-title-signature").html( getTrans("Add Signature",'add_signature') );
 	  	 	         $(".signature-action").show();
-	  	 	         $("#signature-pan").jSignature();	
+	  	 	         //$("#signature-pan").jSignature();	
 		   			break;
 		   			
 		   			default:		   			

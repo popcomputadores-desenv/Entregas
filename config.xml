@@ -4,7 +4,7 @@
     xmlns:android = "http://schemas.android.com/apk/res/android"
     id        = "app.masterhub.wjk.entregador"
     version   = "3.0"
-	android-versionCode="13"
+	android-versionCode="12"
   	ios-CFBundleVersion="3">
     <!-- Driver App 1.7.1 -->
     <name>WJK Entregas</name>
@@ -40,9 +40,11 @@
     <gap:plugin name="cordova-plugin-camera" source="npm" spec="4.0.3" />
     <gap:plugin name="cordova-plugin-file-transfer" source="npm" spec="1.7.1" /> 
         
-    <plugin name="@mauron85/cordova-plugin-background-geolocation" spec="3.0.3" >
-      <variable name="GOOGLE_PLAY_SERVICES_VERSION" value="11.0.1" />
-	  <variable name="ANDROID_SUPPORT_LIBRARY_VERSION" value="23+" />
+    <plugin name="cordova-plugin-background-geolocation" spec="@mauron85/cordova-plugin-background-geolocation@~3.1.0" >
+      <variable name="GOOGLE_PLAY_SERVICES_VERSION" value="11+" />
+	  <variable name="ANDROID_SUPPORT_LIBRARY_VERSION" value="26+" />
+	  <variable name="ICON" value="@mipmap/icon" />
+	  <variable name="SMALL_ICON" value="@mipmap/icon" />
 	  <variable name="ALWAYS_USAGE_DESCRIPTION" value="preciso do rastreamento em segundo plano ativado" />
 	  <variable name="MOTION_USAGE_DESCRIPTION" value="preciso da detecção de movimento" />
     </plugin>
@@ -118,11 +120,7 @@
 	</edit-config>
 		
 	<platform name="android">
-		           
-		<edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
-		   <application android:usesCleartextTraffic="true" />
-		</edit-config>
-		
+				
 	    <resource-file src="www/beep.wav" target="app/src/main/res/raw/beep.wav" />
 	    <resource-file src="www/beep.wav" target="res/raw/beep.wav" /> 	    
 	    
