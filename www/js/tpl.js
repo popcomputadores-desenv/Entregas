@@ -299,11 +299,13 @@ function formatTask(data)
 		            //não mostra nada
 				}        
 			
-			
+			/* ocultando endereço na tela principal */
 			if (val.status_raw === 'unassigned' || val.status_raw === 'assigned'){			
 
 			} else if (val.status_raw === 'aceito_pelo_entregador'){
-			              /* ocultando endereço na tela principal */
+				
+				if (val.trans_type_raw == 'delivery'){
+			              
 			            html+='<div class="table mb0">';
 			                html+='<div class="col a">';
 			                    html+="<img class='opaque svg-task' src='lib/images/menu--task/delivery-address.svg' onerror='this.src='delivery-address.png''>";
@@ -312,6 +314,26 @@ function formatTask(data)
 			                    html+='<p><b class="opaque trn" data-trn-key="coleta_address">'+ getTrans('Coleta address: ','coleta_address') +'</b>'+val.drop_address+'</p>';
 			                html+='</div>';
 			            html+='</div>';
+				} else if (val.trans_type_raw == 'coleta' || val.trans_type_raw == 'coleta_retorno'){
+			            html+='<div class="table mb0">';
+			                html+='<div class="col a">';
+			                    html+="<img class='opaque svg-task' src='lib/images/menu--task/delivery-address.svg' onerror='this.src='delivery-address.png''>";
+			                html+='</div>';
+			                html+='<div class="col">';
+			                    html+='<p><b class="opaque trn" data-trn-key="coleta_address">'+ getTrans('Coleta address: ','coleta_address') +'</b>'+val.coleta_address+'</p>';
+			                html+='</div>';
+			            html+='</div>';
+				} else if (val.trans_type_raw == 'pre_coleta' || val.trans_type_raw == 'pre_coleta_retorno'){
+			            html+='<div class="table mb0">';
+			                html+='<div class="col a">';
+			                    html+="<img class='opaque svg-task' src='lib/images/menu--task/delivery-address.svg' onerror='this.src='delivery-address.png''>";
+			                html+='</div>';
+			                html+='<div class="col">';
+			                    html+='<p><b class="opaque trn" data-trn-key="coleta_address">'+ getTrans('1 Coleta address: ','pre_coleta_address') +'</b>'+val.pre_coleta_address+'</p>';
+			                html+='</div>';
+			            html+='</div>';
+				}
+				
 			} else {
 			              /* ocultando endereço na tela principal */
 			            html+='<div class="table mb0">';

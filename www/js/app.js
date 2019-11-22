@@ -19,7 +19,7 @@ var app_running_status='active';
 var push;
 
 var device_platform;
-var app_version = "3.0.0";
+var app_version = "3.0.0 vc. 14";
 var map_bounds;
 var map_marker;
 var map_style = [ {stylers: [ { "saturation":-100 }, { "lightness": 0 }, { "gamma": 1 } ]}];
@@ -525,7 +525,7 @@ document.addEventListener("init", function(event) {
 			if (isDebug()){
 		    	$(".software_version").html( app_version );
 		    } else {
-		    	$(".software_version").html( BuildInfo.version );
+		    	$(".software_version").html( BuildInfo.version + " vc. " + BuildInfo.versionCode);
 		    }
 		    
 		    device_id=getStorage('device_id');
@@ -930,7 +930,7 @@ function callAjax(action,params)
 		   			//show signature
 		   			
 		   			$("#task-action-wrap").html( 
-		   			  swicthButtonAction( data.details.task_id, data.details.status_raw )
+		   			  swicthButtonAction( data.details.task_id, data.details.status_raw, data.details.trans_type_raw )
 		   			);
 						
 		   			$("#task-action-wrap-deu-ruim").html( 
@@ -968,7 +968,7 @@ function callAjax(action,params)
 		   			//show signature
 		   			
 		   			$("#task-action-wrap").html( 
-		   			  swicthButtonAction( data.details.task_id, data.details.status_raw )
+		   			  swicthButtonAction( data.details.task_id, data.details.status_raw, data.details.trans_type_raw )
 		   			);
 		   			
 		   			$(".task_id_global").val( data.details.task_id );
@@ -987,7 +987,27 @@ function callAjax(action,params)
 		   			$(".task_id_details").val( data.details.task_id );
 		   			
 		   			setStorage("task_full_data",JSON.stringify(data.details));
+						
+				if (data.details.trans_type_raw == 'pre_coleta' || data.details.trans_type_raw == 'pre_coleta_retorno'){		
 		   			$("#task-details-merchant").html( 
+		   			   formatTaskDetailsMerchant(data.details) + 	  // customer details 
+		   			   TaskDetailsChevron_1_precoleta(data.details)  +  // pre-coleta address
+		   			   DriverNotes( data.history_notes , data.details ) +	// driver notes	   			   
+		   			   addPhotoChevron(data.details) +  // take picture
+		   			   TaskDetailsChevron_3(data.details.history)  // task history		   			   
+		   			   // '<div style="height:100px;"></div>'
+		   			);
+				} else if (data.details.trans_type_raw == 'coleta' || data.details.trans_type_raw == 'coleta_retorno'){		$("#task-details-merchant").html( 
+		   			   formatTaskDetailsMerchant(data.details) + 	  // customer details 
+		   			   TaskDetailsChevron_1_precoleta(data.details)  +  // pre-coleta address
+		   			   TaskDetailsChevron_1_coleta(data.details)  +  // coleta address
+		   			   DriverNotes( data.history_notes , data.details ) +	// driver notes	   			   
+		   			   addPhotoChevron(data.details) +  // take picture
+		   			   TaskDetailsChevron_3(data.details.history)  // task history		   			   
+		   			   // '<div style="height:100px;"></div>'
+		   			);
+				} else {
+					$("#task-details-merchant").html( 
 		   			   formatTaskDetailsMerchant(data.details) + 	  // customer details 
 		   			   TaskDetailsChevron_1_precoleta(data.details)  +  // pre-coleta address
 		   			   TaskDetailsChevron_1_coleta(data.details)  +  // coleta address
@@ -997,11 +1017,11 @@ function callAjax(action,params)
 		   			   TaskDetailsChevron_3(data.details.history)  // task history		   			   
 		   			   // '<div style="height:100px;"></div>'
 		   			);
-		   			
+				}
 		   			//show signature
 		   			
 		   			$("#task-action-wrap").html( 
-		   			  swicthButtonAction( data.details.task_id, data.details.status_raw )
+		   			  swicthButtonAction( data.details.task_id, data.details.status_raw, data.details.trans_type_raw )
 		   			);
 						
 		   			$("#task-action-wrap-deu-ruim").html( 
@@ -1051,7 +1071,7 @@ function callAjax(action,params)
 		   			//show signature
 		   			
 		   			$("#task-action-wrap").html( 
-		   			  swicthButtonAction( data.details.task_id, data.details.status_raw )
+		   			  swicthButtonAction( data.details.task_id, data.details.status_raw, data.details.trans_type_raw )
 		   			);
 						
 		   			$("#task-action-wrap-deu-ruim").html( 
@@ -1093,7 +1113,7 @@ function callAjax(action,params)
 		   			  }
 		   			  
 		   			  $("#task-action-wrap").html( 
-		   			     swicthButtonAction( data.details.task_id, data.details.status_raw )
+		   			     swicthButtonAction( data.details.task_id, data.details.status_raw, data.details.trans_type_raw )
 		   			  );
 		   			  
 		   			  $("#task-action-wrap-deu-ruim").html( 
@@ -1943,9 +1963,10 @@ function viewTaskDescription(task_id)
    });
 }
 
-function swicthButtonAction( task_id, status_raw )
+function swicthButtonAction( task_id, status_raw, trans_type_raw )
 {
 	dump(status_raw);
+	dump(trans_type_raw);
 	var html=''; var action='';
 	switch (status_raw)
 	{
@@ -1963,15 +1984,62 @@ function swicthButtonAction( task_id, status_raw )
 		break;
 		
 		case "aceito_pelo_entregador":
-		action='started';
+			switch (trans_type_raw)
+			{
+				case "pre_coleta":
+				case "pre_coleta_retorno":	
+		action='aguardando_pre_coleta';
 		html+='<p class="action-btn"><ons-button class="success" modifier="large"';
-		html+='onclick="changeTaskStatus('+task_id+','+ "'"+action+"'" +' )" >'+ getTrans('Start','start') +'</ons-button></p>';
+		html+='onclick="changeTaskStatus('+task_id+','+ "'"+action+"'" +' )" >'+ getTrans('Aguardando a Coleta 1','aguardando_pre_coleta') +'</ons-button></p>';
 		
 		action='cancelled';
 		html+='<p class="action-btn"><ons-button class="cancel" modifier="quiet"';
 		html+='onclick="ShowAddReason('+task_id+','+ "'"+action+"'" +' )" >'+ getTrans('Cancel','cancel') +'</ons-button></p>';
-		break;
+				break;
+					
+				case "coleta":
+				case "coleta_retorno":	
+		action='started';
+		html+='<p class="action-btn"><ons-button class="success" modifier="large"';
+		html+='onclick="changeTaskStatus('+task_id+','+ "'"+action+"'" +' )" >'+ getTrans('Started','start') +'</ons-button></p>';
 		
+		action='cancelled';
+		html+='<p class="action-btn"><ons-button class="cancel" modifier="quiet"';
+		html+='onclick="ShowAddReason('+task_id+','+ "'"+action+"'" +' )" >'+ getTrans('Cancel','cancel') +'</ons-button></p>';
+				break;
+					
+				default:
+		action='started';
+		html+='<p class="action-btn"><ons-button class="success" modifier="large"';
+		html+='onclick="changeTaskStatus('+task_id+','+ "'"+action+"'" +' )" >'+ getTrans('Started','start') +'</ons-button></p>';
+		
+		action='cancelled';
+		html+='<p class="action-btn"><ons-button class="cancel" modifier="quiet"';
+		html+='onclick="ShowAddReason('+task_id+','+ "'"+action+"'" +' )" >'+ getTrans('Cancel','cancel') +'</ons-button></p>';
+				break;
+			}
+		break;
+			
+		case "aguardando_pre_coleta":
+		action='sai_da_pre_coleta';
+		html+='<p class="action-btn"><ons-button class="success" modifier="large"';
+		html+='onclick="changeTaskStatus('+task_id+','+ "'"+action+"'" +' )" >'+getTrans('Sai da Coleta 1','sai_da_pre_coleta')+'</ons-button></p>';
+		
+		action='cancelled';
+		html+='<p class="action-btn"><ons-button class="cancel" modifier="quiet"';
+		html+='onclick="ShowAddReason('+task_id+','+ "'"+action+"'" +' )" >'+getTrans('Cancel','cancel')+'</ons-button></p>';
+		break;
+			
+		case "sai_da_pre_coleta":
+		action='started';
+		html+='<p class="action-btn"><ons-button class="success" modifier="large"';
+		html+='onclick="changeTaskStatus('+task_id+','+ "'"+action+"'" +' )" >'+getTrans('Started','start')+'</ons-button></p>';
+		
+		action='cancelled';
+		html+='<p class="action-btn"><ons-button class="cancel" modifier="quiet"';
+		html+='onclick="ShowAddReason('+task_id+','+ "'"+action+"'" +' )" >'+getTrans('Cancel','cancel')+'</ons-button></p>';
+		break;
+					
 		case "started":
 		action='inprogress';
 		html+='<p class="action-btn"><ons-button class="success" modifier="large"';
@@ -2016,27 +2084,18 @@ function trocaButtonDeuRuim( task_id, status_raw )
 	var html=''; var action='';
 	switch (status_raw)
 	{
-		case "assigned":
-		action='deu_ruim';
-		html+='<p class="action-btn"><ons-button class="cancel" modifier="quiet"';
-		html+='onclick="ShowAddDeuRuim('+task_id+','+ "'"+action+"'" +' )" >'+ getTrans("Deu Ruim",'deu_ruim') +'</ons-button></p>';
 		case "unassigned":
 		case "pending":
 		case "accepted":
 		break;
 		
+		case "assigned":
 		case "aceito_pelo_entregador":
-		action='deu_ruim';
-		html+='<p class="action-btn"><ons-button class="cancel" modifier="quiet"';
-		html+='onclick="ShowAddDeuRuim('+task_id+','+ "'"+action+"'" +' )" >'+ getTrans("Deu Ruim",'deu_ruim') +'</ons-button></p>';
-		break;
-		
+		case "aguardando_coleta":
+		case "aguardando_pre_coleta":
+		case "sai_da_coleta":
+		case "sai_da_pre_coleta":
 		case "started":
-		action='deu_ruim';
-		html+='<p class="action-btn"><ons-button class="cancel" modifier="quiet"';
-		html+='onclick="ShowAddDeuRuim('+task_id+','+ "'"+action+"'" +' )" >'+ getTrans("Deu Ruim",'deu_ruim') +'</ons-button></p>';
-		break;
-		
 		case "inprogress":
 		action='deu_ruim';
 		html+='<p class="action-btn"><ons-button class="cancel" modifier="quiet"';
