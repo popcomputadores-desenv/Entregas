@@ -4851,117 +4851,117 @@ document.addEventListener('prechange', function(event) {
 /*end class*/
 
 initBackgroundTracking = function(){
-	
-	try {
-			
-		var app_disabled_bg_tracking=getStorage("disabled_tracking_bg");
-		if (app_disabled_bg_tracking==1 || app_disabled_bg_tracking=="1"){		
-			return;
-		}		
-		
-		var min_frequency = getStorage("track_interval");		
-		if (min_frequency<=0){
-			min_frequency=8000;
-		}
-		if (empty(min_frequency)){
-			min_frequency=8000;
-		}
-		
-		//alert("min_frequency=>"+min_frequency);
-		
-		 BackgroundGeolocation.configure({
-		    locationProvider: BackgroundGeolocation.ACTIVITY_PROVIDER,	    
-		    //locationProvider: BackgroundGeolocation.DISTANCE_FILTER_PROVIDER,	    
-		    desiredAccuracy: BackgroundGeolocation.MEDIUM_ACCURACY,
-		    stationaryRadius: 1,
-		    distanceFilter: 1,
-		    notificationTitle: getTrans("Tracking","tracking") +  "..." ,
-		    notificationText: '',	    
-		    interval: min_frequency,
-		    fastestInterval: min_frequency,
-		    activitiesInterval: min_frequency,
-		    stopOnTerminate: true,
-		    stopOnStillActivity: false ,
-		    debug: false, 
-		});
-		
-		BackgroundGeolocation.on('start', function() {
-		    //toastMsg('[INFO] BackgroundGeolocation service has been started');
-		    setStorage("bg_tracking",1);
-		    navigator.geolocation.clearWatch(watchID);
-		});
-		
-		BackgroundGeolocation.on('stop', function() {
-	       //toastMsg('[INFO] BackgroundGeolocation service has been stopped');
-	    });
-		
-		BackgroundGeolocation.on('error', function(error) {
-	       toastMsg('[ERROR] BackgroundGeolocation error:', error.code, error.message);
-	    });
-	    
-	    BackgroundGeolocation.on('location', function(location) {    
-		    BackgroundGeolocation.startTask(function(taskKey) {	      	      		      	
-		    	
-		    	 params = 'lat='+ location.latitude + "&lng=" + location.longitude + "&app_version=" + app_version;		
-				 params+="&altitude="+ '';
-			     params+="&accuracy="+ location.accuracy;
-			     params+="&altitudeAccuracy="+ '';
-			     params+="&heading="+ '';
-			     params+="&speed="+ '';
-			     params+="&track_type=background";
-			    	 
-			     callAjax2('updateDriverLocation', params);
-			     
-		         BackgroundGeolocation.endTask(taskKey);
-		    });
-	    });
-	    
-	    BackgroundGeolocation.on('stationary', function(stationaryLocation) {
-	     	/*toastMsg('[INFO] App is in stationary');
-	     	toastMsg(JSON.stringify(stationaryLocation));	 */
-	    });
-	    
-	    BackgroundGeolocation.on('background', function() {
-		    //toastMsg('[INFO] App is in background');			  
-		    BackgroundGeolocation.checkStatus(function(status) {
-		    	if (!status.isRunning) {			    		
-		    		camera_on = getStorage("camera_on");
-		    		if(camera_on!=1){
-			    		setTimeout(function() {	    	   
-				    	   BackgroundGeolocation.start();  
-				    	}, 100);
-		    		}
-		    	}
-		    });		    
-	    });
     
-	    BackgroundGeolocation.on('foreground', function() {	    	
-	    	
-	    	BackgroundGeolocation.checkStatus(function(status) {
-	    		if (status.isRunning) {
-	    			setTimeout(function() {	    	   
-	    			   setStorage('camera_on', 2 );
-			    	   BackgroundGeolocation.stop();	    	
-			    	}, 100);
-	    		}
-	    	});	    	
-	    		    	
-	    });
-	   
-	    BackgroundGeolocation.on('authorization', function(status) {
-		    console.log('[INFO] BackgroundGeolocation authorization status: ' + status);
-		    if (status !== BackgroundGeolocation.AUTHORIZED) {
-		      // we need to set delay or otherwise alert may not be shown
-		      setTimeout(function() {
-		        var showSettings = confirm(getTrans('App requires location tracking permission. Would you like to open app settings?','app_requires_location'));
-		        if (showSetting) {
-		          return BackgroundGeolocation.showAppSettings();
-		        }
-		      }, 1000);
-		    }
-		});
-		
-		
+    try {
+            
+        var app_disabled_bg_tracking=getStorage("app_disabled_bg_tracking");
+        if (app_disabled_bg_tracking==1 || app_disabled_bg_tracking=="1"){        
+            return;
+        }        
+        
+        var min_frequency = getStorage("app_track_interval");        
+        if (min_frequency<=0){
+            min_frequency=8000;
+        }
+        if (empty(min_frequency)){
+            min_frequency=8000;
+        }
+        
+        //alert("min_frequency=>"+min_frequency);
+        
+         BackgroundGeolocation.configure({
+            locationProvider: BackgroundGeolocation.ACTIVITY_PROVIDER,        
+            //locationProvider: BackgroundGeolocation.DISTANCE_FILTER_PROVIDER,        
+            desiredAccuracy: BackgroundGeolocation.MEDIUM_ACCURACY,            
+            stationaryRadius: 1,
+            distanceFilter: 1,
+            notificationTitle: getTrans("Tracking","tracking") +  "..." ,
+            notificationText: '',        
+            interval: min_frequency,
+            fastestInterval: min_frequency,
+            activitiesInterval: min_frequency,
+            stopOnTerminate: true,
+            stopOnStillActivity: false ,
+            debug: false,
+            url : ajax_url+"/updateDriverLocation",
+            postTemplate : {
+                lat: '@latitude',
+                lng: '@longitude',                
+                altitude : '@altitude',
+                accuracy : '@accuracy',
+                speed : '@speed',
+                track_type : "background",
+                token : getStorage("kr_token"),
+                app_version : app_version,
+                api_key : krms_driver_config.APIHasKey,                
+            }
+        });
+        
+        BackgroundGeolocation.on('start', function() {
+            //toastMsg('[INFO] BackgroundGeolocation service has been started');
+            setStorage("bg_tracking",1);
+            navigator.geolocation.clearWatch(watchID);
+        });
+        
+        BackgroundGeolocation.on('stop', function() {
+           //toastMsg('[INFO] BackgroundGeolocation service has been stopped');
+        });
+        
+        BackgroundGeolocation.on('error', function(error) {
+           toastMsg('[ERROR] BackgroundGeolocation error:', error.code, error.message);
+        });
+        
+        BackgroundGeolocation.on('location', function(location) {    
+            BackgroundGeolocation.startTask(function(taskKey) {                                      
+                BackgroundGeolocation.endTask(taskKey);    
+            });
+        });
+        
+        BackgroundGeolocation.on('stationary', function(stationaryLocation) {
+             //toastMsg('[INFO] App is in stationary');
+             //alert("stationary=>"+JSON.stringify(stationaryLocation));
+        });
+        
+        BackgroundGeolocation.on('abort_requested', function() {
+            toastMsg('[INFO] Server responded with 285 Updates Not Required');
+        });
+        
+        BackgroundGeolocation.on('background', function() {
+            //toastMsg('[INFO] App is in background');              
+            BackgroundGeolocation.checkStatus(function(status) {
+                if (!status.isRunning) {                                                        
+                    setTimeout(function() {               
+                       BackgroundGeolocation.start();  
+                    }, 100);
+                }
+            });            
+        });
+    
+        BackgroundGeolocation.on('foreground', function() {                        
+            BackgroundGeolocation.checkStatus(function(status) {
+                if (status.isRunning) {
+                    setTimeout(function() {               
+                       BackgroundGeolocation.stop();            
+                    }, 100);
+                }
+            });                
+        });
+       
+        BackgroundGeolocation.on('authorization', function(status) {
+
+            console.log('[INFO] BackgroundGeolocation authorization status: ' + status);
+            if (status !== BackgroundGeolocation.AUTHORIZED) {
+              // we need to set delay or otherwise alert may not be shown
+              setTimeout(function() {
+                var showSettings = confirm('App requires location tracking permission. Would you like to open app settings?');
+                if (showSetting) {
+                  return BackgroundGeolocation.showAppSettings();
+                }
+              }, 1000);
+            }
+        });
+        
+        
   
     } catch(err) {
        alert(err.message);   
