@@ -1031,7 +1031,7 @@ function callAjax(action,params)
 		   			setStorage("task_full_data",JSON.stringify(data.details));
 		   			$("#task-details-client").html( 
 		   			   formatTaskDetailsClient(data.details) + 	  // customer details 
-						
+		   			   OrderDetails(data.details) +           // order details
 		   			   TaskDetailsChevron_1_precoleta(data.details)  +  // pre-coleta address
 		   			   //MercadoPoint_pagamento(data.details)  +  // coleta address
 		   			   TaskDetailsChevron_1_coleta(data.details)  +  // coleta address
@@ -1042,7 +1042,6 @@ function callAjax(action,params)
 						
 		   			   TaskDetailsChevron_4(data.details)  +  // merchant address
 		   			   TaskDetailsChevron_2(data.details) +   // task description
-		   			   OrderDetails(data.details) +           // order details
 		   			   TaskAddSignature( data.details ) +	  // task signature
 		   			   DriverNotes( data.history_notes , data.details ) +	// driver notes	   			   
 		   			   addPhotoChevron(data.details) +  // take picture

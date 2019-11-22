@@ -98,17 +98,18 @@ function formatTask(data)
 			            html+='<div class="table mb10">';
 			               html+='<div class="col">';
 			                  html+='<span class="tag trn '+ val.trans_type_raw+' " data-trn-key="'+ val.trans_type_raw+'">'+ getTrans('Entrega ',val.trans_type)+'</span>';
-			                  html+='<span class="tag-status '+val.status_raw+'">#'+val.status+'</span>';
+
 			               html+='</div>';
 
 			               if (val.order_id>0){
 			                   html+='<div class="col text-right">';
-			                   html+="<b class='amout'>"+val.order_total_amount+"</b>";
+			                   html+="<b class='amout'>"+prettyPrice(val.valor_entrega)+"</b>";
 			                   html+='</div>';
 			                }
-
 			            html+='</div>';
-
+			html+='<div class="table" style="text-align: center; margin-top: -5px;">';
+			                  html+='<span class="tag-status '+val.status_raw+'">"'+val.status+'"</span>';
+			                html+='</div>';
 			            html+='<div class="table">';
 			                html+='<div class="col a">';
 			                    html+="<img class='opaque svg-task' src='lib/images/menu--task/task-id.svg' onerror='this.src='task-id.png''>";
@@ -193,7 +194,7 @@ function formatTask(data)
 			                         html+="<img class='opaque svg-task' src='lib/images/menu--task/order-id.svg' onerror='this.src='order-id.png''>";
 			                     html+='</div>';
 			                     html+='<div class="col">';              
-			                         html+='<p><b class="opaque trn" data-trn-key="order_id">Order No: </b>'+val.order_id+'</p>';
+			                         html+='<p><b class="opaque trn" data-trn-key="order_id">'+ getTrans('N. do Pedido: ','order_id') +'</b>'+val.order_id+'</p>';
 			                     html+='</div>';
 			                  html+='</div>';
 			             }
@@ -240,7 +241,7 @@ function formatTask(data)
 			                         html+="<img class='opaque svg-task' src='lib/images/menu--task/order-id.svg' onerror='this.src='order-id.png''>";
 			                     html+='</div>';
 			                     html+='<div class="col">';              
-			                         html+='<p><b class="opaque trn" data-trn-key="order_id">Order No: </b>'+val.order_id+'</p>';
+			                         html+='<p><b class="opaque trn" data-trn-key="order_id">'+ getTrans('N. do Pedido: ','order_id') +'</b>'+val.order_id+'</p>';
 			                     html+='</div>';
 			                  html+='</div>';
 			             }
@@ -1152,7 +1153,7 @@ function formatOrderDetails(data , data2 )
 	client_total = data.order_info.order_change - data.total.total;
 
 	item+= '<div class="tablee mtb5">';
-		item+='<p class="col w60 uppercase">'+ getTrans("Order No","order_no") + ": " + data.order_info.order_id+'</p>'
+		item+='<p class="col w60 uppercase">'+ getTrans("N. do Pedido","order_id") + " " + data.order_info.order_id+'</p>'
 		if (data.order_info.order_change>0){
 		item+='<p class="col w40 change" style="text-align:center;">'+ getTrans("Change","change") + ": " + prettyPrice(client_total)+'</p>'
 	item+= '</div>';
