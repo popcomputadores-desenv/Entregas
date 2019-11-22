@@ -40,7 +40,7 @@
     <gap:plugin name="cordova-plugin-camera" source="npm" spec="4.0.3" />
     <gap:plugin name="cordova-plugin-file-transfer" source="npm" spec="1.7.1" /> 
         
-    <plugin name="cordova-plugin-background-geolocation" spec="@mauron85/cordova-plugin-background-geolocation@~3.1.0" >
+    <plugin spec="@mauron85/cordova-plugin-background-geolocation" spec="~3.1.0" >
       <variable name="GOOGLE_PLAY_SERVICES_VERSION" value="11+" />
 	  <variable name="ANDROID_SUPPORT_LIBRARY_VERSION" value="26+" />
 	  <variable name="ICON" value="@mipmap/icon" />
@@ -48,6 +48,7 @@
 	  <variable name="ALWAYS_USAGE_DESCRIPTION" value="preciso do rastreamento em segundo plano ativado" />
 	  <variable name="MOTION_USAGE_DESCRIPTION" value="preciso da detecção de movimento" />
     </plugin>
+
         
     <plugin name="uk.co.workingedge.phonegap.plugin.launchnavigator" source="npm" spec="5.0.4" >
        <variable name="GOOGLE_API_KEY_FOR_ANDROID" value="AIzaSyCjgZJOBT5K3Ms5ns20Q3lbopscSoGt3aI" />
