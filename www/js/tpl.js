@@ -81,10 +81,16 @@ function formatTask(data)
 		
 		$.each( data, function( key, val ) { 
 			
-			if (val.status_raw === 'unassigned' || val.status_raw === 'assigned' || val.status_raw === 'aceito_pelo_entregador' || val.status_raw === 'started' ){
-				
+			if (val.status_raw === 'unassigned' || val.status_raw === 'assigned'){			
 			html+='<ons-list-item  modifier="task-list" tappable ripple onclick="showTaskAccept('+val.task_id+')" >';
-
+			} else if (val.status_raw === 'aceito_pelo_entregador'){
+			html+='<ons-list-item  modifier="task-list" tappable ripple onclick="showTaskMerchant('+val.task_id+')" >';
+			} else if (val.status_raw === 'started'){
+			html+='<ons-list-item  modifier="task-list" tappable ripple onclick="showTaskClient('+val.task_id+')" >';
+			} else {
+			html+='<ons-list-item  modifier="task-list" tappable ripple onclick="showTask('+val.task_id+')" >';
+			}
+			
 			    html+='<ons-row>';
 
 			        html+='<ons-col >';
@@ -111,7 +117,11 @@ function formatTask(data)
 			                    html+='<p><b class="opaque trn" data-trn-key="task_id">'+ getTrans('Task ID: ','task_id') +'</b>'+val.task_id+'</p>';
 			                html+='</div>'; 
 			            html+='</div>';
-			              
+			           
+			if (val.status_raw === 'unassigned' || val.status_raw === 'assigned'){			
+
+			} else if (val.status_raw === 'aceito_pelo_entregador'){
+				
 			             if (!empty(val.merchant_name)){
 					         if (!empty(val.resgate_entrega)){ 
 		         html+='<div class="table">';
@@ -139,6 +149,103 @@ function formatTask(data)
 		          html+='</div>';   
 				}
 	         }
+				
+			} else if (val.status_raw === 'started'){
+			            html+='<div class="table">';
+			                html+='<div class="col a">';
+			                    html+="<img class='opaque svg-task' src='lib/images/menu--task/customer-name.svg' onerror='this.src='customer-name.png''>";
+			                html+='</div>';
+			                html+='<div class="col">';
+			                    html+='<p><b class="opaque trn" data-trn-key="customer_name">'+ getTrans('Customer name: ','customer_name') +'</b>'+val.customer_name+'</p>';                      
+			                html+='</div>';
+			            html+='</div>';
+				
+			             if (!empty(val.merchant_name)){
+					         if (!empty(val.resgate_entrega)){ 
+		         html+='<div class="table">';
+		             html+='<div class="col a">';
+		             // html+='<ons-icon icon="ion-home" size="20px"></ons-icon>';
+			 		 html+="<img class='opaque svg-task' src='lib/images/profile--vehicle/vehicle.svg' onerror='this.src='merchant-name.png''>";
+		             html+='</div>';
+		             html+='<div class="col">';
+		             // html+='<p>'+ val.merchant_name +'</p>';
+			 		 html+='<p style="font-size: 22px;">'+val.resgate_entrega+'</p>';
+		             html+='</div>';
+		          html+='</div>';   
+				} else if (val.trans_type_raw == 'delivery' || val.trans_type_raw == 'coleta' || val.trans_type_raw == 'coleta_retorno' || val.trans_type_raw == 'pre_coleta' || val.trans_type_raw == 'pre_coleta_retorno'){
+					//não mostra nada
+				} else {
+		         html+='<div class="table">';
+		             html+='<div class="col a">';
+		             // html+='<ons-icon icon="ion-home" size="20px"></ons-icon>';
+			 		 html+="<img class='opaque svg-task' src='lib/images/menu--order-details/merchant-name.svg' onerror='this.src='merchant-name.png''>";
+		             html+='</div>';
+		             html+='<div class="col">';
+		             // html+='<p>'+ data.merchant_name +'</p>';
+			 		 html+='<p><b class="opaque trn" data-trn-key="merchant_name">'+ getTrans('Merchant name: ','merchant_name') +'</b>'+val.merchant_name+'</p>';
+		             html+='</div>';
+		          html+='</div>';   
+				}
+	         }
+			             if ( val.order_id>0){
+			                 html+='<div class="table">';
+			                     html+='<div class="col a">';
+			                         html+="<img class='opaque svg-task' src='lib/images/menu--task/order-id.svg' onerror='this.src='order-id.png''>";
+			                     html+='</div>';
+			                     html+='<div class="col">';              
+			                         html+='<p><b class="opaque trn" data-trn-key="order_id">Order No: </b>'+val.order_id+'</p>';
+			                     html+='</div>';
+			                  html+='</div>';
+			             }
+			} else {
+			            html+='<div class="table">';
+			                html+='<div class="col a">';
+			                    html+="<img class='opaque svg-task' src='lib/images/menu--task/customer-name.svg' onerror='this.src='customer-name.png''>";
+			                html+='</div>';
+			                html+='<div class="col">';
+			                    html+='<p><b class="opaque trn" data-trn-key="customer_name">'+ getTrans('Customer name: ','customer_name') +'</b>'+val.customer_name+'</p>';                      
+			                html+='</div>';
+			            html+='</div>';
+				
+			             if (!empty(val.merchant_name)){
+					         if (!empty(val.resgate_entrega)){ 
+		         html+='<div class="table">';
+		             html+='<div class="col a">';
+		             // html+='<ons-icon icon="ion-home" size="20px"></ons-icon>';
+			 		 html+="<img class='opaque svg-task' src='lib/images/profile--vehicle/vehicle.svg' onerror='this.src='merchant-name.png''>";
+		             html+='</div>';
+		             html+='<div class="col">';
+		             // html+='<p>'+ val.merchant_name +'</p>';
+			 		 html+='<p style="font-size: 22px;">'+val.resgate_entrega+'</p>';
+		             html+='</div>';
+		          html+='</div>';   
+				} else if (val.trans_type_raw == 'delivery' || val.trans_type_raw == 'coleta' || val.trans_type_raw == 'coleta_retorno' || val.trans_type_raw == 'pre_coleta' || val.trans_type_raw == 'pre_coleta_retorno'){
+					//não mostra nada
+				} else {
+		         html+='<div class="table">';
+		             html+='<div class="col a">';
+		             // html+='<ons-icon icon="ion-home" size="20px"></ons-icon>';
+			 		 html+="<img class='opaque svg-task' src='lib/images/menu--order-details/merchant-name.svg' onerror='this.src='merchant-name.png''>";
+		             html+='</div>';
+		             html+='<div class="col">';
+		             // html+='<p>'+ data.merchant_name +'</p>';
+			 		 html+='<p><b class="opaque trn" data-trn-key="merchant_name">'+ getTrans('Merchant name: ','merchant_name') +'</b>'+val.merchant_name+'</p>';
+		             html+='</div>';
+		          html+='</div>';   
+				}
+	         }
+			             if ( val.order_id>0){
+			                 html+='<div class="table">';
+			                     html+='<div class="col a">';
+			                         html+="<img class='opaque svg-task' src='lib/images/menu--task/order-id.svg' onerror='this.src='order-id.png''>";
+			                     html+='</div>';
+			                     html+='<div class="col">';              
+			                         html+='<p><b class="opaque trn" data-trn-key="order_id">Order No: </b>'+val.order_id+'</p>';
+			                     html+='</div>';
+			                  html+='</div>';
+			             }
+			}			
+						              
 			  if (val.tipo_veiculo == 'moto' || val.tipo_veiculo == 'moto+' || val.tipo_veiculo == 'carro' || val.tipo_veiculo == 'caminhao' || val.tipo_veiculo == 'bicicleta' || val.tipo_veiculo == ''){
 				html+='<div class="table">';
 		             html+='<div class="col a">';
@@ -189,116 +296,37 @@ function formatTask(data)
 		          html+='</div>';
 				} else {
 		            //não mostra nada
-				}            
-			        html+='</ons-col>';
-
-			    html+='</ons-row>';
-
-			html+='</ons-list-item>';
-				
-			} else {
+				}        
 			
-			html+='<ons-list-item  modifier="task-list" tappable ripple onclick="showTask('+val.task_id+')" >';
+			
+			if (val.status_raw === 'unassigned' || val.status_raw === 'assigned'){			
 
-			    html+='<ons-row>';
-
-			        html+='<ons-col >';
-
-			            html+='<div class="table mb10">';
-			               html+='<div class="col">';
-			                  html+='<span class="tag trn '+ val.trans_type_raw+' " data-trn-key="'+ val.trans_type_raw+'">'+ getTrans('Entrega ',val.trans_type)+'</span>';
-			                  html+='<span class="tag-status '+val.status_raw+'">#'+val.status+'</span>';
-			               html+='</div>';
-
-			               if (val.order_id>0){
-			                   html+='<div class="col text-right">';
-			                   html+="<b class='amout'>"+val.order_total_amount+"</b>";
-			                   html+='</div>';
-			                }
-
-			            html+='</div>';
-
-			            html+='<div class="table">';
-			                html+='<div class="col a">';
-			                    html+="<img class='opaque svg-task' src='lib/images/menu--task/task-id.svg' onerror='this.src='task-id.png''>";
-			                html+='</div>';
-			                html+='<div class="col">';
-			                    html+='<p><b class="opaque trn" data-trn-key="task_id">'+ getTrans('Task ID: ','task_id') +'</b>'+val.task_id+'</p>';
-			                html+='</div>'; 
-			            html+='</div>';
-			              
-			            html+='<div class="table">';
-			                html+='<div class="col a">';
-			                    html+="<img class='opaque svg-task' src='lib/images/menu--task/customer-name.svg' onerror='this.src='customer-name.png''>";
-			                html+='</div>';
-			                html+='<div class="col">';
-			                    html+='<p><b class="opaque trn" data-trn-key="customer_name">'+ getTrans('Customer name: ','customer_name') +'</b>'+val.customer_name+'</p>';                      
-			                html+='</div>';
-			            html+='</div>';
-			              
-			             if (!empty(val.merchant_name)){
-					         if (!empty(val.resgate_entrega)){ 
-		         html+='<div class="table">';
-		             html+='<div class="col a">';
-		             // html+='<ons-icon icon="ion-home" size="20px"></ons-icon>';
-			 		 html+="<img class='opaque svg-task' src='lib/images/profile--vehicle/vehicle.svg' onerror='this.src='merchant-name.png''>";
-		             html+='</div>';
-		             html+='<div class="col">';
-		             // html+='<p>'+ val.merchant_name +'</p>';
-			 		 html+='<p style="font-size: 22px;">'+val.resgate_entrega+'</p>';
-		             html+='</div>';
-		          html+='</div>';   
-				} else if (val.trans_type_raw == 'delivery' || val.trans_type_raw == 'coleta' || val.trans_type_raw == 'coleta_retorno' || val.trans_type_raw == 'pre_coleta' || val.trans_type_raw == 'pre_coleta_retorno'){
-					//não mostra nada
-				} else {
-		         html+='<div class="table">';
-		             html+='<div class="col a">';
-		             // html+='<ons-icon icon="ion-home" size="20px"></ons-icon>';
-			 		 html+="<img class='opaque svg-task' src='lib/images/menu--order-details/merchant-name.svg' onerror='this.src='merchant-name.png''>";
-		             html+='</div>';
-		             html+='<div class="col">';
-		             // html+='<p>'+ data.merchant_name +'</p>';
-			 		 html+='<p><b class="opaque trn" data-trn-key="merchant_name">'+ getTrans('Merchant name: ','merchant_name') +'</b>'+val.merchant_name+'</p>';
-		             html+='</div>';
-		          html+='</div>';   
-				}
-	         }
-			              
-			            // if ( val.order_id>0){
-			            //     html+='<div class="table">';
-			            //         html+='<div class="col a">';
-			            //             html+="<img class='opaque svg-task' src='lib/images/menu--task/order-id.svg' onerror='this.src='order-id.png''>";
-			            //         html+='</div>';
-			            //         html+='<div class="col">';              
-			            //             html+='<p><b class="opaque trn" data-trn-key="order_id">Order No: </b>'+val.order_id+'</p>';
-			            //         html+='</div>';
-			            //      html+='</div>';
-			            // }
-			              
-			            html+='<div class="table">';
-			                html+='<div class="col a">';
-			                    html+="<img class='opaque svg-task' src='lib/images/menu--task/delivery-time.svg' onerror='this.src='delivery-time.png''>";
-			                html+='</div>';
-			                html+='<div class="col">';
-			                    html+='<p><b class="opaque trn" data-trn-key="delivery_before">'+ getTrans('Delivery before: ','delivery_before') +'</b>'+val.delivery_time+'</p>';
-			                html+='</div>';
-			            html+='</div>';
+			} else if (val.status_raw === 'aceito_pelo_entregador'){
 			              /* ocultando endereço na tela principal */
-			          /*  html+='<div class="table mb0">';
+			            html+='<div class="table mb0">';
+			                html+='<div class="col a">';
+			                    html+="<img class='opaque svg-task' src='lib/images/menu--task/delivery-address.svg' onerror='this.src='delivery-address.png''>";
+			                html+='</div>';
+			                html+='<div class="col">';
+			                    html+='<p><b class="opaque trn" data-trn-key="coleta_address">'+ getTrans('Coleta address: ','coleta_address') +'</b>'+val.drop_address+'</p>';
+			                html+='</div>';
+			            html+='</div>';
+			} else {
+			              /* ocultando endereço na tela principal */
+			            html+='<div class="table mb0">';
 			                html+='<div class="col a">';
 			                    html+="<img class='opaque svg-task' src='lib/images/menu--task/delivery-address.svg' onerror='this.src='delivery-address.png''>";
 			                html+='</div>';
 			                html+='<div class="col">';
 			                    html+='<p><b class="opaque trn" data-trn-key="delivery_address">'+ getTrans('Delivery address: ','delivery_address') +'</b>'+val.delivery_address+'</p>';
 			                html+='</div>';
-			            html+='</div>';*/
-
+			            html+='</div>';
+			}
 			        html+='</ons-col>';
 
 			    html+='</ons-row>';
 
 			html+='</ons-list-item>';
-		}
 		});
 		html+='</ons-list>';
 		
@@ -337,7 +365,51 @@ function formatTaskDetails(data)
 			 html+='<p><b class="opaque trn" data-trn-key="delivery_before">'+ getTrans('Delivery before: ','delivery_before') +'</b>'+data.delivery_time+'</p>';                      
              html+='</div>';
           html+='</div>';    
-          
+				
+			  if (data.tipo_veiculo == 'moto' || data.tipo_veiculo == 'moto+' || data.tipo_veiculo == 'carro' || data.tipo_veiculo == 'caminhao' || data.tipo_veiculo == 'bicicleta' || data.tipo_veiculo == ''){
+				html+='<div class="table mtb5">';
+		             html+='<div class="col a">';
+		             // html+='<ons-icon icon="ion-home" size="20px"></ons-icon>';
+			 		 html+="<img class='opaque svg-task' src='lib/images/profile--vehicle/vehicle.svg' onerror='this.src='vehicle.png''>";
+		             html+='</div>';
+		             html+='<div class="col">';
+		             // html+='<p>'+ data.merchant_name +'</p>';
+			 		 html+='<p><b class="opaque trn" data-trn-key="tipo_transportador">'+ getTrans('Tipo do Transportador: ','tipo_transportador') +'</b>'+data.tipo_veiculo+'</p>';
+		             html+='</div>';
+		          html+='</div>';
+				} else {
+		            //não mostra nada
+				}            
+	
+			  if (data.tempo_entrega >= 0){
+				html+='<div class="table mtb5">';
+		             html+='<div class="col a">';
+		             // html+='<ons-icon icon="ion-home" size="20px"></ons-icon>';
+			 		 html+="<img class='opaque svg-task' src='lib/images/menu--task/delivery-time.svg' onerror='this.src='vehicle.png''>";
+		             html+='</div>';
+		             html+='<div class="col">';
+		             // html+='<p>'+ data.merchant_name +'</p>';
+			 		 html+='<p><b class="opaque trn" data-trn-key="tempo_entrega">'+ getTrans('Tempo Total da Entrega: ','tempo_entrega') +'</b>'+data.tempo_entrega+'</p>';
+		             html+='</div>';
+		          html+='</div>';
+				} else {
+		            //não mostra nada
+				}            
+			  if (data.km_entrega >= 0){
+				html+='<div class="table mtb5">';
+		             html+='<div class="col a">';
+		             // html+='<ons-icon icon="ion-home" size="20px"></ons-icon>';
+			 		 html+="<img class='opaque svg-task' src='lib/images/menu--task/delivery-address.svg' onerror='this.src='vehicle.png''>";
+		             html+='</div>';
+		             html+='<div class="col">';
+		             // html+='<p>'+ data.merchant_name +'</p>';
+			 		 html+='<p><b class="opaque trn" data-trn-key="distancia_entrega">'+ getTrans('Percurso Total: ','distancia_entrega') +'</b>'+data.km_entrega+'</p>';
+		             html+='</div>';
+		          html+='</div>';
+				} else {
+		            //não mostra nada
+				}        
+	
           html+='<div class="table mtb5">';
              html+='<div class="col a">';
              // html+='<ons-icon icon="ion-android-contact" size="20px"></ons-icon>';
@@ -401,7 +473,51 @@ function formatTaskDetailsBlock(data)
 			 html+='<p><b class="opaque trn" data-trn-key="delivery_before">'+ getTrans('Delivery before: ','delivery_before') +'</b>'+data.delivery_time+'</p>';                      
              html+='</div>';
           html+='</div>';    
-          
+				
+			  if (data.tipo_veiculo == 'moto' || data.tipo_veiculo == 'moto+' || data.tipo_veiculo == 'carro' || data.tipo_veiculo == 'caminhao' || data.tipo_veiculo == 'bicicleta' || data.tipo_veiculo == ''){
+				html+='<div class="table mtb5">';
+		             html+='<div class="col a">';
+		             // html+='<ons-icon icon="ion-home" size="20px"></ons-icon>';
+			 		 html+="<img class='opaque svg-task' src='lib/images/profile--vehicle/vehicle.svg' onerror='this.src='vehicle.png''>";
+		             html+='</div>';
+		             html+='<div class="col">';
+		             // html+='<p>'+ data.merchant_name +'</p>';
+			 		 html+='<p><b class="opaque trn" data-trn-key="tipo_transportador">'+ getTrans('Tipo do Transportador: ','tipo_transportador') +'</b>'+data.tipo_veiculo+'</p>';
+		             html+='</div>';
+		          html+='</div>';
+				} else {
+		            //não mostra nada
+				}            
+	
+			  if (data.tempo_entrega >= 0){
+				html+='<div class="table mtb5">';
+		             html+='<div class="col a">';
+		             // html+='<ons-icon icon="ion-home" size="20px"></ons-icon>';
+			 		 html+="<img class='opaque svg-task' src='lib/images/menu--task/delivery-time.svg' onerror='this.src='vehicle.png''>";
+		             html+='</div>';
+		             html+='<div class="col">';
+		             // html+='<p>'+ data.merchant_name +'</p>';
+			 		 html+='<p><b class="opaque trn" data-trn-key="tempo_entrega">'+ getTrans('Tempo Total da Entrega: ','tempo_entrega') +'</b>'+data.tempo_entrega+'</p>';
+		             html+='</div>';
+		          html+='</div>';
+				} else {
+		            //não mostra nada
+				}            
+			  if (data.km_entrega >= 0){
+				html+='<div class="table mtb5">';
+		             html+='<div class="col a">';
+		             // html+='<ons-icon icon="ion-home" size="20px"></ons-icon>';
+			 		 html+="<img class='opaque svg-task' src='lib/images/menu--task/delivery-address.svg' onerror='this.src='vehicle.png''>";
+		             html+='</div>';
+		             html+='<div class="col">';
+		             // html+='<p>'+ data.merchant_name +'</p>';
+			 		 html+='<p><b class="opaque trn" data-trn-key="distancia_entrega">'+ getTrans('Percurso Total: ','distancia_entrega') +'</b>'+data.km_entrega+'</p>';
+		             html+='</div>';
+		          html+='</div>';
+				} else {
+		            //não mostra nada
+				}        
+	
           html+='<div class="table mtb5">';
              html+='<div class="col a">';
              // html+='<ons-icon icon="ion-android-contact" size="20px"></ons-icon>';
@@ -412,6 +528,228 @@ function formatTaskDetailsBlock(data)
 			 html+='<p><b class="opaque trn" data-trn-key="customer_name">'+ getTrans('Customer name: ','customer_name') +'</b>'+ getTrans('Clique em aceitar ','clique_aceitar') +'</p>';
              html+='</div>';
           html+='</div>';    
+                    
+         html+='</ons-col>';
+         html+='<ons-col class="tag-align">';
+	        html+='<span class="tag-crimson tag trn '+ data.trans_type_raw+' " data-trn-key="'+ data.trans_type_raw+'">'+ getTrans('Entrega ',data.trans_type)+'</span>';
+	     html+='</ons-col>';
+         
+     html+='</ons-row>';
+   html+='</ons-list-item>';
+ 
+   return html;
+}
+
+function formatTaskDetailsMerchant(data)
+{
+	if(empty(data)){
+		return '';
+	}
+	var html='';
+	
+	html+='<ons-list-item>';
+	     html+='<ons-row>';
+	        html+='<ons-col style="text-align:left;flex: 0 0 70%; align-self: center; max-width: 70%;">';
+	        html+='<b class="uppercase">'+ getTrans('Customer Details','customer_details') +'</b>';	 
+	        html+='</ons-col>'; 
+	        html+='<ons-col style="text-align:right;flex: 0 0 30%; max-width: 30%;">';
+	html+='<p class="button-toolbar-action" id="task-action-wrap-deu-ruim" ></p>';
+	        html+='</ons-col>'; 
+	      html+='</ons-row>';           
+	    html+='</ons-list-item>';   
+	
+	html+='<ons-list-item class="back-white normal-shadow normal-border-top">';
+     html+='<ons-row>';
+        html+='<ons-col width="100%" >';
+         html+='<div class="table">';
+             html+='<div class="col a">';
+             // html+='<ons-icon icon="ion-android-time" size="20px"></ons-icon>';
+			 html+="<img class='opaque svg-task' src='lib/images/menu--order-details/delivery-time.svg' onerror='this.src='delivery-time.png''>";
+             html+='</div>';
+             html+='<div class="col">';
+             // html+='<p>'+ data.delivery_time +'</p>';
+			 html+='<p><b class="opaque trn" data-trn-key="delivery_before">'+ getTrans('Delivery before: ','delivery_before') +'</b>'+data.delivery_time+'</p>';                      
+             html+='</div>';
+          html+='</div>';    
+				
+			  if (data.tipo_veiculo == 'moto' || data.tipo_veiculo == 'moto+' || data.tipo_veiculo == 'carro' || data.tipo_veiculo == 'caminhao' || data.tipo_veiculo == 'bicicleta' || data.tipo_veiculo == ''){
+				html+='<div class="table mtb5">';
+		             html+='<div class="col a">';
+		             // html+='<ons-icon icon="ion-home" size="20px"></ons-icon>';
+			 		 html+="<img class='opaque svg-task' src='lib/images/profile--vehicle/vehicle.svg' onerror='this.src='vehicle.png''>";
+		             html+='</div>';
+		             html+='<div class="col">';
+		             // html+='<p>'+ data.merchant_name +'</p>';
+			 		 html+='<p><b class="opaque trn" data-trn-key="tipo_transportador">'+ getTrans('Tipo do Transportador: ','tipo_transportador') +'</b>'+data.tipo_veiculo+'</p>';
+		             html+='</div>';
+		          html+='</div>';
+				} else {
+		            //não mostra nada
+				}            
+	
+			  if (data.tempo_entrega >= 0){
+				html+='<div class="table mtb5">';
+		             html+='<div class="col a">';
+		             // html+='<ons-icon icon="ion-home" size="20px"></ons-icon>';
+			 		 html+="<img class='opaque svg-task' src='lib/images/menu--task/delivery-time.svg' onerror='this.src='vehicle.png''>";
+		             html+='</div>';
+		             html+='<div class="col">';
+		             // html+='<p>'+ data.merchant_name +'</p>';
+			 		 html+='<p><b class="opaque trn" data-trn-key="tempo_entrega">'+ getTrans('Tempo Total da Entrega: ','tempo_entrega') +'</b>'+data.tempo_entrega+'</p>';
+		             html+='</div>';
+		          html+='</div>';
+				} else {
+		            //não mostra nada
+				}            
+			  if (data.km_entrega >= 0){
+				html+='<div class="table mtb5">';
+		             html+='<div class="col a">';
+		             // html+='<ons-icon icon="ion-home" size="20px"></ons-icon>';
+			 		 html+="<img class='opaque svg-task' src='lib/images/menu--task/delivery-address.svg' onerror='this.src='vehicle.png''>";
+		             html+='</div>';
+		             html+='<div class="col">';
+		             // html+='<p>'+ data.merchant_name +'</p>';
+			 		 html+='<p><b class="opaque trn" data-trn-key="distancia_entrega">'+ getTrans('Percurso Total: ','distancia_entrega') +'</b>'+data.km_entrega+'</p>';
+		             html+='</div>';
+		          html+='</div>';
+				} else {
+		            //não mostra nada
+				}        
+	
+          html+='<div class="table mtb5">';
+             html+='<div class="col a">';
+             // html+='<ons-icon icon="ion-android-contact" size="20px"></ons-icon>';
+			 html+="<img class='opaque svg-task' src='lib/images/menu--order-details/customer-name.svg' onerror='this.src='customer-name.png''>";
+             html+='</div>';
+             html+='<div class="col">';
+             // html+='<p>'+ data.customer_name +'</p>';
+			 html+='<p><b class="opaque trn" data-trn-key="customer_name">'+ getTrans('Customer name: ','customer_name') +'</b>'+ getTrans('Clique em aceitar ','clique_aceitar') +'</p>';
+             html+='</div>';
+          html+='</div>     ';    
+          
+          if (!empty(data.contact_number)){
+	          html+='<div class="table">';
+	             html+='<div class="col a">';
+	             // html+='<ons-icon icon="ion-ios-telephone" size="20px"></ons-icon>';
+			     html+="<img class='opaque svg-task' src='lib/images/menu--order-details/contact-number.svg' onerror='this.src='contact-number.png''>";
+	             html+='</div>';
+	             html+='<div class="col">';
+	             // html+='<p><a class="tel" href="tel:'+data.contact_number+'">'+data.contact_number+'</a></p>';
+			 	 html+='<p><b class="opaque trn" data-trn-key="contact_number">'+ getTrans('Contact number: ','contact_number') +'</b><a class="tel" href="tel:'+data.contact_number+'"></a>'+data.contact_number+'</p>';
+	             html+='</div>';
+	          html+='</div>     ';   
+          } 
+                    
+         html+='</ons-col>';
+         html+='<ons-col class="tag-align">';
+	        html+='<span class="tag-crimson tag trn '+ data.trans_type_raw+' " data-trn-key="'+ data.trans_type_raw+'">'+ getTrans('Entrega ',data.trans_type)+'</span>';
+	     html+='</ons-col>';
+         
+     html+='</ons-row>';
+   html+='</ons-list-item>';
+ 
+   return html;
+}
+
+function formatTaskDetailsClient(data)
+{
+	if(empty(data)){
+		return '';
+	}
+	var html='';
+	
+	html+='<ons-list-item>';
+	     html+='<ons-row>';
+	        html+='<ons-col style="text-align:left;flex: 0 0 70%; align-self: center; max-width: 70%;">';
+	        html+='<b class="uppercase">'+ getTrans('Customer Details','customer_details') +'</b>';	 
+	        html+='</ons-col>'; 
+	        html+='<ons-col style="text-align:right;flex: 0 0 30%; max-width: 30%;">';
+	html+='<p class="button-toolbar-action" id="task-action-wrap-deu-ruim" ></p>';
+	        html+='</ons-col>'; 
+	      html+='</ons-row>';           
+	    html+='</ons-list-item>';   
+	
+	html+='<ons-list-item class="back-white normal-shadow normal-border-top">';
+     html+='<ons-row>';
+        html+='<ons-col width="100%" >';
+         html+='<div class="table">';
+             html+='<div class="col a">';
+             // html+='<ons-icon icon="ion-android-time" size="20px"></ons-icon>';
+			 html+="<img class='opaque svg-task' src='lib/images/menu--order-details/delivery-time.svg' onerror='this.src='delivery-time.png''>";
+             html+='</div>';
+             html+='<div class="col">';
+             // html+='<p>'+ data.delivery_time +'</p>';
+			 html+='<p><b class="opaque trn" data-trn-key="delivery_before">'+ getTrans('Delivery before: ','delivery_before') +'</b>'+data.delivery_time+'</p>';                      
+             html+='</div>';
+          html+='</div>';    
+				
+			  if (data.tipo_veiculo == 'moto' || data.tipo_veiculo == 'moto+' || data.tipo_veiculo == 'carro' || data.tipo_veiculo == 'caminhao' || data.tipo_veiculo == 'bicicleta' || data.tipo_veiculo == ''){
+				html+='<div class="table mtb5">';
+		             html+='<div class="col a">';
+		             // html+='<ons-icon icon="ion-home" size="20px"></ons-icon>';
+			 		 html+="<img class='opaque svg-task' src='lib/images/profile--vehicle/vehicle.svg' onerror='this.src='vehicle.png''>";
+		             html+='</div>';
+		             html+='<div class="col">';
+		             // html+='<p>'+ data.merchant_name +'</p>';
+			 		 html+='<p><b class="opaque trn" data-trn-key="tipo_transportador">'+ getTrans('Tipo do Transportador: ','tipo_transportador') +'</b>'+data.tipo_veiculo+'</p>';
+		             html+='</div>';
+		          html+='</div>';
+				} else {
+		            //não mostra nada
+				}            
+	
+			  if (data.tempo_entrega >= 0){
+				html+='<div class="table mtb5">';
+		             html+='<div class="col a">';
+		             // html+='<ons-icon icon="ion-home" size="20px"></ons-icon>';
+			 		 html+="<img class='opaque svg-task' src='lib/images/menu--task/delivery-time.svg' onerror='this.src='vehicle.png''>";
+		             html+='</div>';
+		             html+='<div class="col">';
+		             // html+='<p>'+ data.merchant_name +'</p>';
+			 		 html+='<p><b class="opaque trn" data-trn-key="tempo_entrega">'+ getTrans('Tempo Total da Entrega: ','tempo_entrega') +'</b>'+data.tempo_entrega+'</p>';
+		             html+='</div>';
+		          html+='</div>';
+				} else {
+		            //não mostra nada
+				}            
+			  if (data.km_entrega >= 0){
+				html+='<div class="table mtb5">';
+		             html+='<div class="col a">';
+		             // html+='<ons-icon icon="ion-home" size="20px"></ons-icon>';
+			 		 html+="<img class='opaque svg-task' src='lib/images/menu--task/delivery-address.svg' onerror='this.src='vehicle.png''>";
+		             html+='</div>';
+		             html+='<div class="col">';
+		             // html+='<p>'+ data.merchant_name +'</p>';
+			 		 html+='<p><b class="opaque trn" data-trn-key="distancia_entrega">'+ getTrans('Percurso Total: ','distancia_entrega') +'</b>'+data.km_entrega+'</p>';
+		             html+='</div>';
+		          html+='</div>';
+				} else {
+		            //não mostra nada
+				}        
+	
+          html+='<div class="table mtb5">';
+             html+='<div class="col a">';
+             // html+='<ons-icon icon="ion-android-contact" size="20px"></ons-icon>';
+			 html+="<img class='opaque svg-task' src='lib/images/menu--order-details/customer-name.svg' onerror='this.src='customer-name.png''>";
+             html+='</div>';
+             html+='<div class="col">';
+             // html+='<p>'+ data.customer_name +'</p>';
+			 html+='<p><b class="opaque trn" data-trn-key="customer_name">'+ getTrans('Customer name: ','customer_name') +'</b>'+data.customer_name+'</p>';
+             html+='</div>';
+          html+='</div>     ';    
+          
+          if (!empty(data.contact_number)){
+	          html+='<div class="table">';
+	             html+='<div class="col a">';
+	             // html+='<ons-icon icon="ion-ios-telephone" size="20px"></ons-icon>';
+			     html+="<img class='opaque svg-task' src='lib/images/menu--order-details/contact-number.svg' onerror='this.src='contact-number.png''>";
+	             html+='</div>';
+	             html+='<div class="col">';
+	             // html+='<p><a class="tel" href="tel:'+data.contact_number+'">'+data.contact_number+'</a></p>';
+			 	 html+='<p><b class="opaque trn" data-trn-key="contact_number">'+ getTrans('Contact number: ','contact_number') +'</b><a class="tel" href="tel:'+data.contact_number+'"></a>'+data.contact_number+'</p>';
+	             html+='</div>';
+	          html+='</div>     ';   
+          } 
                     
          html+='</ons-col>';
          html+='<ons-col class="tag-align">';

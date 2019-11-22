@@ -432,6 +432,49 @@
     </ons-page>
     </ons-template>
     
+	<ons-template id="taskDetailsMerchant.html"> 
+    <ons-page id="taskDetailsMerchant"  >
+    
+       <ons-toolbar modifier="ktransparent-toolbar">        
+         <div class="left"><ons-back-button onclick="reloadHome()"></ons-back-button></div>          
+         <div class="center toolbar-title"></div>
+       </ons-toolbar>
+       
+       <input type="hidden" name="task_id_global" class="task_id_global">
+       <input type="hidden" name="task_id_details" class="task_id_details">
+       
+       <div id="task-details-merchant" class="inner normal-inner list-wrapper">
+       
+       </div>   
+       
+     <ons-bottom-toolbar class="button-toolbar-action" id="task-action-wrap" >
+     </ons-bottom-toolbar>
+    
+    </ons-page>
+    </ons-template>
+    
+	<ons-template id="taskDetailsClient.html"> 
+    <ons-page id="taskDetailsClient"  >
+    
+       <ons-toolbar modifier="ktransparent-toolbar">        
+         <div class="left"><ons-back-button onclick="reloadHome()"></ons-back-button></div>          
+         <div class="center toolbar-title"></div>
+       </ons-toolbar>
+       
+       <input type="hidden" name="task_id_global" class="task_id_global">
+       <input type="hidden" name="task_id_details" class="task_id_details">
+       
+       <div id="task-details-client" class="inner normal-inner list-wrapper">
+       
+       </div>   
+       
+     <ons-bottom-toolbar class="button-toolbar-action" id="task-action-wrap" >
+     </ons-bottom-toolbar>
+    
+    </ons-page>
+    </ons-template>
+    
+	  
    
     <ons-template id="viewTaskDescription.html"> 
     <ons-page id="viewTaskDescription" modifier="grey-page"  >

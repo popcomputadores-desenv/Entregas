@@ -1230,29 +1230,16 @@ border-top: 1px solid #eee !important;
 border-bottom: 1px solid #eee !important;
 }
 
-#taskDetails .list-wrapper .table,
+#taskDetails .list-wrapper .table, #taskDetailsBlock .list-wrapper .table, #taskDetailsMerchant .list-wrapper .table, #taskDetailsClient .list-wrapper .table,
 #Notes .list-wrapper .table {
 margin-bottom: 0px;
 }
 
-#taskDetails .list-wrapper .tag {
+#taskDetails .list-wrapper .tag, #taskDetailsBlock .list-wrapper .tag, #taskDetailsMerchant .list-wrapper .tag, #taskDetailsClient .list-wrapper .tag {
 margin-right: 0px;
 }
 
-#taskDetails .page__content{
-bottom:60px;
-}
-
-#taskDetailsBlock .list-wrapper .table,
-#Notes .list-wrapper .table {
-margin-bottom: 0px;
-}
-
-#taskDetailsBlock .list-wrapper .tag {
-margin-right: 0px;
-}
-
-#taskDetailsBlock .page__content{
+#taskDetails .page__content, #taskDetailsBlock .page__content, #taskDetailsMerchant .page__content, #taskDetailsClient .page__content{
 bottom:60px;
 }
 

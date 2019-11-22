@@ -565,6 +565,20 @@ document.addEventListener("init", function(event) {
 			  callAjax("TaskDetailsBlock",'task_id=' + task_id);
 			break;
 				 
+			case "taskDetailsMerchant":
+			  $(".toolbar-title").html( getTrans("Getting info...",'getting_info')  );	
+			 placeholder(".reason",'add_reason');			 
+			  task_id = page.data.task_id;			
+			  callAjax("TaskDetailsMerchant",'task_id=' + task_id);
+			break;
+				 
+			case "taskDetailsClient":
+			  $(".toolbar-title").html( getTrans("Getting info...",'getting_info')  );	
+			 placeholder(".reason",'add_reason');			 
+			  task_id = page.data.task_id;			
+			  callAjax("TaskDetailsClient",'task_id=' + task_id);
+			break;
+				 
 			case "CalendarView":
 			
 			$('#calendar').fullCalendar({
@@ -897,7 +911,7 @@ function callAjax(action,params)
 		   			   formatTaskDetails(data.details) + 	  // customer details 
 						
 		   			   TaskDetailsChevron_1_precoleta(data.details)  +  // pre-coleta address
-		   			   MercadoPoint_pagamento(data.details)  +  // coleta address
+		   			   //MercadoPoint_pagamento(data.details)  +  // coleta address
 		   			   TaskDetailsChevron_1_coleta(data.details)  +  // coleta address
 						
 		   			   TaskDetailsChevron_1(data.details)  +  // delivery address
@@ -960,6 +974,43 @@ function callAjax(action,params)
 		   			
 		   			$(".task_id_global").val( data.details.task_id );
 		   			
+		   			setStorage("map_icons", JSON.stringify(data.details.map_icons) );
+		   			
+		   			if ( data.details.status_raw =="successful"){
+			   			$("ons-bottom-toolbar").css("display","none");
+			   			$("#taskDetailsBlock .page__content").css("bottom","0");
+		   			}
+		   			
+		   			break;
+						
+		   			case "TaskDetailsMerchant":
+		   			$(".toolbar-title").html ( data.msg ) ;
+		   			$(".task_id_details").val( data.details.task_id );
+		   			
+		   			setStorage("task_full_data",JSON.stringify(data.details));
+		   			$("#task-details-merchant").html( 
+		   			   formatTaskDetailsMerchant(data.details) + 	  // customer details 
+		   			   TaskDetailsChevron_1_precoleta(data.details)  +  // pre-coleta address
+		   			   TaskDetailsChevron_1_coleta(data.details)  +  // coleta address
+		   			   TaskDetailsChevron_4(data.details)  +  // merchant address
+		   			   DriverNotes( data.history_notes , data.details ) +	// driver notes	   			   
+		   			   addPhotoChevron(data.details) +  // take picture
+		   			   TaskDetailsChevron_3(data.details.history)  // task history		   			   
+		   			   // '<div style="height:100px;"></div>'
+		   			);
+		   			
+		   			//show signature
+		   			
+		   			$("#task-action-wrap").html( 
+		   			  swicthButtonAction( data.details.task_id, data.details.status_raw )
+		   			);
+						
+		   			$("#task-action-wrap-deu-ruim").html( 
+		   			  trocaButtonDeuRuim( data.details.task_id, data.details.status_raw )
+		   			);
+		   			
+		   			$(".task_id_global").val( data.details.task_id );
+		   			
 		   			setStorage("enabled_resize_photo",data.details.enabled_resize_photo);
 		   			setStorage("photo_resize_width",data.details.photo_resize_width);
 		   			setStorage("photo_resize_height",data.details.photo_resize_height);
@@ -968,7 +1019,58 @@ function callAjax(action,params)
 		   			
 		   			if ( data.details.status_raw =="successful"){
 			   			$("ons-bottom-toolbar").css("display","none");
-			   			$("#taskDetailsBlock .page__content").css("bottom","0");
+			   			$("#taskDetailsMerchant .page__content").css("bottom","0");
+		   			}
+		   			
+		   			break;
+						
+		   			case "TaskDetailsClient":
+		   			$(".toolbar-title").html ( data.msg ) ;
+		   			$(".task_id_details").val( data.details.task_id );
+		   			
+		   			setStorage("task_full_data",JSON.stringify(data.details));
+		   			$("#task-details-client").html( 
+		   			   formatTaskDetailsClient(data.details) + 	  // customer details 
+						
+		   			   TaskDetailsChevron_1_precoleta(data.details)  +  // pre-coleta address
+		   			   //MercadoPoint_pagamento(data.details)  +  // coleta address
+		   			   TaskDetailsChevron_1_coleta(data.details)  +  // coleta address
+						
+		   			   TaskDetailsChevron_1(data.details)  +  // delivery address
+						
+		   			   TaskDetailsChevron_1_retorno(data.details)  +  // retorno address
+						
+		   			   TaskDetailsChevron_4(data.details)  +  // merchant address
+		   			   TaskDetailsChevron_2(data.details) +   // task description
+		   			   OrderDetails(data.details) +           // order details
+		   			   TaskAddSignature( data.details ) +	  // task signature
+		   			   DriverNotes( data.history_notes , data.details ) +	// driver notes	   			   
+		   			   addPhotoChevron(data.details) +  // take picture
+		   			   TaskDetailsChevron_3(data.details.history)  // task history		   			   
+		   			   // '<div style="height:100px;"></div>'
+		   			);
+		   			
+		   			//show signature
+		   			
+		   			$("#task-action-wrap").html( 
+		   			  swicthButtonAction( data.details.task_id, data.details.status_raw )
+		   			);
+						
+		   			$("#task-action-wrap-deu-ruim").html( 
+		   			  trocaButtonDeuRuim( data.details.task_id, data.details.status_raw )
+		   			);
+		   			
+		   			$(".task_id_global").val( data.details.task_id );
+		   			
+		   			setStorage("enabled_resize_photo",data.details.enabled_resize_photo);
+		   			setStorage("photo_resize_width",data.details.photo_resize_width);
+		   			setStorage("photo_resize_height",data.details.photo_resize_height);
+		   			
+		   			setStorage("map_icons", JSON.stringify(data.details.map_icons) );
+		   			
+		   			if ( data.details.status_raw =="successful"){
+			   			$("ons-bottom-toolbar").css("display","none");
+			   			$("#taskDetailsClient .page__content").css("bottom","0");
 		   			}
 		   			
 		   			break;
@@ -1416,6 +1518,16 @@ function callAjax(action,params)
 		   			  toastMsg( data.msg );
 		   			  reload_home=1;
 		   			break
+						
+		   			case "TaskDetailsMerchant":
+		   			  toastMsg( data.msg );
+		   			  reload_home=1;
+		   			break
+						
+		   			case "TaskDetailsClient":
+		   			  toastMsg( data.msg );
+		   			  reload_home=1;
+		   			break
 		   			
 		   			case "getTaskCompleted":
 		   			
@@ -1790,6 +1902,32 @@ function showTaskAccept(task_id)
    reload_home=2;
       
    kNavigator.pushPage("taskDetailsBlock.html", {
+	  animation: 'slide',
+	  data : { 					  	  
+  	    'task_id': task_id,  	    
+  	 }	  
+   });
+}
+
+function showTaskMerchant(task_id)
+{
+   dump(task_id);	
+   reload_home=2;
+      
+   kNavigator.pushPage("taskDetailsMerchant.html", {
+	  animation: 'slide',
+	  data : { 					  	  
+  	    'task_id': task_id,  	    
+  	 }	  
+   });
+}
+
+function showTaskClient(task_id)
+{
+   dump(task_id);	
+   reload_home=2;
+      
+   kNavigator.pushPage("taskDetailsClient.html", {
 	  animation: 'slide',
 	  data : { 					  	  
   	    'task_id': task_id,  	    
