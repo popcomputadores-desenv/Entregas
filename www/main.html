@@ -280,9 +280,9 @@
     <ons-template id="home.html"> 
     <ons-page id="home" modifier="grey-page" >
     
-<!-- Atualização Master Hub (Correção de Tradução) -->
+<!-- AtualizaÃ§Ã£o Master Hub (CorreÃ§Ã£o de TraduÃ§Ã£o) -->
     <ons-toolbar modifier="toolbar-noshadow" style="background-color: #999;">
-<!-- Fim da atualização -->
+<!-- Fim da atualizaÃ§Ã£o -->
 
         <div class="left">        
           <ons-toolbar-button onclick="showMenu(this)">
@@ -379,6 +379,11 @@
         <span class="trn" data-trn-key="calendar">Calendar</span>
       </ons-list-item>
 
+      <ons-list-item modifier="normal-menu" onclick="showPage('MeusRendimentos.html',1)"  tappable>
+        <img class="svg pr10" src="lib/images/profile--bank/wallet.svg" onerror="this.src='wallet.png'">    
+        <span class="trn" data-trn-key="rendimentos">Meus Rendimentos</span>
+      </ons-list-item>
+
       <ons-list-item modifier="normal-menu" onclick="showPage('SettingPage.html',1)"  tappable>
         <img class="svg pr10" src="lib/images/menu--home/settings.svg" onerror="this.src='settings.png'">    
         <span class="trn" data-trn-key="settings">Settings</span>
@@ -413,7 +418,7 @@
     
     </ons-page>
     </ons-template>
-<!-- Atualização Master Hub (Personalização - Oculta dados do entregador) -->
+<!-- AtualizaÃ§Ã£o Master Hub (PersonalizaÃ§Ã£o - Oculta dados do entregador) -->
 	<ons-template id="taskDetailsBlock.html"> 
     <ons-page id="taskDetailsBlock"  >
     
@@ -476,7 +481,7 @@
     
     </ons-page>
     </ons-template>
-<!-- Fim da atualização -->
+<!-- Fim da atualizaÃ§Ã£o -->
    
     <ons-template id="viewTaskDescription.html"> 
     <ons-page id="viewTaskDescription" modifier="grey-page"  >
@@ -502,9 +507,9 @@
         <div class="inner">
            <p class="field-wrap mb0">
              <ons-input type="text" id="reason" name="reason"            
-<!-- Atualização Master Hub (Correção de Tradução) -->
+<!-- AtualizaÃ§Ã£o Master Hub (CorreÃ§Ã£o de TraduÃ§Ã£o) -->
               modifier="underbar" class="reason" placeholder="Qual o motivo..."  data-trn-key="add_reason"  float></ons-input>
-<!-- Fim da atualização -->
+<!-- Fim da atualizaÃ§Ã£o -->
            </p>           
            <p class="text-left mt0">
            <ons-button modifier="large" onclick="AddReasonTask()" >
@@ -517,7 +522,7 @@
       
       </ons-dialog>
     </ons-template>    
-<!-- Atualização Master Hub (Botão DEU RUIM) -->
+<!-- AtualizaÃ§Ã£o Master Hub (BotÃ£o DEU RUIM) -->
    <ons-template id="reasonTaskDeuRuim.html">
       <ons-dialog id="reasonTaskDeuRuim" cancelable > 
               
@@ -540,7 +545,7 @@
       
       </ons-dialog>
     </ons-template>    
-<!-- Fim da atualização -->
+<!-- Fim da atualizaÃ§Ã£o -->
         
    <ons-template id="Signature.html"> 
     <ons-page id="Signature" modifier="grey-page" >
@@ -552,7 +557,7 @@
        </ons-toolbar>
        
        <div class="inner"> 
-<!-- Atualização Master Hub (Correção de Layout) -->
+<!-- AtualizaÃ§Ã£o Master Hub (CorreÃ§Ã£o de Layout) -->
        <span type="text" name="recipient_name" class="recipient_name trn"            
          modifier="underbar" placeholder="Recipient name" data-trn-key="recipient_name" float></span>
          <p class="field-wrap">
@@ -560,7 +565,7 @@
          modifier="underbar" placeholder="Recipient name" data-trn-key="recipient_name" float></ons-input>-->
                   
           <ons-input id="recipient_name" class="recipient_name trn"  modifier="underbar" float></ons-input>
-<!-- Fim da atualização -->
+<!-- Fim da atualizaÃ§Ã£o -->
          </p>
        
          <div id="signature-pan"></div>
@@ -587,6 +592,20 @@
 	  </ons-page>
     </ons-template>    
     
+    <ons-template id="MeusRendimentos.html"> 
+    <ons-page id="MeusRendimentos" >
+		
+       <ons-toolbar modifier="ktransparent-toolbar">        
+         <div class="left"><ons-back-button></ons-back-button></div>          
+         <div class="center toolbar-title-rendimentos trn" data-trn-key="rendimentos" >Meus Rendimentos</div>
+       </ons-toolbar>
+       
+       <div class="inner">     
+         <div id="rendimentos"></div>     
+       </div>              
+       
+	  </ons-page>
+    </ons-template>    
     
     <ons-template id="CalendarView.html"> 
     <ons-page id="CalendarView" >
@@ -609,9 +628,9 @@
        <ons-toolbar modifier="toolbar-noshadow">        
          <div class="left"><ons-back-button></ons-back-button></div>          
          <div class="center toolbar-title-profile">
-<!-- Atualização Master Hub (Correção de Layout) -->
+<!-- AtualizaÃ§Ã£o Master Hub (CorreÃ§Ã£o de Layout) -->
          <span class="center toolbar-title-profile trn" data-trn-key="profile" >Profile</span>
-<!-- Fim da atualização -->
+<!-- Fim da atualizaÃ§Ã£o -->
          </div>
        </ons-toolbar>
        
@@ -626,9 +645,9 @@
          
      <ons-tabbar id="tabbar_bottom" position="top">
         
-<!-- Atualização Master Hub (Envio de Documentação do Entregador) -->
+<!-- AtualizaÃ§Ã£o Master Hub (Envio de DocumentaÃ§Ã£o do Entregador) -->
      <ons-tab page="profilePessoal.html">
-<!-- Fim da atualização -->
+<!-- Fim da atualizaÃ§Ã£o -->
 		  <input type="radio" style="display: none">
 		  <button class="tabbar__button in-flex">
 		    <div class="tabbar__icon none">
@@ -664,7 +683,7 @@
        
 	  </ons-page>
     </ons-template>    
-<!-- Atualização Master Hub (Envio de Documentação do Entregador) -->
+<!-- AtualizaÃ§Ã£o Master Hub (Envio de DocumentaÃ§Ã£o do Entregador) -->
     <ons-template id="profilePessoal.html"> 
     <ons-page id="profilePagePessoal" >
        
@@ -824,8 +843,8 @@
        
 	  </ons-page>
     </ons-template>    
-<!-- Fim da atualização -->
-<!-- Atualização Master Hub (Envio de Documentação do Entregador) -->
+<!-- Fim da atualizaÃ§Ã£o -->
+<!-- AtualizaÃ§Ã£o Master Hub (Envio de DocumentaÃ§Ã£o do Entregador) -->
     <ons-template id="profile.html"> 
     <ons-page id="profile" >
     
@@ -940,8 +959,8 @@
       
       </ons-page>
     </ons-template>    
-<!-- Fim da atualização -->
-<!-- Atualização Master Hub (Envio de Documentação do Entregador) -->
+<!-- Fim da atualizaÃ§Ã£o -->
+<!-- AtualizaÃ§Ã£o Master Hub (Envio de DocumentaÃ§Ã£o do Entregador) -->
     <ons-template id="endereco.html"> 
     <ons-page id="endereco" >
     
@@ -1012,7 +1031,7 @@
       </div>
       
     		 <div class="mt20 mlr5"> 
-               <b class="opaque black inline trn" data-trn-key="Comprovante_endereco" >Comprovante de endereço: </b>
+               <b class="opaque black inline trn" data-trn-key="Comprovante_endereco" >Comprovante de endereï¿½o: </b>
                <p class="inline "></p>
              </div>		
 
@@ -1030,8 +1049,8 @@
     
       </ons-page>
     </ons-template> 
-<!-- Fim da atualização -->
-<!-- Atualização Master Hub (Envio de Documentação do Entregador) -->
+<!-- Fim da atualizaÃ§Ã£o -->
+<!-- AtualizaÃ§Ã£o Master Hub (Envio de DocumentaÃ§Ã£o do Entregador) -->
     <ons-template id="financeiro.html"> 
     <ons-page id="financeiro" >
     
@@ -1113,8 +1132,8 @@
     </div>		
       </ons-page>
     </ons-template> 
-<!-- Fim da atualização -->
-<!-- Atualização Master Hub (Envio de Documentação do Entregador) -->
+<!-- Fim da atualizaÃ§Ã£o -->
+<!-- AtualizaÃ§Ã£o Master Hub (Envio de DocumentaÃ§Ã£o do Entregador) -->
     <ons-template id="vehicle.html"> 
     <ons-page id="vehicle" >
     
@@ -1243,8 +1262,8 @@
     
       </ons-page>
     </ons-template> 
-<!-- Fim da atualização -->
-<!-- Atualização Master Hub (Envio de Documentação do Entregador) -->
+<!-- Fim da atualizaÃ§Ã£o -->
+<!-- AtualizaÃ§Ã£o Master Hub (Envio de DocumentaÃ§Ã£o do Entregador) -->
     <ons-template id="changepassword.html"> 
     <ons-page id="changepassword" >
     
@@ -1299,8 +1318,8 @@
     
       </ons-page>
     </ons-template> 
-<!-- Fim da atualização -->
-<!-- Atualização Master Hub (Envio de Documentação do Entregador) -->
+<!-- Fim da atualizaÃ§Ã£o -->
+<!-- AtualizaÃ§Ã£o Master Hub (Envio de DocumentaÃ§Ã£o do Entregador) -->
     <ons-template id="transporType.html">
       <ons-dialog id="transporType" cancelable > 
 
@@ -1308,8 +1327,8 @@
              
       </ons-dialog>
     </ons-template>    
-<!-- Fim da atualização -->
-<!-- Atualização Master Hub (Envio de Documentação do Entregador) -->
+<!-- Fim da atualizaÃ§Ã£o -->
+<!-- AtualizaÃ§Ã£o Master Hub (Envio de DocumentaÃ§Ã£o do Entregador) -->
     <ons-template id="profilechange.html"> 
     <ons-page id="profilechange" modifier="page-endereco">
     
@@ -1464,7 +1483,7 @@
     <div class="endereco-bkg mt20"></div>
       <div>
     		 <div class="mt20" style="position: absolute; width: 77%; margin-left: 26px; font-size: 13px; margin-top: -23px;"> 
-               <b class="opaque black trn" data-trn-key="envie_comprovante_endereco" >Envie o comprovante de endereço aqui!</b>
+               <b class="opaque black trn" data-trn-key="envie_comprovante_endereco" >Envie o comprovante de endereï¿½o aqui!</b>
 				 </div><div>
        <ons-fab position="top right" class="right enviodocs" onclick="showDeviceGallery(4);">
      <img class="svg" src="lib/images/others/camera-w.svg" onerror="this.src='camera-w.png'"></ons-fab></div>
@@ -1551,7 +1570,7 @@
       </div>
       
     		 <div class="mt20 mlr5"> 
-               <b class="opaque black inline trn" data-trn-key="Comprovante_endereco" >Comprovante de endereço: </b>
+               <b class="opaque black inline trn" data-trn-key="Comprovante_endereco" >Comprovante de endereï¿½o: </b>
                <p class="inline "></p>
              </div>		
 
@@ -1690,7 +1709,7 @@
 		
     <div style="margin-top: 27px;">
           <div class="mt20" style="position: absolute; width: 77%; margin-left: 26px; font-size: 13px; margin-top: -23px;"> 
-               <b class="opaque black trn" data-trn-key="envie_crlv" >Envie uma foto do documento do veículo aqui!</b>
+               <b class="opaque black trn" data-trn-key="envie_crlv" >Envie uma foto do documento do veï¿½culo aqui!</b>
 				 </div><div>
        <ons-fab position="top right" class="right enviodocs" onclick="showDeviceGallery(5);">
           <img class="svg" src="lib/images/others/camera-w.svg" onerror="this.src='camera-w.png'">
@@ -1893,7 +1912,7 @@
              
       </ons-dialog>
     </ons-template>    
-<!-- Fim da atualização -->
+<!-- Fim da atualizaÃ§Ã£o -->
    <ons-template id="SettingPage.html"> 
     <ons-page id="SettingPage" modifier="grey-page" >
 		
@@ -2148,7 +2167,7 @@
        
          <form id="frm-signup"  method="post" onsubmit="return false;"> 
          <!--<input type="hidden" name="transport_type_id" class="transport_type_id">-->
-<!-- Atualização Master Hub (Correção de Layout) -->
+<!-- AtualizaÃ§Ã£o Master Hub (CorreÃ§Ã£o de Layout) -->
          <p class="top25">
 	         <ons-row>      
             <ons-col class="col-margin field-wrap">
@@ -2253,7 +2272,7 @@
          <p class="top25">
          <div class="cidade_wrap" style="background:#fff;padding:3px;"></div>
          </p>
-<!-- Fim da atualização -->
+<!-- Fim da atualizaÃ§Ã£o -->
          
          <p class="text-left top40">
             <ons-button modifier="large" onclick="signup()" >
@@ -2356,10 +2375,10 @@
        </ons-pull-hook>   
        
         <ons-row class="orange-bar home-sub-nav">
-<!-- Atualização Master Hub (Correção de Layout) -->
+<!-- AtualizaÃ§Ã£o Master Hub (CorreÃ§Ã£o de Layout) -->
 	       <ons-col width="70px" >
 	         <p class="uppercase todays_date"></p>
-<!-- Fim da atualização -->
+<!-- Fim da atualizaÃ§Ã£o -->
          </ons-col>
 
          <ons-col class="text-right" >
@@ -2383,7 +2402,7 @@
       </ons-pull-hook>   
     
         <ons-row class="orange-bar home-sub-nav">
-<!-- Atualização Master Hub (Correção de Layout) -->
+<!-- AtualizaÃ§Ã£o Master Hub (CorreÃ§Ã£o de Layout) -->
          <ons-col width="70px" >
            <p class="uppercase todays_date2"></p>
          </ons-col>
@@ -2395,7 +2414,7 @@
          
          <ons-col class="col text-right">
            <i class="text-center">Lucro do dia! </i> <b class="total_order_total2 amout"></b>
-<!-- Fim da atualização -->
+<!-- Fim da atualizaÃ§Ã£o -->
          </ons-col>
         </ons-row>
     
