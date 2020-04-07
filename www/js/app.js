@@ -5043,7 +5043,7 @@ getDirectionsDropoff = function(){
 		}
 				
 		if(!empty(your_lat) && !empty(your_lng)){
-			launchnavigator.navigate([lat, lng], {
+			launchnavigator.navigate([dropoff_lat, dropoff_lng], {
 	           start: your_lat+","+your_lng
 	        });
 		} else {
