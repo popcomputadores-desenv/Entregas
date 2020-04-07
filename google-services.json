@@ -1,0 +1,117 @@
+{
+  "project_info": {
+    "project_number": "700766185398",
+    "firebase_url": "https://app-masterhub.firebaseio.com",
+    "project_id": "app-masterhub",
+    "storage_bucket": "app-masterhub.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:700766185398:android:6f051d9f17d7992b",
+        "android_client_info": {
+          "package_name": "app.masterhub.cliente"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "700766185398-f1vu9pld5pb1f1hnb5eoupidoeo6aukv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.masterhub.cliente",
+            "certificate_hash": "ee4f7032ae92e4914e85c767615624641a31e343"
+          }
+        },
+        {
+          "client_id": "700766185398-4vsdvvhcah9k4q1485d88sm77p6o703g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjgZJOBT5K3Ms5ns20Q3lbopscSoGt3aI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "700766185398-4vsdvvhcah9k4q1485d88sm77p6o703g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:700766185398:android:c78a5a1ff0bc4142",
+        "android_client_info": {
+          "package_name": "app.masterhub.entrega"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "700766185398-4vsdvvhcah9k4q1485d88sm77p6o703g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjgZJOBT5K3Ms5ns20Q3lbopscSoGt3aI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:700766185398:android:cf7e463f34b9b9a7",
+        "android_client_info": {
+          "package_name": "app.masterhub.venda"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "700766185398-4vsdvvhcah9k4q1485d88sm77p6o703g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjgZJOBT5K3Ms5ns20Q3lbopscSoGt3aI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
