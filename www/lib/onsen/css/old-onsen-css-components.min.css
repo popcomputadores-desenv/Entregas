@@ -194,8 +194,8 @@ h4,h5,h6{
     transition:none
 }
 :checked+.switch__toggle{
-    box-shadow:inset 0 0 0 2px #5198db;
-    background-color:#5198db
+    box-shadow:inset 0 0 0 2px #5198db; /*change here to edit theme's color*/
+    background-color:#5198db; /*change here to edit theme's color*/
 }
 :checked+.switch__toggle>.switch__handle{
     left:21px;
@@ -250,7 +250,7 @@ h4,h5,h6{
     box-shadow:0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.4)
 }
 :checked+.switch--material__toggle{
-    background-color:#424242;
+    background-color:#424242; /*change here to edit theme's color*/
     box-shadow:none
 }
 .button--material,:checked+.switch--material__toggle>.switch--material__handle{
@@ -258,7 +258,7 @@ h4,h5,h6{
 }
 :checked+.switch--material__toggle>.switch--material__handle{
     left:16px;
-    background-color:#212121
+    background-color:#212121; /*change here to edit theme's color*/
 }
 :disabled+.switch--material__toggle{
     opacity:.3;
@@ -436,8 +436,8 @@ h4,h5,h6{
     width:14px;
     height:14px;
     border:none;
-    box-shadow:0 0 0 9px #212121;
-    background-color:#212121;
+    box-shadow:0 0 0 9px #212121; /*change here to edit theme's color*/
+    background-color:#212121; /*change here to edit theme's color*/
     border-radius:50%;
     opacity:0;
     transition:opacity .25s ease-out,-webkit-transform .25s ease-out;
@@ -708,7 +708,7 @@ h4,h5,h6{
     height:44px;
     border-bottom:0;
     padding:0;
-    background-color:#212121;
+    background-color:#212121; /*change here to edit theme's color*/
     background-size:0
 }
 .toolbar--noshadow,.toolbar--transparent{
@@ -1034,7 +1034,7 @@ h4,h5,h6{
 }
 .button--material{
     font:inherit;
-    background:#212121;
+    background:#212121; /*change here to edit theme's color*/
     -moz-user-select:none;
     user-select:none;
     border-radius:3px;
@@ -1048,14 +1048,14 @@ h4,h5,h6{
     font-weight:600;
     letter-spacing: 0.5px;
     opacity:1;
-    border-bottom: 5px solid #1a1a1a
+    border-bottom: 5px solid #1a1a1a; /*change here to edit theme's color*/
 }
 .button--material--flat,.select-input--material,.text-input--material{
     -webkit-transform:translate3d(0,0,0)
 }
 .button--material:active{
     box-shadow:0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12),0 3px 5px -1px rgba(0,0,0,.4);
-    background-color:#212121;
+    background-color:#212121; /*change here to edit theme's color*/
     opacity:.9
 }
 .button--material:focus{
@@ -1545,7 +1545,7 @@ margin: 0 2px 0 auto;
     transition:width .2s ease-in-out
 }
 :checked+.tabbar--material__button{
-    background-color:#212121;
+    background-color:#212121; /*change here to edit theme's color*/
     color:#fff;
     border-radius: 3px
 }
@@ -1881,8 +1881,8 @@ margin: 0 2px 0 auto;
     background-color:transparent
 }
 :checked+.checkbox--material__checkmark:before{
-    border:2px solid #212121;
-    background-color:#212121;
+    border:2px solid #212121; /*change here to edit theme's color*/
+    background-color:#212121; /*change here to edit theme's color*/
     transition:background-color .1s linear,border-color .1s linear
 }
 .checkbox--material__checkmark:after{
@@ -1938,8 +1938,8 @@ margin: 0 2px 0 auto;
     vertical-align:top
 }
 .checkbox--material__input:checked:before{
-    box-shadow:0 0 0 11px #212121;
-    background-color:#212121
+    box-shadow:0 0 0 11px #212121; /*change here to edit theme's color*/
+    background-color:#212121; /*change here to edit theme's color*/
 }
 .checkbox--material__input:active:before{
     opacity:.15;
@@ -2078,8 +2078,8 @@ margin: 0 2px 0 auto;
     transition:opacity .25s ease-out,transform .1s ease-out,-webkit-transform .1s ease-out
 }
 .radio-button--material__input:checked:before{
-    box-shadow:0 0 0 14px #212121;
-    background-color:#212121
+    box-shadow:0 0 0 14px #212121; /*change here to edit theme's color*/
+    background-color:#212121; /*change here to edit theme's color*/
 }
 .radio-button--material__input:active:before{
     opacity:.15;
@@ -2115,7 +2115,7 @@ margin: 0 2px 0 auto;
 }
 :checked+.radio-button--material__checkmark:before{
     background:0 0;
-    border:2px solid #212121
+    border:2px solid #212121; /*change here to edit theme's color*/
 }
 .radio-button--material__input+.radio-button__checkmark:after{
     background:#717171;
@@ -2125,7 +2125,7 @@ margin: 0 2px 0 auto;
 }
 :checked+.radio-button--material__checkmark:after{
     opacity:1;
-    background:#212121;
+    background:#212121; /*change here to edit theme's color*/
     -webkit-transform:scale(1);
     transform:scale(1)
 }
@@ -3217,7 +3217,7 @@ margin: 0 2px 0 auto;
     margin:8px 8px 8px 0;
     box-sizing:border-box;
     min-width:50px;
-    color:#212121
+    color:#212121; /*change here to edit theme's color*/
 }
 @media (-webkit-min-device-pixel-ratio:2),(min-resolution:192dpi),(min-resolution:2dppx){
     .alert-dialog-button--material{
@@ -3426,7 +3426,7 @@ margin: 0 2px 0 auto;
     border-radius:0
 }
 .progress-bar--material__primary,.progress-bar--material__secondary{
-    background-color:#212121;
+    background-color:#212121; /*change here to edit theme's color*/
     border-radius:0
 }
 .progress-bar--material__secondary{
@@ -3434,7 +3434,7 @@ margin: 0 2px 0 auto;
     z-index:0
 }
 .progress-bar--material.progress-bar--indeterminate:after,.progress-bar--material.progress-bar--indeterminate:before{
-    background-color:#212121;
+    background-color:#212121; /*change here to edit theme's color*/
     border-radius:0
 }
 .progress-circular{
@@ -3539,7 +3539,7 @@ button.fab,button.fab--material,ons-fab.fab,ons-fab.fab--material,ons-speed-dial
     stroke:#dbdbdb
 }
 .progress-circular--material__primary{
-    stroke:#212121
+    stroke:#212121; /*change here to edit theme's color*/
 }
 .progress-circular--material__secondary{
     stroke:#80cbc4
@@ -3597,7 +3597,7 @@ button.fab__icon,ons-fab.fab__icon,ons-speed-dial-item.fab__icon{
 button.fab--material,ons-fab.fab--material,ons-speed-dial-item.fab--material{
     padding:0;
     font:inherit;
-    background:#212121;
+    background:#212121; /*change here to edit theme's color*/
     cursor:default;
     -webkit-user-select:none;
     -moz-user-select:none;

@@ -1,4 +1,6 @@
+/*personalização*/
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,300italic,300,600,700);
+/*fim*/
 
 
 .myloader {
@@ -143,9 +145,11 @@ text-align:center;
 margin: 20px 15px 10px;
 }
 
+/*envio de documentos*/
 #profilePageChangeData .inner {
 margin: 20px 15px 10px;
 }
+/*fim*/
 
 .inner{
 margin:30px 20px;
@@ -192,6 +196,7 @@ padding: 10px;
 .page--login-page .text-input--material{
 background:transparent linear-gradient(to top, transparent 1px, #fff 3px) no-repeat scroll center bottom / 100% 2px padding-box;
 }
+/*envio de documentos*/
 .page--page-endereco .page__content{
 bottom: 140px !important; 
 }
@@ -199,6 +204,7 @@ bottom: 140px !important;
 .page--page-financeiro .page__content{
 bottom: 140px !important; 
 }
+/*fim*/
 
 p,
 .list-wrapper ons-col,
@@ -275,7 +281,7 @@ text-transform:none;
 -webkit-box-shadow: none;
 -moz-box-shadow: none;
 box-shadow: none;
-background:#212121;
+background:#212121; /*change here to edit theme's color*/
 color:#fff;
 }
 
@@ -416,7 +422,7 @@ padding-bottom:80px;
 
 .concat-text
 {
-width: 100%;
+max-width: 250px; /*personalização*/
 white-space: nowrap;
 overflow: hidden;
 text-overflow: ellipsis;
@@ -454,9 +460,11 @@ color:cornflowerblue;
 .tag-status.acknowledged  {
 color:blueviolet;
 }
+/*personalização - status*/
 .tag-status.aceito_pelo_entregador  {
 color:#34337A;
 }
+/*fim*/
 .tag-status.started {
 color:coral;
 }
@@ -508,7 +516,7 @@ background: #f9f9f9;
 display: inline-flex;
 align-items: center;
 }
-
+/*envio de documentos*/
 .button-toolbar-action-assinatura.bottom-bar{
 padding:6px 2px;
 text-align:center;
@@ -516,7 +524,7 @@ height:130px;
 background: #f9f9f9;
 align-items: center;
 }
-
+/*fim*/
 .button-toolbar-action2.bottom-bar{
 padding:10px;
 text-align:center;
@@ -576,11 +584,12 @@ border:1px solid transparent;
 .profile-bg{
 height:175px;
 width:175px;
-background:url("../images/profile.png") no-repeat center center;
+background:url("../images/profile.png") no-repeat center center #dedede; /*change here to edit theme's color*/
 margin: auto;
 border-radius: 100px;
 }
 
+/*envio de documentos*/
 .endereco-bkg{
 height:175px;
 width:175px;
@@ -634,7 +643,7 @@ background:url("../images/profile.png") no-repeat center center;
 margin: auto;
 border-radius: 10px;
 }
-
+/*fim*/
 .forms p{
 margin:3px 0;
 }
@@ -716,7 +725,7 @@ color:#fff;
 .navigation-bar--ktransparent-toolbar,
 .button--green-button
 {
-background:#212121;
+background:#212121; /*change here to edit theme's color*/
 color:#fff;
 }
 
@@ -772,7 +781,7 @@ margin-top:30px;
 }
 
 .list--list-blue-bg .list__item{
-background:#212121;
+background:#212121; /*change here to edit theme's color*/
 color:#fff;
 }
 .top40{
@@ -811,6 +820,7 @@ position: absolute;
 top: -5%;
 }
 
+/*envio de documentos*/
 .img_loader img.avatar-cnh{
 max-width:50px;
 max-height:50px;
@@ -866,7 +876,7 @@ left: 46%;
 position: absolute;
 top: -5%;
 }
-
+/*fim*/
 /*SPINER*/
 .img_loader .spinner{
 display:block;
@@ -884,7 +894,7 @@ display:block;
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background-color: #212121;
+  background-color: #212121; /*change here to edit theme's color*/
   opacity: 0.6;
   position: absolute;
   top: 0;
@@ -1105,7 +1115,7 @@ padding-right: 50px;
 }
 
 #home .center img, #signup .center img {
-max-width: 185px;
+max-width: 185px; /*personalização*/
 margin: auto;
 }
 
@@ -1122,11 +1132,12 @@ color: #000;
 opacity: 0.4;
 }
 
+/*personalização*/
 .mlr5 {
 margin-left: 5px;
 margin-right: 5px;
 }
-
+/*fim*/
 .mt0 {
 margin-top: 0px;
 }
@@ -1188,10 +1199,10 @@ line-height: 36.6px;
 
 .fc-left button,
 .fc-right button {
-background: #212121;
+background: #212121; /*change here to edit theme's color*/
 border: none;
 color: white;
-border-bottom: 5px solid #1a1a1a;
+border-bottom: 5px solid #1a1a1a; /*change here to edit theme's color*/
 }
 
 #calendar h2 {
@@ -1230,16 +1241,22 @@ border-top: 1px solid #eee !important;
 border-bottom: 1px solid #eee !important;
 }
 
+/*personalização - oculta dados do entregador*/
 #taskDetails .list-wrapper .table, #taskDetailsBlock .list-wrapper .table, #taskDetailsMerchant .list-wrapper .table, #taskDetailsClient .list-wrapper .table,
+/*fim*/
 #Notes .list-wrapper .table {
 margin-bottom: 0px;
 }
 
+/*personalização - oculta dados do entregador*/
 #taskDetails .list-wrapper .tag, #taskDetailsBlock .list-wrapper .tag, #taskDetailsMerchant .list-wrapper .tag, #taskDetailsClient .list-wrapper .tag {
+/*fim*/
 margin-right: 0px;
 }
 
+/*personalização - oculta dados do entregador*/
 #taskDetails .page__content, #taskDetailsBlock .page__content, #taskDetailsMerchant .page__content, #taskDetailsClient .page__content{
+/*fim*/
 bottom:60px;
 }
 
@@ -1275,7 +1292,7 @@ text-transform: capitalize;
 }
 
 .action-btn {
-/*width: 45%;*/
+/*width: 45%;*/   /*personalização*/
 display: inline-block;
 margin: auto;
 }
@@ -1298,7 +1315,7 @@ padding-left:10px;
 }
 
 .send-btn {
-background: #212121;
+background: #212121; /*change here to edit theme's color*/
 height: 44px;
 width: 44px;
 border-radius: 3px;
@@ -1404,8 +1421,10 @@ padding-top: 20px;
 }
 
 .bg-white .table:last-child {
+/*personalização*/
 padding-bottom: 8px;
 padding-top: 15px;
+/*fim*/
 }
 
 ons-fab span {
@@ -1468,10 +1487,12 @@ bottom: 0px;
 float: right;
 }
 
+/*personalização*/
 .right2 {
 float: right;
 width:  100px !important;	
 }
+/*fim*/
 .w100 {
 width: 100%;
 }
@@ -1497,6 +1518,7 @@ vertical-align:top;
 padding: 0;
 }
 
+/*envio de documentos*/
 #profilePageChangeData .inner ons-input {
 padding: 5px 0px;
 }
@@ -1509,7 +1531,7 @@ vertical-align:top;
 #profilePageChangeData .list-item--material__center {
 padding: 0;
 }
-
+/*fim*/
 .info-txt {
 color: #111 !important;
 font-size: 11px !important;
@@ -1517,4 +1539,29 @@ font-size: 11px !important;
 
 #frm-changepass p.field-wrap {
 margin-bottom: 15px;
+}
+
+.clear-btn {
+font-family: 'Montserrat', sans-serif;
+vertical-align: middle;
+color: white !important;
+}
+
+.inherit {
+width: inherit;
+}
+
+.col-left {
+line-height: 26px;
+}
+
+.total-order {
+font-size: 14px;
+display: unset;
+}
+
+.line {
+font-size: 14px;
+margin: 0px 5px;
+color: #ddd;
 }

@@ -72,7 +72,7 @@ function callAjax2(action,params)
 		}
 	});
 }
-
+/** Atualização Master Hub (Modificação de Serviços no Aplicativo, Oculta dados do entregador, Cobrança por km adicional e dinamico, Identificação do Tipo da Entrega) **/
 function formatTask(data)
 {	
 	var html='';
@@ -101,11 +101,9 @@ function formatTask(data)
 
 			               html+='</div>';
 
-			               if (val.order_id>0){
 			                   html+='<div class="col text-right">';
-			                   html+="<b class='amout'>"+prettyPrice(val.valor_entrega)+"</b>";
+			                   html+="<b class='amout'>" + prettyPrice(val.valor_entrega) + "</b>";
 			                   html+='</div>';
-			                }
 			            html+='</div>';
 			html+='<div class="table" style="text-align: center; margin-top: -5px;">';
 			                  html+='<span class="tag-status '+val.status_raw+'">"'+val.status+'"</span>';
@@ -248,6 +246,9 @@ function formatTask(data)
 			}			
 						              
 			  if (val.tipo_veiculo == 'moto' || val.tipo_veiculo == 'moto+' || val.tipo_veiculo == 'carro' || val.tipo_veiculo == 'caminhao' || val.tipo_veiculo == 'bicicleta' || val.tipo_veiculo == ''){
+				  if (val.tipo_veiculo == ''){
+					 val.tipo_veiculo = 'Moto'; 
+				  }
 				html+='<div class="table">';
 		             html+='<div class="col a">';
 		             // html+='<ons-icon icon="ion-home" size="20px"></ons-icon>';
@@ -259,7 +260,16 @@ function formatTask(data)
 		             html+='</div>';
 		          html+='</div>';
 				} else {
-		            //não mostra nada
+				html+='<div class="table">';
+		             html+='<div class="col a">';
+		             // html+='<ons-icon icon="ion-home" size="20px"></ons-icon>';
+			 		 html+="<img class='opaque svg-task' src='lib/images/profile--vehicle/vehicle.svg' onerror='this.src='vehicle.png''>";
+		             html+='</div>';
+		             html+='<div class="col">';
+		             // html+='<p>'+ data.merchant_name +'</p>';
+			 		 html+='<p><b class="opaque trn" data-trn-key="tipo_transportador">'+ getTrans('Tipo do Transportador: ','tipo_transportador') +'</b>'+val.tipo_veiculo+'</p>';
+		             html+='</div>';
+		          html+='</div>';
 				}            
 			            html+='<div class="table">';
 			                html+='<div class="col a">';
@@ -278,7 +288,12 @@ function formatTask(data)
 		             html+='</div>';
 		             html+='<div class="col">';
 		             // html+='<p>'+ data.merchant_name +'</p>';
-			 		 html+='<p><b class="opaque trn" data-trn-key="tempo_entrega">'+ getTrans('Tempo Total da Entrega: ','tempo_entrega') +'</b>'+val.tempo_entrega+'</p>';
+				  if (val.tempo_entrega != 0){
+			 		 html+='<p><b class="opaque trn" data-trn-key="tempo_entrega">'+ getTrans('Tempo Total da Entrega: ','tempo_entrega') +'</b>'+ getTrans('cerca de','cerca_de') +' '+val.tempo_entrega+' minutos.</p>';
+				  } else {
+			 		 html+='<p><b class="opaque trn" data-trn-key="tempo_entrega">'+ getTrans('Tempo da Entrega: ','tempo_entrega') +'</b>'+ getTrans('tempo nao calculado','tempo_nao_calculado') +'</p>';
+				  }
+
 		             html+='</div>';
 		          html+='</div>';
 				} else {
@@ -292,7 +307,16 @@ function formatTask(data)
 		             html+='</div>';
 		             html+='<div class="col">';
 		             // html+='<p>'+ data.merchant_name +'</p>';
-			 		 html+='<p><b class="opaque trn" data-trn-key="distancia_entrega">'+ getTrans('Percurso Total: ','distancia_entrega') +'</b>'+val.km_entrega+'</p>';
+				  if (val.km_entrega != 0 || !empty(val.km_entrega)){
+				  if (data.km_entrega <= 0.3){
+			 		 html+='<p><b class="opaque trn" data-trn-key="distancia_entrega">'+ getTrans('Percurso: ','distancia_entrega') +'</b>'+ getTrans('por volta de 100 mts.','por_volta_de_100_mts') +'</p>';
+				  } else {
+			 		 html+='<p><b class="opaque trn" data-trn-key="distancia_entrega">'+ getTrans('Percurso: ','distancia_entrega') +'</b>'+ getTrans('por volta de','por_volta_de') +' '+val.km_entrega+' km.</p>';
+				  } 
+				  } else {
+			 		 html+='<p><b class="opaque trn" data-trn-key="distancia_entrega">'+ getTrans('Percurso: ','distancia_entrega') +'</b>'+ getTrans('km nao calculado.','nao_calculado') +'</p>';
+				  }
+
 		             html+='</div>';
 		          html+='</div>';
 				} else {
@@ -350,13 +374,15 @@ function formatTask(data)
 			    html+='</ons-row>';
 
 			html+='</ons-list-item>';
+			
 		});
 		html+='</ons-list>';
 		
 	}
 	return html;
 }
-
+/** Fim da atualização **/
+/** Atualização Master Hub (Botão DEU RUIM, Identificação do Tipo da Entrega) **/ 
 function formatTaskDetails(data)
 {
 	if(empty(data)){
@@ -367,8 +393,8 @@ function formatTaskDetails(data)
 	html+='<ons-list-item>';
 	     html+='<ons-row>';
 	        html+='<ons-col style="text-align:left;flex: 0 0 70%; align-self: center; max-width: 70%;">';
-	        html+='<b class="uppercase">'+ getTrans('Customer Details','customer_details') +'</b>';	 
-	        html+='</ons-col>'; 
+	        html+='<b class="uppercase">'+ getTrans('Customer Details','customer_details') +'</b>';	        
+	        html+='</ons-col>';  
 	        html+='<ons-col style="text-align:right;flex: 0 0 30%; max-width: 30%;">';
 	html+='<p class="button-toolbar-action" id="task-action-wrap-deu-ruim" ></p>';
 	        html+='</ons-col>'; 
@@ -390,6 +416,9 @@ function formatTaskDetails(data)
           html+='</div>';    
 				
 			  if (data.tipo_veiculo == 'moto' || data.tipo_veiculo == 'moto+' || data.tipo_veiculo == 'carro' || data.tipo_veiculo == 'caminhao' || data.tipo_veiculo == 'bicicleta' || data.tipo_veiculo == ''){
+				  if (data.tipo_veiculo == ''){
+					 data.tipo_veiculo = 'Moto'; 
+				  }
 				html+='<div class="table mtb5">';
 		             html+='<div class="col a">';
 		             // html+='<ons-icon icon="ion-home" size="20px"></ons-icon>';
@@ -401,7 +430,16 @@ function formatTaskDetails(data)
 		             html+='</div>';
 		          html+='</div>';
 				} else {
-		            //não mostra nada
+				html+='<div class="table mtb5">';
+		             html+='<div class="col a">';
+		             // html+='<ons-icon icon="ion-home" size="20px"></ons-icon>';
+			 		 html+="<img class='opaque svg-task' src='lib/images/profile--vehicle/vehicle.svg' onerror='this.src='vehicle.png''>";
+		             html+='</div>';
+		             html+='<div class="col">';
+		             // html+='<p>'+ data.merchant_name +'</p>';
+			 		 html+='<p><b class="opaque trn" data-trn-key="tipo_transportador">'+ getTrans('Tipo do Transportador: ','tipo_transportador') +'</b>'+data.tipo_veiculo+'</p>';
+		             html+='</div>';
+		          html+='</div>';
 				}            
 	
 			  if (data.tempo_entrega >= 0){
@@ -412,7 +450,11 @@ function formatTaskDetails(data)
 		             html+='</div>';
 		             html+='<div class="col">';
 		             // html+='<p>'+ data.merchant_name +'</p>';
-			 		 html+='<p><b class="opaque trn" data-trn-key="tempo_entrega">'+ getTrans('Tempo Total da Entrega: ','tempo_entrega') +'</b>'+data.tempo_entrega+'</p>';
+				  if (data.tempo_entrega != 0){
+			 		 html+='<p><b class="opaque trn" data-trn-key="tempo_entrega">'+ getTrans('Tempo Total da Entrega: ','tempo_entrega') +'</b>'+ getTrans('cerca de','cerca_de') +' '+data.tempo_entrega+' minutos.</p>';
+				  } else {
+			 		 html+='<p><b class="opaque trn" data-trn-key="tempo_entrega">'+ getTrans('Tempo da Entrega: ','tempo_entrega') +'</b>'+ getTrans('tempo nao calculado','tempo_nao_calculado') +'</p>';
+				  }
 		             html+='</div>';
 		          html+='</div>';
 				} else {
@@ -426,7 +468,15 @@ function formatTaskDetails(data)
 		             html+='</div>';
 		             html+='<div class="col">';
 		             // html+='<p>'+ data.merchant_name +'</p>';
-			 		 html+='<p><b class="opaque trn" data-trn-key="distancia_entrega">'+ getTrans('Percurso Total: ','distancia_entrega') +'</b>'+data.km_entrega+'</p>';
+				  if (data.km_entrega != 0 || !empty(data.km_entrega)){
+				  if (data.km_entrega <= 0.3){
+			 		 html+='<p><b class="opaque trn" data-trn-key="distancia_entrega">'+ getTrans('Percurso: ','distancia_entrega') +'</b>'+ getTrans('por volta de 100 mts.','por_volta_de_100_mts') +'</p>';
+				  } else {
+			 		 html+='<p><b class="opaque trn" data-trn-key="distancia_entrega">'+ getTrans('Percurso: ','distancia_entrega') +'</b>'+ getTrans('por volta de','por_volta_de') +' '+data.km_entrega+' km.</p>';
+				  } 
+				  } else {
+			 		 html+='<p><b class="opaque trn" data-trn-key="distancia_entrega">'+ getTrans('Percurso: ','distancia_entrega') +'</b>'+ getTrans('km nao calculado.','nao_calculado') +'</p>';
+				  }
 		             html+='</div>';
 		          html+='</div>';
 				} else {
@@ -467,7 +517,8 @@ function formatTaskDetails(data)
  
    return html;
 }
-
+/** Fim da atualização **/
+/** Atualização Master Hub (Personalização - Oculta dados do entregador) **/ 
 function formatTaskDetailsBlock(data)
 {
 	if(empty(data)){
@@ -498,6 +549,9 @@ function formatTaskDetailsBlock(data)
           html+='</div>';    
 				
 			  if (data.tipo_veiculo == 'moto' || data.tipo_veiculo == 'moto+' || data.tipo_veiculo == 'carro' || data.tipo_veiculo == 'caminhao' || data.tipo_veiculo == 'bicicleta' || data.tipo_veiculo == ''){
+				  if (data.tipo_veiculo == ''){
+					 data.tipo_veiculo = 'Moto'; 
+				  }
 				html+='<div class="table mtb5">';
 		             html+='<div class="col a">';
 		             // html+='<ons-icon icon="ion-home" size="20px"></ons-icon>';
@@ -520,7 +574,11 @@ function formatTaskDetailsBlock(data)
 		             html+='</div>';
 		             html+='<div class="col">';
 		             // html+='<p>'+ data.merchant_name +'</p>';
-			 		 html+='<p><b class="opaque trn" data-trn-key="tempo_entrega">'+ getTrans('Tempo Total da Entrega: ','tempo_entrega') +'</b>'+data.tempo_entrega+'</p>';
+				  if (data.tempo_entrega != 0){
+			 		 html+='<p><b class="opaque trn" data-trn-key="tempo_entrega">'+ getTrans('Tempo Total da Entrega: ','tempo_entrega') +'</b>'+ getTrans('cerca de','cerca_de') +' '+data.tempo_entrega+' minutos.</p>';
+				  } else {
+			 		 html+='<p><b class="opaque trn" data-trn-key="tempo_entrega">'+ getTrans('Tempo da Entrega: ','tempo_entrega') +'</b>'+ getTrans('tempo nao calculado','tempo_nao_calculado') +'</p>';
+				  }
 		             html+='</div>';
 		          html+='</div>';
 				} else {
@@ -534,7 +592,15 @@ function formatTaskDetailsBlock(data)
 		             html+='</div>';
 		             html+='<div class="col">';
 		             // html+='<p>'+ data.merchant_name +'</p>';
-			 		 html+='<p><b class="opaque trn" data-trn-key="distancia_entrega">'+ getTrans('Percurso Total: ','distancia_entrega') +'</b>'+data.km_entrega+'</p>';
+				  if (data.km_entrega != 0 || !empty(data.km_entrega)){
+				  if (data.km_entrega <= 0.3){
+			 		 html+='<p><b class="opaque trn" data-trn-key="distancia_entrega">'+ getTrans('Percurso: ','distancia_entrega') +'</b>'+ getTrans('por volta de 100 mts.','por_volta_de_100_mts') +'</p>';
+				  } else {
+			 		 html+='<p><b class="opaque trn" data-trn-key="distancia_entrega">'+ getTrans('Percurso: ','distancia_entrega') +'</b>'+ getTrans('por volta de','por_volta_de') +' '+data.km_entrega+' km.</p>';
+				  } 
+				  } else {
+			 		 html+='<p><b class="opaque trn" data-trn-key="distancia_entrega">'+ getTrans('Percurso: ','distancia_entrega') +'</b>'+ getTrans('km nao calculado.','nao_calculado') +'</p>';
+				  }
 		             html+='</div>';
 		          html+='</div>';
 				} else {
@@ -596,6 +662,9 @@ function formatTaskDetailsMerchant(data)
           html+='</div>';    
 				
 			  if (data.tipo_veiculo == 'moto' || data.tipo_veiculo == 'moto+' || data.tipo_veiculo == 'carro' || data.tipo_veiculo == 'caminhao' || data.tipo_veiculo == 'bicicleta' || data.tipo_veiculo == ''){
+				  if (data.tipo_veiculo == ''){
+					 data.tipo_veiculo = 'Moto'; 
+				  }
 				html+='<div class="table mtb5">';
 		             html+='<div class="col a">';
 		             // html+='<ons-icon icon="ion-home" size="20px"></ons-icon>';
@@ -618,7 +687,11 @@ function formatTaskDetailsMerchant(data)
 		             html+='</div>';
 		             html+='<div class="col">';
 		             // html+='<p>'+ data.merchant_name +'</p>';
-			 		 html+='<p><b class="opaque trn" data-trn-key="tempo_entrega">'+ getTrans('Tempo Total da Entrega: ','tempo_entrega') +'</b>'+data.tempo_entrega+'</p>';
+				  if (data.tempo_entrega != 0){
+			 		 html+='<p><b class="opaque trn" data-trn-key="tempo_entrega">'+ getTrans('Tempo Total da Entrega: ','tempo_entrega') +'</b>'+ getTrans('cerca de','cerca_de') +' '+data.tempo_entrega+' minutos.</p>';
+				  } else {
+			 		 html+='<p><b class="opaque trn" data-trn-key="tempo_entrega">'+ getTrans('Tempo da Entrega: ','tempo_entrega') +'</b>'+ getTrans('tempo nao calculado','tempo_nao_calculado') +'</p>';
+				  }
 		             html+='</div>';
 		          html+='</div>';
 				} else {
@@ -632,7 +705,15 @@ function formatTaskDetailsMerchant(data)
 		             html+='</div>';
 		             html+='<div class="col">';
 		             // html+='<p>'+ data.merchant_name +'</p>';
-			 		 html+='<p><b class="opaque trn" data-trn-key="distancia_entrega">'+ getTrans('Percurso Total: ','distancia_entrega') +'</b>'+data.km_entrega+'</p>';
+				  if (data.km_entrega != 0 || !empty(data.km_entrega)){
+				  if (data.km_entrega <= 0.3){
+			 		 html+='<p><b class="opaque trn" data-trn-key="distancia_entrega">'+ getTrans('Percurso: ','distancia_entrega') +'</b>'+ getTrans('por volta de 100 mts.','por_volta_de_100_mts') +'</p>';
+				  } else {
+			 		 html+='<p><b class="opaque trn" data-trn-key="distancia_entrega">'+ getTrans('Percurso: ','distancia_entrega') +'</b>'+ getTrans('por volta de','por_volta_de') +' '+data.km_entrega+' km.</p>';
+				  } 
+				  } else {
+			 		 html+='<p><b class="opaque trn" data-trn-key="distancia_entrega">'+ getTrans('Percurso: ','distancia_entrega') +'</b>'+ getTrans('km nao calculado.','nao_calculado') +'</p>';
+				  }
 		             html+='</div>';
 		          html+='</div>';
 				} else {
@@ -707,6 +788,9 @@ function formatTaskDetailsClient(data)
           html+='</div>';    
 				
 			  if (data.tipo_veiculo == 'moto' || data.tipo_veiculo == 'moto+' || data.tipo_veiculo == 'carro' || data.tipo_veiculo == 'caminhao' || data.tipo_veiculo == 'bicicleta' || data.tipo_veiculo == ''){
+				  if (data.tipo_veiculo == ''){
+					 data.tipo_veiculo = 'Moto'; 
+				  }
 				html+='<div class="table mtb5">';
 		             html+='<div class="col a">';
 		             // html+='<ons-icon icon="ion-home" size="20px"></ons-icon>';
@@ -729,7 +813,11 @@ function formatTaskDetailsClient(data)
 		             html+='</div>';
 		             html+='<div class="col">';
 		             // html+='<p>'+ data.merchant_name +'</p>';
-			 		 html+='<p><b class="opaque trn" data-trn-key="tempo_entrega">'+ getTrans('Tempo Total da Entrega: ','tempo_entrega') +'</b>'+data.tempo_entrega+'</p>';
+				  if (data.tempo_entrega != 0){
+			 		 html+='<p><b class="opaque trn" data-trn-key="tempo_entrega">'+ getTrans('Tempo Total da Entrega: ','tempo_entrega') +'</b>'+ getTrans('cerca de','cerca_de') +' '+data.tempo_entrega+' minutos.</p>';
+				  } else {
+			 		 html+='<p><b class="opaque trn" data-trn-key="tempo_entrega">'+ getTrans('Tempo da Entrega: ','tempo_entrega') +'</b>'+ getTrans('tempo nao calculado','tempo_nao_calculado') +'</p>';
+				  }
 		             html+='</div>';
 		          html+='</div>';
 				} else {
@@ -743,7 +831,15 @@ function formatTaskDetailsClient(data)
 		             html+='</div>';
 		             html+='<div class="col">';
 		             // html+='<p>'+ data.merchant_name +'</p>';
-			 		 html+='<p><b class="opaque trn" data-trn-key="distancia_entrega">'+ getTrans('Percurso Total: ','distancia_entrega') +'</b>'+data.km_entrega+'</p>';
+				  if (data.km_entrega != 0 || !empty(data.km_entrega)){
+				  if (data.km_entrega <= 0.3){
+			 		 html+='<p><b class="opaque trn" data-trn-key="distancia_entrega">'+ getTrans('Percurso: ','distancia_entrega') +'</b>'+ getTrans('por volta de 100 mts.','por_volta_de_100_mts') +'</p>';
+				  } else {
+			 		 html+='<p><b class="opaque trn" data-trn-key="distancia_entrega">'+ getTrans('Percurso: ','distancia_entrega') +'</b>'+ getTrans('por volta de','por_volta_de') +' '+data.km_entrega+' km.</p>';
+				  } 
+				  } else {
+			 		 html+='<p><b class="opaque trn" data-trn-key="distancia_entrega">'+ getTrans('Percurso: ','distancia_entrega') +'</b>'+ getTrans('km nao calculado.','nao_calculado') +'</p>';
+				  }
 		             html+='</div>';
 		          html+='</div>';
 				} else {
@@ -835,7 +931,7 @@ function formatTaskDetailsEstabelecimento(data)
  
    return html;
 }
-
+/** Fim da atualização **/
 /*task  map*/
 function TaskDetailsChevron_1(data )
 {
@@ -852,7 +948,9 @@ function TaskDetailsChevron_1(data )
              html+='</div>';
              html+='<div class="col">';
              // html+='<p>'+data.delivery_address+'</p>';
+/** Atualização Master Hub (Correção de Layout) **/
 			 html+='<p><b class="opaque trn" data-trn-key="delivery_to">'+ getTrans('Delivery to: ','delivery_to') +'</b>'+data.delivery_address+'</p>';
+/** Fim da atualização **/
              html+='</div>';
           html+='</div> ';
     html+='</ons-col>';
@@ -863,7 +961,7 @@ function TaskDetailsChevron_1(data )
    html+='</ons-list-item>';
    return html;
 }
-
+/** Atualização Master Hub (Modificação de Serviços no Aplicativo) **/
 /*task  map*/
 function TaskDetailsChevron_1_retorno(data )
 {
@@ -963,7 +1061,7 @@ function TaskDetailsChevron_1_coleta(data )
 		return ''
 	}
 }
-
+/** Fim da atualização **/
 /*task  description*/
 function TaskDetailsChevron_2(data )
 {
@@ -1089,6 +1187,21 @@ function taskDescription(data)
 	return html;
 }
 
+function OptionListTransport(fname, key, val, id )
+{
+	var html='';
+	html+='<ons-list-item  modifier="task-list" tappable ripple onclick="setTransportType('+ "'" +  key + "'"  +', '+ "'"+ val + "'" +' ) ">';
+	  html+='<label class="left">';
+	    html+='<ons-input name="'+fname+'" value="'+key+'" type="radio" input-id="radio-'+id+'"></ons-input>';
+	  html+='</label>';
+	  html+='<label for="radio-'+id+'" class="center">';
+	    html+= val;
+	  html+='</label>';
+	html+='</ons-list-item>';                            
+	return html;
+}
+
+
 function OptionListLanguage(fname, key, val, id )
 {
 	dump( getStorage("kr_lang_id") );
@@ -1175,7 +1288,9 @@ function formatOrderDetails(data , data2 )
 	client_total = data.order_info.order_change - data.total.total;
 
 	item+= '<div class="tablee mtb5">';
+/** Atualização Master Hub (Correção de Tradução) **/
 		item+='<p class="col w60 uppercase">'+ getTrans("N. do Pedido","order_id") + " " + data.order_info.order_id+'</p>'
+/** Fim da atualização **/
 		if (data.order_info.order_change>0){
 		item+='<p class="col w40 change" style="text-align:center;">'+ getTrans("Change","change") + ": " + prettyPrice(client_total)+'</p>'
 	item+= '</div>';
@@ -1394,7 +1509,9 @@ function formatNotifications(data)
 	   	   item='';
 	   	   item+= '<p><b>'+val.push_title+'</b></p>';
 	   	   item+= '<p class="top10">'+val.push_message+'</p>';
+/** Atualização Master Hub (Personalização - Status) **/ 
 	   	   item+= '<date class="tag-status aceito_pelo_entregador ">'+val.date_created+'</date>';
+/** Fim da atualização **/
 	   	   
 	   	   link="";
 	   	   if (val.actions!="CANCEL_TASK"){
@@ -1455,11 +1572,13 @@ function TaskDetailsChevron_4(data )
 	    html+='<ons-icon icon="ion-ios-arrow-right" size="20px"></ons-icon>';
 	html+='</ons-col> 	        ';
    html+='</ons-list-item>';
+/** Atualização Master Hub (Modificação de Serviços no Aplicativo) **/
   if (data.trans_type_raw == "coleta" || data.trans_type_raw == "coleta_retorno" || data.trans_type_raw == "pre_coleta" || data.trans_type_raw == "pre_coleta_retorno"){  
    return '';
   } else {
 	 return html; 
   }
+/** Fim da atualização **/
 }
 
 function MercadoPoint_pagamento(data)
@@ -1512,7 +1631,8 @@ function pickupDetails(data)
 	        html+='<ons-col width="100%" >';
 	        
 	         if (!empty(data.merchant_name)){
-					         if (!empty(data.resgate_entrega)){ 
+/** Atualização Master Hub (Botão DEU RUIM, Modificação de Serviços no Aplicativo) **/ 
+		 if (!empty(data.resgate_entrega)){ 
 		         html+='<div class="table">';
 		             html+='<div class="col a">';
 		             // html+='<ons-icon icon="ion-home" size="20px"></ons-icon>';
@@ -1523,8 +1643,6 @@ function pickupDetails(data)
 			 		 html+='<p style="font-size: 22px;">'+data.resgate_entrega+'</p>';
 		             html+='</div>';
 		          html+='</div>';   
-				} else if (data.trans_type_raw == 'delivery' || data.trans_type_raw == 'coleta' || data.trans_type_raw == 'coleta_retorno' || data.trans_type_raw == 'pre_coleta' || data.trans_type_raw == 'pre_coleta_retorno'){
-					//não mostra nada
 				} else {
 		         html+='<div class="table">';
 		             html+='<div class="col a">';
@@ -1537,7 +1655,31 @@ function pickupDetails(data)
 		             html+='</div>';
 		          html+='</div>';   
 				}
-	         }
+	         } else if (!empty(data.dropoff_merchant_name)){
+		 if (!empty(data.resgate_entrega)){ 
+		         html+='<div class="table">';
+		             html+='<div class="col a">';
+		             // html+='<ons-icon icon="ion-home" size="20px"></ons-icon>';
+			 		 html+="<img class='opaque svg-task' src='lib/images/profile--vehicle/vehicle.svg' onerror='this.src='merchant-name.png''>";
+		             html+='</div>';
+		             html+='<div class="col">';
+		             // html+='<p>'+ data.merchant_name +'</p>';
+			 		 html+='<p style="font-size: 22px;">'+data.resgate_entrega+'</p>';
+		             html+='</div>';
+		          html+='</div>';   
+				} else {
+		         html+='<div class="table">';
+		             html+='<div class="col a">';
+		             // html+='<ons-icon icon="ion-home" size="20px"></ons-icon>';
+			 		 html+="<img class='opaque svg-task' src='lib/images/menu--order-details/merchant-name.svg' onerror='this.src='merchant-name.png''>";
+		             html+='</div>';
+		             html+='<div class="col">';
+		             // html+='<p>'+ data.merchant_name +'</p>';
+			 		 html+='<p><b class="opaque trn" data-trn-key="merchant_name">'+ getTrans('Merchant name: ','merchant_name') +'</b>'+data.dropoff_merchant_name+'</p>';
+		             html+='</div>';
+		          html+='</div>';   
+				}
+			 }
 	          
 	         if (!empty(data.dropoff_contact_name)){
 	          html+='<div class="table mtb5">';
@@ -1595,6 +1737,7 @@ function pickupDetails(data)
 	html+='</ons-col> 	        ';
    html+='</ons-list-item>';
   }
+/** Fim da atualização **/
    return html;
 }
 
@@ -1802,6 +1945,7 @@ function gridPhoto(data , status_raw)
    }
 }
 
+/** Atualização Master Hub (Cobrança por km adicional e dinamico) **/
 fillCidadeList = function(data, selected_key){
 	
 	var html='<ons-select id="cidade" name="cidade" class="cidade w100" style="width:100%;" >';
@@ -1873,7 +2017,7 @@ fillCidadeResidList = function(data, selected_key){
 	html+='</ons-select>';
 	$(".cidade_resid_wrap").html(html);
 };
-
+/** Fim da atualização **/
 fillTransportList = function(data, selected_key){
 	
 	var html='<ons-select id="transport_type_id" name="transport_type_id" class="transport_type_id w100" onchange="switchTransportFields( $(this).val() )" style="width:100%;" >';

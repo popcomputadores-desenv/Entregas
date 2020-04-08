@@ -3,10 +3,10 @@
     xmlns:gap = "http://phonegap.com/ns/1.0"
     xmlns:android = "http://schemas.android.com/apk/res/android"
     id        = "app.masterhub.wjk.entregador"
-    version   = "3.0.15"
-	android-versionCode="15"
-  	ios-CFBundleVersion="15">
-    <!-- Driver App 1.7.1 -->
+    version   = "3.0.16"
+	android-versionCode="16"
+  	ios-CFBundleVersion="16">
+    <!-- Driver App 1.8.0 -->
     <name>WJK Entregas</name>
     <description>
         Aplicativo - Módulo Entregas para interação com o sistema Master Hub, Um MUNDO na palma da sua mão!

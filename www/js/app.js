@@ -91,6 +91,7 @@ $( document ).on( "keyup", ".numeric_only", function() {
   this.value = this.value.replace(/[^0-9\.]/g,'');
 });	 
 
+/** Atualização Master Hub (Personalização - Máscaras de Campo) **/ 
 function formatarCampo(campoTexto) {
 	var dadosDigitados = campoTexto.value;
     if (campoTexto.value.length <= 7) {
@@ -240,9 +241,9 @@ function valida_cnpj(cnpj) {
     return true;
     
 }
+/** Fim da atualização **/
 /*START DEVICE READY*/
 document.addEventListener("deviceready", function() {
-	
 	
 	try {
 		
@@ -274,7 +275,9 @@ ons.ready(function() {
 		
 	if (isDebug()){
 		dump("ons.ready");
+/** Atualização Master Hub (Correção de Tradução) **/
 		setStorage("device_id","device_debug_web");
+/** Fim da atualização **/
 		device_platform = "Android";
 	}
 	
@@ -283,7 +286,9 @@ ons.ready(function() {
 	ons.setDefaultDeviceBackButtonListener(function(event) {				
 		exit_cout++;
 		if(exit_cout<=1){		
+/** Atualização Master Hub (Correção de Tradução) **/
 			toastMsg(getTrans("Press once again to exit!","press_once_again_to_exit"));	
+/** Fim da atualização **/
 			 setTimeout(function(){ 
 			 	 exit_cout=0;
 			 }, 3000);
@@ -387,13 +392,16 @@ document.addEventListener("init", function(event) {
 	         });*/
 			
 			case "vehicle":
+/** Atualização Master Hub (Envio de Documentação do Entregador) **/
 			case "financeiro":
+/** Fim da atualização **/
 			case "changepassword":			  
 			break;
 						
 						
 			case "signup":
 			
+/** Atualização Master Hub (Envio de Documentação do Entregador) **/
 			 placeholder(".first_name_fields",'first_name_apelido');			 
 			 placeholder(".last_name_fields",'last_name_apelido');
 			 placeholder(".cpf_field",'cpf');
@@ -409,6 +417,7 @@ document.addEventListener("init", function(event) {
 		     //initIntelInputs();		     
 		     callAjax("GetTransport",'');    
 			 setTimeout('callCidade()', 1000);
+/** Fim da atualização **/
 		    break;			
 						
 			case "Notes":			  			  
@@ -446,6 +455,7 @@ document.addEventListener("init", function(event) {
 				 	   dump(event.state);
 				 	   switch (event.state) {
 					      case 'initial':
+/** Atualização Master Hub (Correção de Tradução) **/
 					        message = '<ons-icon size="35px" icon="ion-arrow-down-a"></ons-icon> Puxe para baixo para atualizar';
 					        break;
 					      case 'preaction':
@@ -453,6 +463,7 @@ document.addEventListener("init", function(event) {
 					        break;
 					      case 'action':
 					        message = '<ons-icon size="35px" spin="true" icon="ion-load-d"></ons-icon> Carregando...';
+/** Fim da atualização **/
 					        break;
 				      }
 				      pullHook.innerHTML = message;
@@ -523,7 +534,9 @@ document.addEventListener("init", function(event) {
 			case "SettingPage":			
 			
 			if (isDebug()){
+/** Atualização Master Hub (Correção de Sistema) **/
 		    	$(".software_version").html( app_version );
+/** Fim da atualização **/
 		    } else {
 		    	$(".software_version").html( BuildInfo.version );
 		    }
@@ -541,12 +554,12 @@ document.addEventListener("init", function(event) {
 			case "profilePage":			
 			  
 			  callAjax("GetProfile",'');
-			break;	
-				 
+			break;			
+/** Atualização Master Hub (Envio de Documentação do Entregador) **/
 			case "profilePageChangeData":			
-			  
 			  callAjax("GetProfile",'');
 			break;			
+/** Fim da atualização **/
 						
 			case "viewTaskDescription":
 			  $(".toolbar-title").html( getTrans("Getting info...",'getting_info')  );
@@ -558,6 +571,7 @@ document.addEventListener("init", function(event) {
 			  callAjax("TaskDetails",'task_id=' + task_id);
 			break;
 			
+/** Atualização Master Hub (Personalização - Oculta dados do entregador) **/ 
 			case "taskDetailsBlock":
 			  $(".toolbar-title").html( getTrans("Getting info...",'getting_info')  );	
 			 placeholder(".reason",'add_reason');			 
@@ -578,7 +592,7 @@ document.addEventListener("init", function(event) {
 			  task_id = page.data.task_id;			
 			  callAjax("TaskDetailsClient",'task_id=' + task_id);
 			break;
-				 
+/** Fim da atualização **/
 			case "CalendarView":
 			
 			$('#calendar').fullCalendar({
@@ -711,6 +725,7 @@ document.addEventListener("init", function(event) {
 			 	   dump(event.state);
 			 	   switch (event.state) {
 				      case 'initial':
+/** Atualização Master Hub (Correção de Tradução) **/
 				        message = '<ons-icon size="35px" icon="ion-arrow-down-a"></ons-icon> Puxe para baixo para atualizar';
 				        break;
 				      case 'preaction':
@@ -718,6 +733,7 @@ document.addEventListener("init", function(event) {
 				        break;
 				      case 'action':
 				        message = '<ons-icon size="35px" spin="true" icon="ion-load-d"></ons-icon> Carregando...';
+/** Fim da atualização **/
 				        break;
 			      }
 			      pullHook.innerHTML = message;
@@ -847,13 +863,16 @@ function callAjax(action,params)
 		   			setStorage("kr_todays_date", data.details.todays_date);
 		   			setStorage("kr_todays_date_raw", data.details.todays_date_raw);
 		   			setStorage("kr_token", data.details.token);
+/** Atualização Master Hub (Correção de Sistema) **/
 		   			setStorage("kr_status", data.details.status);
+/** Fim da atualização **/
 		   			
 		   			setStorage("kr_location_accuracy", data.details.location_accuracy);
 		   					   			
 		   			setStorage("kr_on_duty", data.details.on_duty);
 		   			
 		   			initBackgroundTracking();
+/** Atualização Master Hub (Envio de Documentação do Entregador) **/
 		   			if (data.details.status=='enviando_documentos'){
 					kNavigator.resetToPage("profilePageChangeData.html", {
 					   animation: 'slide',
@@ -861,6 +880,7 @@ function callAjax(action,params)
 	  	  	  		$(".toolbar-title-profile").html( getTrans("Complete seu Cadastro!",'complete_cadastro') );  	  
 						 }});	
 					} else 
+/** Fim da atualização **/
 					kNavigator.resetToPage("home.html", {
 					   animation: 'slide',					  
 					});
@@ -907,8 +927,10 @@ function callAjax(action,params)
 		   			$(".task_id_details").val( data.details.task_id );
 		   			
 		   			setStorage("task_full_data",JSON.stringify(data.details));
+		   			
 		   			$("#task-details").html( 
-		   			   formatTaskDetails(data.details) + 	  // customer details 
+		   			   formatTaskDetails(data.details) + 	  // customer details   			   
+/** Atualização Master Hub (Modificação de Serviços no Aplicativo) **/
 		   			   OrderDetails(data.details) +           // order details
 		   			   TaskDetailsChevron_1_precoleta(data.details)  +  // pre-coleta address
 		   			   //MercadoPoint_pagamento(data.details)  +  // coleta address
@@ -920,6 +942,7 @@ function callAjax(action,params)
 						
 		   			   TaskDetailsChevron_4(data.details)  +  // merchant address
 		   			   TaskDetailsChevron_2(data.details) +   // task description
+/** Fim da atualização **/
 		   			   TaskAddSignature( data.details ) +	  // task signature
 		   			   DriverNotes( data.history_notes , data.details ) +	// driver notes	   			   
 		   			   addPhotoChevron(data.details) +  // take picture
@@ -930,12 +953,15 @@ function callAjax(action,params)
 		   			//show signature
 		   			
 		   			$("#task-action-wrap").html( 
+/** Atualização Master Hub (Correção de Sistema) **/
 		   			  swicthButtonAction( data.details.task_id, data.details.status_raw, data.details.trans_type_raw )
+/** Fim da atualização **/
 		   			);
-						
+/** Atualização Master Hub (Botão DEU RUIM) **/ 
 		   			$("#task-action-wrap-deu-ruim").html( 
 		   			  trocaButtonDeuRuim( data.details.task_id, data.details.status_raw )
 		   			);
+/** Fim da atualização **/
 		   			
 		   			$(".task_id_global").val( data.details.task_id );
 		   			
@@ -952,6 +978,7 @@ function callAjax(action,params)
 		   			
 		   			break;
 		   			
+/** Atualização Master Hub (Personalização - Oculta dados do entregador) **/ 
 		   			case "TaskDetailsBlock":
 		   			$(".toolbar-title").html ( data.msg ) ;
 		   			$(".task_id_details").val( data.details.task_id );
@@ -1092,7 +1119,7 @@ function callAjax(action,params)
 		   			}
 		   			
 		   			break;
-						
+/** Fim da atualização **/
 		   			case "viewTaskDescription":
 		   			$(".toolbar-title").html ( data.msg ) ;
 		   			$("#task-description").html( taskDescription(data.details) );
@@ -1113,13 +1140,16 @@ function callAjax(action,params)
 		   			  }
 		   			  
 		   			  $("#task-action-wrap").html( 
+/** Atualização Master Hub (Correção de Sistema) **/
 		   			     swicthButtonAction( data.details.task_id, data.details.status_raw, data.details.trans_type_raw )
+/** Fim da atualização **/
 		   			  );
 		   			  
+/** Atualização Master Hub (Botão DEU RUIM) **/ 
 		   			  $("#task-action-wrap-deu-ruim").html( 
 		   			     trocaButtonDeuRuim( data.details.task_id, data.details.status_raw )
 		   			  );
-						
+/** Fim da atualização **/
 		   			break;
 		   			
 		   			case "AddSignatureToTask":
@@ -1131,6 +1161,7 @@ function callAjax(action,params)
 		   			
 		   			case "GetProfile":
 		   			$(".driver-fullname").html( data.details.full_name );
+/** Atualização Master Hub (Envio de Documentação do Entregador) **/
 		   			$(".last_name").html( data.details.last_name );
 		   			$(".first_name").html( data.details.first_name );
 		   			$(".team-name").html( data.details.team_name );
@@ -1202,7 +1233,7 @@ function callAjax(action,params)
 			   			
 			   			$(".transport_type_id").val( data.details.transport_type_id );
 			   			switchTransportFields( data.details.transport_type_id );
-									   			
+			   			
 			   			if ( !empty(data.details.profile_photo)){
 			   				$(".profile-bg").css('background-image', 'url(' + data.details.profile_photo + ')');
 			   				$(".profile-bg").css("background-size","cover");
@@ -1255,6 +1286,7 @@ function callAjax(action,params)
 					setTimeout(function(){ 
 			   			fillCicloRecebimentoList(data.details.ciclorecebimento_list, data.details.ciclo_recebimento );
 						}, 1200);
+/** Fim da atualização **/
 		   			
 		   			break;
 		   			
@@ -1270,7 +1302,7 @@ function callAjax(action,params)
 		   			  $("#transport-list").html(  html );*/
 		   			  fillTransportList(data.details);		
 		   			break;
-						
+/** Atualização Master Hub (Personalização) **/ 
 		   			case "GetCidade":
 		   			  fillCidadeList(data.details);		
 		   			break;
@@ -1282,7 +1314,7 @@ function callAjax(action,params)
 		   			case "GetCicloRecebimento":
 		   			  fillCicloRecebimentoList(data.details);		
 		   			break;
-				
+/** Fim da atualização **/
 		   			case "ProfileChangePassword":
 		   			  setStorage("kr_password", data.details);
 		   			  onsenAlert( data.msg );   
@@ -1432,7 +1464,7 @@ function callAjax(action,params)
 		   			break;
 		   			
 		   			case "trackDistance":
-		   			  showDistanceInfo(data.details);
+		   			 // showDistanceInfo(data.details);
 		   			break;
 		   			
 		   			case "signup":
@@ -1474,19 +1506,22 @@ function callAjax(action,params)
 				  	 	     $(".recipient_name").hide();
 	  	 	             }
 		   			  } else {
+		   			  	
 		   			  	 $(".toolbar-title-signature").html( getTrans("Add Signature",'add_signature') );
+/** Atualização Master Hub (Correção de Tradução) **/
 		   			  	 placeholder(".recipient_name",'recipient_name');
+/** Fim da atualização **/
 	  	 	             $(".signature-action").show();	
 	  	 	             $(".recipient_name").show();  	 	               
-	  	 	             sigdiv = $("#signature-pan");	  	 	           
+	  	 	             $sigdiv = $("#signature-pan") ;
 
 	  	 	             if(!empty(data.details.data.receive_by)){
-		   			       $(".recipient_name").val( data.details.data.receive_by );		   			     
+		   			     $(".recipient_name").val( data.details.data.receive_by );
 	  	 	             }
 		   			     if (!empty(data.details.data)){
 		   			     	 $(".signature_id").val( data.details.data.id );
 		   			     	 dump(data.details.data.signature_base30);		   			     	 
-	  	 	                 sigdiv.jSignature("setData", "data:"+data.details.data.signature_base30 ) ;	  	 	                 
+	  	 	                 $sigdiv.jSignature("setData", "data:"+data.details.data.signature_base30 ) ;	  	 	                 
 		   			     }
 		   			  }
 		   			break;
@@ -1531,7 +1566,8 @@ function callAjax(action,params)
 		   			  toastMsg( data.msg );
 		   			  reload_home=1;
 		   			break
-						
+		   			
+/** Atualização Master Hub (Personalização - Oculta dados do entregador) **/ 
 		   			case "TaskDetailsBlock":
 		   			  toastMsg( data.msg );
 		   			  reload_home=1;
@@ -1546,6 +1582,7 @@ function callAjax(action,params)
 		   			  toastMsg( data.msg );
 		   			  reload_home=1;
 		   			break
+/** Fim da atualização **/
 		   			
 		   			case "getTaskCompleted":
 		   			
@@ -1626,7 +1663,9 @@ function callAjax(action,params)
 		   			case "loadSignature":
 		   			 $(".toolbar-title-signature").html( getTrans("Add Signature",'add_signature') );
 	  	 	         $(".signature-action").show();
+/** Atualização Master Hub (Personalização) **/ 
 	  	 	         //$("#signature-pan").jSignature();	
+/** Fim da atualização **/
 		   			break;
 		   			
 		   			default:		   			
@@ -1651,7 +1690,7 @@ function callAjax(action,params)
 		}
 	});
 }
-
+/** Atualização Master Hub (Envio de Documentação do Entregador) **/
 function abreLink(url){
 	var _url=url
 	window.open(_url, '_blank', 'location=yes');
@@ -1665,7 +1704,7 @@ function linkAssinatura( url )
 		html+='onclick="abreLink('+_url+')" > '+ getTrans("Assinar AQUI",'assine_contrato') +' </ons-button></p>';
 	return html ;	
 }
-
+/** Fim da atualização **/
 
 function AjaxTask(action, params , done)
 {
@@ -1914,6 +1953,7 @@ function showTask(task_id)
    });
 }
 
+/** Atualização Master Hub (Personalização - Oculta dados do entregador) **/ 
 function showTaskAccept(task_id)
 {
    dump(task_id);	
@@ -1952,7 +1992,7 @@ function showTaskClient(task_id)
   	 }	  
    });
 }
-
+/** Fim da atualização **/
 function viewTaskDescription(task_id)
 {	
 	kNavigator.pushPage("viewTaskDescription.html", {
@@ -1963,6 +2003,7 @@ function viewTaskDescription(task_id)
    });
 }
 
+/** Atualização Master Hub (Modificação de Serviços no Aplicativo) **/
 function swicthButtonAction( task_id, status_raw, trans_type_raw )
 {
 	dump(status_raw);
@@ -2039,14 +2080,16 @@ function swicthButtonAction( task_id, status_raw, trans_type_raw )
 		html+='<p class="action-btn"><ons-button class="cancel" modifier="quiet"';
 		html+='onclick="ShowAddReason('+task_id+','+ "'"+action+"'" +' )" >'+getTrans('Cancel','cancel')+'</ons-button></p>';
 		break;
-					
+/** Fim da atualização **/
 		case "started":
 		action='inprogress';
 		html+='<p class="action-btn"><ons-button class="success" modifier="large"';
 		html+='onclick="changeTaskStatus('+task_id+','+ "'"+action+"'" +' )" >'+getTrans('Arrived','arrived')+'</ons-button></p>';
 		
 		action='cancelled';
+/** Atualização Master Hub (Correção de Layout) **/
 		html+='<p class="action-btn"><ons-button class="cancel" modifier="quiet"';
+/** Fim da atualização **/
 		html+='onclick="ShowAddReason('+task_id+','+ "'"+action+"'" +' )" >'+getTrans('Cancel','cancel')+'</ons-button></p>';
 		break;
 		
@@ -2056,7 +2099,9 @@ function swicthButtonAction( task_id, status_raw, trans_type_raw )
 		html+='onclick="changeTaskStatus('+task_id+','+ "'"+action+"'" +' )" >'+getTrans('Successful','successful')+'</ons-button></p>';
 		
 		action='failed';
+/** Atualização Master Hub (Correção de Layout) **/
 		html+='<p class="action-btn"><ons-button class="cancel" modifier="quiet"';
+/** Fim da atualização **/
 		html+='onclick="ShowAddReason('+task_id+','+ "'"+action+"'" +' )" >'+getTrans('Failed','failed')+'</ons-button></p>';
 		break;
 		
@@ -2078,6 +2123,7 @@ function swicthButtonAction( task_id, status_raw, trans_type_raw )
 	return html ;	
 }
 
+/** Atualização Master Hub (Botão DEU RUIM) **/ 
 function trocaButtonDeuRuim( task_id, status_raw )
 {
 	dump(status_raw);
@@ -2126,6 +2172,39 @@ function trocaButtonDeuRuim( task_id, status_raw )
 	return html ;	
 }
 
+function ShowAddDeuRuim(task_id , status_raw)
+{
+	dump(task_id);
+	dump(status_raw);
+	
+	var dialog = document.getElementById('reasonTaskDeuRuim');
+	if (dialog) {
+	      dialog.show();	      
+	      $("#reason_task_id").val( task_id );
+	      $("#reason_status_raw").val( status_raw );
+	} else {
+	    ons.createDialog('reasonTaskDeuRuim.html')
+	      .then(function(dialog) {
+	        dialog.show();	        
+	        $("#reason_task_id").val( task_id );
+	        $("#reason_status_raw").val( status_raw );
+	        setTimeout('TransLatePage()', 300);	
+	    });
+	}	
+}
+
+function AddReasonTaskDeuRuim()
+{	
+	if ( $("#reason").val()==""){
+		onsenAlert("Reason is required");
+		return;
+	}
+	var task_id=$("#reason_task_id").val();
+	var status_raw=$("#reason_status_raw").val();
+	reasonTaskDeuRuim.hide();
+	callAjax("changeTaskStatus",'task_id=' + task_id +"&status_raw="+status_raw + "&reason="+ $("#reason").val() ) ;
+}
+/** Fim da atualização **/
 function changeTaskStatus(task_id, status_raw )
 {
 	dump(task_id );
@@ -2155,27 +2234,6 @@ function ShowAddReason(task_id , status_raw)
 	      $("#reason_status_raw").val( status_raw );
 	} else {
 	    ons.createDialog('reasonTask.html')
-	      .then(function(dialog) {
-	        dialog.show();	        
-	        $("#reason_task_id").val( task_id );
-	        $("#reason_status_raw").val( status_raw );
-	        setTimeout('TransLatePage()', 300);	
-	    });
-	}	
-}
-
-function ShowAddDeuRuim(task_id , status_raw)
-{
-	dump(task_id);
-	dump(status_raw);
-	
-	var dialog = document.getElementById('reasonTaskDeuRuim');
-	if (dialog) {
-	      dialog.show();	      
-	      $("#reason_task_id").val( task_id );
-	      $("#reason_status_raw").val( status_raw );
-	} else {
-	    ons.createDialog('reasonTaskDeuRuim.html')
 	      .then(function(dialog) {
 	        dialog.show();	        
 	        $("#reason_task_id").val( task_id );
@@ -2216,18 +2274,6 @@ function AddReasonTask()
 	var task_id=$("#reason_task_id").val();
 	var status_raw=$("#reason_status_raw").val();
 	reasonTask.hide();
-	callAjax("changeTaskStatus",'task_id=' + task_id +"&status_raw="+status_raw + "&reason="+ $("#reason").val() ) ;
-}
-
-function AddReasonTaskDeuRuim()
-{	
-	if ( $("#reason").val()==""){
-		onsenAlert("Reason is required");
-		return;
-	}
-	var task_id=$("#reason_task_id").val();
-	var status_raw=$("#reason_status_raw").val();
-	reasonTaskDeuRuim.hide();
 	callAjax("changeTaskStatus",'task_id=' + task_id +"&status_raw="+status_raw + "&reason="+ $("#reason").val() ) ;
 }
 
@@ -2306,6 +2352,7 @@ function showCalendarView()
    });
 }
 
+/** Atualização Master Hub (Envio de Documentação do Entregador) **/
 function callCidade()
 {
 	callAjax("GetCidade",'');
@@ -2353,29 +2400,6 @@ function showCicloRecebimentoLista()
    }   
 }
 
-function showTransportType()
-{
-   var dialog = document.getElementById('transporType');
-   if (dialog) {
-      dialog.show();
-   } else {
-      ons.createDialog('transporType.html')
-      .then(function(dialog) {
-      	callAjax("GetTransport",'');
-        dialog.show();
-      });
-   }   
-}
-
-function setTransportType(key , val)
-{	
-	dump(key); dump(val);
-	transporType.hide();
-	$(".transport_type_id2").html( val );
-	$(".transport_type_id").val( key );
-	switchTransportFields( key );
-}
-
 function setCidadeList(key , val)
 {	
 	dump(key); dump(val);
@@ -2401,6 +2425,30 @@ function setCicloRecebimentoList(key , val)
 	//$(".transport_type_id2").html( val );
 	$(".ciclorecebimento").val( key );
 	//switchTransportFields( key );
+}
+
+/** Fim da atualização **/
+function showTransportType()
+{
+   var dialog = document.getElementById('transporType');
+   if (dialog) {
+      dialog.show();
+   } else {
+      ons.createDialog('transporType.html')
+      .then(function(dialog) {
+      	callAjax("GetTransport",'');
+        dialog.show();
+      });
+   }   
+}
+
+function setTransportType(key , val)
+{	
+	dump(key); dump(val);
+	transporType.hide();
+	$(".transport_type_id2").html( val );
+	$(".transport_type_id").val( key );
+	switchTransportFields( key );
 }
 
 function switchTransportFields( transport_type )
@@ -2731,26 +2779,6 @@ function toastOnError()
 {
 }*/
 
-function cobrarcomMercadoPoint(task_id, amount, description, card_type, client_id, client_secret, application_fee, fail_url, success_url, delivery_address )
-{
-	
-	kNavigator.pushPage("MercadoPoint.html", {
-		  animation: 'fade',
-		  data : { 					  	  
-  	        'collector_id': task_id,  	  
-  	        'amount' : amount,
-  	        'description' : description,
-  	        'card_type' : card_type,
-  	        'client_id' : client_id,
-  	        'client_secret' : client_secret,
-  	        'application_fee' : application_fee,
-  	        'fail_url' : delivery_address,
-  	        'success_url' : success_url,
-  	        'delivery_address' : delivery_address,			  
-  	      }	  		
-	 });	 	 
-}
-
 function viewTaskMap(task_id , task_lat, task_lng , delivery_address )
 {
 	
@@ -2765,6 +2793,7 @@ function viewTaskMap(task_id , task_lat, task_lng , delivery_address )
 	 });	 	 
 }
 
+/** Atualização Master Hub (Modificação de Serviços no Aplicativo) **/
 function viewTaskMapColeta(task_id , task_lat, task_lng , delivery_address )
 {
 	
@@ -2792,6 +2821,7 @@ function viewTaskMapPreColeta(task_id , task_lat, task_lng , delivery_address )
   	      }	  		
 	 });	 	 
 }
+/** Fim da atualização **/
 
 function viewTaskMapInit()
 {
@@ -3365,8 +3395,9 @@ function view3DirectionMap(data)
 
 function trackDistance()
 {
+/** Atualização Master Hub (Cobrança por km adicional e dinamico) **/
 		setStorage("map_action",'map2');
-
+/** Fim da atualização **/
 	var map_action=getStorage("map_action");
 	dump("map_action+>"+map_action);
 	var data = JSON.parse(getStorage("task_full_data"));
@@ -3395,7 +3426,7 @@ function trackDistance()
 		  	  params+="&map_action="+map_action
 		  	  callAjax("trackDistance",params);
 	    	break;
-				
+/** Atualização Master Hub (Cobrança por km adicional e dinamico) **/
 	    	case "map3":
 	    	  var params='';
 		  	  params+="&dropoff_lat="+data.dropoff_lat;
@@ -3405,6 +3436,7 @@ function trackDistance()
 		  	  params+="&map_action="+map_action
 		  	  callAjax("trackDistance",params);
 	    	break;
+/** Fim da atualização **/
 	    	
 	    	default:
 	    	break;
@@ -3412,6 +3444,7 @@ function trackDistance()
 	}
 }
 
+/** Atualização Master Hub (Cobrança por km adicional e dinamico) **/
 function somaHora(hrA, hrB, zerarHora) {
 	
 		hrA="0000"+hrA.replace(/\D/g,'');
@@ -3445,12 +3478,13 @@ function somaHora(hrA, hrB, zerarHora) {
  
         return nova_h + ':' + novo_m;
 }
-
+/** Fim da atualização **/
 function showDistanceInfo(data)
 {
    dump(data);
    var dialog = document.getElementById('trackDistanceDialog');
    var html='';
+/** Atualização Master Hub (Cobrança por km adicional e dinamico) **/
    	var distance_merchant=parseFloat(data.merchant_distance.distance.replace(/\km/,''), 10);
 	var delivery_distance=parseFloat(data.delivery_distance.distance.replace(/\km/,''), 10);
 	var soma_distance=delivery_distance + distance_merchant;
@@ -3461,9 +3495,9 @@ function showDistanceInfo(data)
 	if (data.tipo_do_veiculo=='scooter'){tipo_do_veiculo='Moto'} else
 	if (data.tipo_do_veiculo=='bicycle'){tipo_do_veiculo='Bicicleta'} else
 	if (data.tipo_do_veiculo=='walk'){tipo_do_veiculo='Andando'}
-	
+/** Fim da atualização **/
    if ( data.map_action=="map2"){
-	   
+   	
    	   if ( data.merchant_distance!=2){
    	   	   html+='<p><b>'+getTrans("Your location to merchant",'location_to_merchant')+':</b></p>';
 		   html+='<p>';
@@ -3477,7 +3511,8 @@ function showDistanceInfo(data)
 		   html+='<p>';
 		   html+=getTrans("distance",'distance')+': '+ data.delivery_distance.distance +'<br/>';		   
 		   html+= getTrans("duration",'duration')+ ': '+data.delivery_distance.duration;
-		   html+='</p>';
+		   html+='</p>';		   
+/** Atualização Master Hub (Cobrança por km adicional e dinamico) **/
 		    html+='<hr/>';
    	   	   html+='<p><b>'+getTrans("Calculo do Percurso",'calculo_total')+':</b></p>';
 		   html+='<p>';
@@ -3485,6 +3520,7 @@ function showDistanceInfo(data)
 		   html+= getTrans("Percurso total",'distance_total')+ ': '+soma_distance.toFixed(2) +' km <br/>';
 		   html+= getTrans("Trajeto realizado com veiculo",'trajeto_veiculo')+ ': '+tipo_do_veiculo;
 		   html+='</p>';
+/** Fim da atualização **/
    	   }
    	
    } else if ( data.map_action =="map1"){   	
@@ -3496,6 +3532,7 @@ function showDistanceInfo(data)
 		   html+='</p>';
 		   html+='<hr/>';
    	   }   
+/** Atualização Master Hub (Cobrança por km adicional e dinamico) **/
    } else if ( data.map_action =="map3"){   	
    	   if ( data.delivery_distance!=2){
    	   	   html+='<p><b>'+getTrans("Merchant to customer",'merchant_to_customer')+':</b></p>';
@@ -3505,6 +3542,7 @@ function showDistanceInfo(data)
 		   html+='</p>';
 		   html+='<hr/>';
    	   }   
+/** Fim da atualização **/
    }
    
    if (dialog) {   	  
@@ -3586,7 +3624,7 @@ function showDeviceGallery(action_type)
 	{
 		case 1:
 		case "1":
-			
+/** Atualização Master Hub (Envio de Documentação do Entregador) **/
 		var cam_options = {
 			destinationType: Camera.DestinationType.FILE_URI,
 		    sourceType: Camera.PictureSourceType.CAMERA,
@@ -3767,7 +3805,7 @@ function showDeviceGallery(action_type)
 		}, cam_options );
 	    
 		break;
-			
+/** Fim da atualização **/
 	}		
 }
 
@@ -3863,6 +3901,7 @@ function uploadPhoto(imageURI)
     } 
 }
 
+/** Atualização Master Hub (Envio de Documentação do Entregador) **/
 function uploadCNH(imageURI)
 {
 	 try {
@@ -4225,7 +4264,7 @@ function uploadBag(imageURI)
        alert(err.message);
      } 
 }
-
+/** Fim da atualização **/
 function addPhotoSelection()
 {
 	var dialog = document.getElementById('addphotoSelection');
@@ -4851,7 +4890,9 @@ initMapDropOff = function(){
 	dump('initMapDropOff');
 	var data = JSON.parse(getStorage("task_full_data"));
 	dump(data);
+/** Atualização Master Hub (Cobrança por km adicional e dinamico) **/
 	trackDistance(data);
+/** Fim da atualização **/
 	map_icons = getIcons();		
 	dump(map_icons);
 	
@@ -4967,6 +5008,7 @@ initMapDropOff = function(){
        toastMsg( error.message ); 	  
    }, 
    { timeout: 60000 , enableHighAccuracy: getLocationAccuracy(), maximumAge:Infinity } );
+   
       
    setMapCenter();
 	
@@ -5001,7 +5043,7 @@ getDirectionsDropoff = function(){
 		}
 				
 		if(!empty(your_lat) && !empty(your_lng)){
-			launchnavigator.navigate([lat, lng], {
+			launchnavigator.navigate([dropoff_lat, dropoff_lng], {
 	           start: your_lat+","+your_lng
 	        });
 		} else {
@@ -5030,7 +5072,12 @@ document.addEventListener('prechange', function(event) {
 	
 	switch (event.index){
 		case 0:
-		
+		 if(current_page=="home"){
+			 raw_date=getStorage('kr_todays_date_raw');
+	         callAjax("getTaskByDate","date="+raw_date);
+		 } else if (current_page=="profilePage") {		 	 
+		 	TransLatePage();
+		 }
 		break;
 		
 		case 1:
@@ -5046,38 +5093,39 @@ document.addEventListener('prechange', function(event) {
 /*end class*/
 
 initBackgroundTracking = function(){
-    
-    try {
-            
-        var app_disabled_bg_tracking=getStorage("app_disabled_bg_tracking");
-        if (app_disabled_bg_tracking==1 || app_disabled_bg_tracking=="1"){        
-            return;
-        }        
-        
-        var min_frequency = getStorage("app_track_interval");        
-        if (min_frequency<=0){
-            min_frequency=8000;
-        }
-        if (empty(min_frequency)){
-            min_frequency=8000;
-        }
-        
-        //alert("min_frequency=>"+min_frequency);
-        
-         BackgroundGeolocation.configure({
-            locationProvider: BackgroundGeolocation.ACTIVITY_PROVIDER,        
-            //locationProvider: BackgroundGeolocation.DISTANCE_FILTER_PROVIDER,        
-            desiredAccuracy: BackgroundGeolocation.MEDIUM_ACCURACY,            
-            stationaryRadius: 1,
-            distanceFilter: 1,
-            notificationTitle: getTrans("Tracking","tracking") +  "..." ,
-            notificationText: '',        
-            interval: min_frequency,
-            fastestInterval: min_frequency,
-            activitiesInterval: min_frequency,
-            stopOnTerminate: true,
-            stopOnStillActivity: false ,
-            debug: false,
+	
+	try {
+			
+		var app_disabled_bg_tracking=getStorage("disabled_tracking_bg");
+		if (app_disabled_bg_tracking==1 || app_disabled_bg_tracking=="1"){		
+			return;
+		}		
+		
+		var min_frequency = getStorage("track_interval");		
+		if (min_frequency<=0){
+			min_frequency=8000;
+		}
+		if (empty(min_frequency)){
+			min_frequency=8000;
+		}
+		
+		//alert("min_frequency=>"+min_frequency);
+		
+		 BackgroundGeolocation.configure({
+		    locationProvider: BackgroundGeolocation.ACTIVITY_PROVIDER,	    
+		    //locationProvider: BackgroundGeolocation.DISTANCE_FILTER_PROVIDER,	    
+		    desiredAccuracy: BackgroundGeolocation.MEDIUM_ACCURACY,
+		    stationaryRadius: 1,
+		    distanceFilter: 1,
+		    notificationTitle: getTrans("Tracking","tracking") +  "..." ,
+		    notificationText: '',	    
+		    interval: min_frequency,
+		    fastestInterval: min_frequency,
+		    activitiesInterval: min_frequency,
+		    stopOnTerminate: true,
+		    stopOnStillActivity: false ,
+		    debug: false, 
+/** Atualização Master Hub (Correção de Sistema) **/
             url : ajax_url+"/updateDriverLocation",
             postTemplate : {
                 lat: '@latitude',
@@ -5090,73 +5138,96 @@ initBackgroundTracking = function(){
                 app_version : app_version,
                 api_key : krms_driver_config.APIHasKey,                
             }
-        });
-        
-        BackgroundGeolocation.on('start', function() {
-            //toastMsg('[INFO] BackgroundGeolocation service has been started');
-            setStorage("bg_tracking",1);
-            navigator.geolocation.clearWatch(watchID);
-        });
-        
-        BackgroundGeolocation.on('stop', function() {
-           //toastMsg('[INFO] BackgroundGeolocation service has been stopped');
-        });
-        
-        BackgroundGeolocation.on('error', function(error) {
-           toastMsg('[ERROR] BackgroundGeolocation error:', error.code, error.message);
-        });
-        
-        BackgroundGeolocation.on('location', function(location) {    
-            BackgroundGeolocation.startTask(function(taskKey) {                                      
-                BackgroundGeolocation.endTask(taskKey);    
-            });
-        });
-        
-        BackgroundGeolocation.on('stationary', function(stationaryLocation) {
-             //toastMsg('[INFO] App is in stationary');
-             //alert("stationary=>"+JSON.stringify(stationaryLocation));
-        });
-        
+/** Fim da atualização **/
+		});
+		
+		BackgroundGeolocation.on('start', function() {
+		    //toastMsg('[INFO] BackgroundGeolocation service has been started');
+		    setStorage("bg_tracking",1);
+		    navigator.geolocation.clearWatch(watchID);
+		});
+		
+		BackgroundGeolocation.on('stop', function() {
+	       //toastMsg('[INFO] BackgroundGeolocation service has been stopped');
+	    });
+		
+		BackgroundGeolocation.on('error', function(error) {
+	       toastMsg('[ERROR] BackgroundGeolocation error:', error.code, error.message);
+	    });
+	    
+	    BackgroundGeolocation.on('location', function(location) {    
+		    BackgroundGeolocation.startTask(function(taskKey) {	      	      		      	
+		    	
+/** Atualização Master Hub (Correção de Sistema) **/
+		    	 /* params = 'lat='+ location.latitude + "&lng=" + location.longitude + "&app_version=" + app_version;		
+				 params+="&altitude="+ '';
+			     params+="&accuracy="+ location.accuracy;
+			     params+="&altitudeAccuracy="+ '';
+			     params+="&heading="+ '';
+			     params+="&speed="+ '';
+			     params+="&track_type=background";
+			    	 
+			     callAjax2('updateDriverLocation', params); */
+/** Fim da atualização **/
+			     
+		         BackgroundGeolocation.endTask(taskKey);
+		    });
+	    });
+	    
+	    BackgroundGeolocation.on('stationary', function(stationaryLocation) {
+	     	/*toastMsg('[INFO] App is in stationary');
+	     	toastMsg(JSON.stringify(stationaryLocation));	 */
+	    });
+	    
+/** Atualização Master Hub (Correção de Sistema) **/
         BackgroundGeolocation.on('abort_requested', function() {
             toastMsg('[INFO] Server responded with 285 Updates Not Required');
         });
-        
-        BackgroundGeolocation.on('background', function() {
-            //toastMsg('[INFO] App is in background');              
-            BackgroundGeolocation.checkStatus(function(status) {
-                if (!status.isRunning) {                                                        
-                    setTimeout(function() {               
-                       BackgroundGeolocation.start();  
-                    }, 100);
-                }
-            });            
-        });
+/** Fim da atualização **/
+	    BackgroundGeolocation.on('background', function() {
+		    //toastMsg('[INFO] App is in background');			  
+		    BackgroundGeolocation.checkStatus(function(status) {
+		    	if (!status.isRunning) {			    		
+/** Atualização Master Hub (Correção de Sistema) **/
+		    		//camera_on = getStorage("camera_on");
+		    		//if(camera_on!=1){
+			    		setTimeout(function() {	    	   
+				    	   BackgroundGeolocation.start();  
+				    	}, 100);
+		    		}
+		    	//}
+/** Fim da atualização **/
+		    });		    
+	    });
     
-        BackgroundGeolocation.on('foreground', function() {                        
-            BackgroundGeolocation.checkStatus(function(status) {
-                if (status.isRunning) {
-                    setTimeout(function() {               
-                       BackgroundGeolocation.stop();            
-                    }, 100);
-                }
-            });                
-        });
-       
-        BackgroundGeolocation.on('authorization', function(status) {
-
-            console.log('[INFO] BackgroundGeolocation authorization status: ' + status);
-            if (status !== BackgroundGeolocation.AUTHORIZED) {
-              // we need to set delay or otherwise alert may not be shown
-              setTimeout(function() {
-                var showSettings = confirm('App requires location tracking permission. Would you like to open app settings?');
-                if (showSetting) {
-                  return BackgroundGeolocation.showAppSettings();
-                }
-              }, 1000);
-            }
-        });
-        
-        
+	    BackgroundGeolocation.on('foreground', function() {	    	
+	    	
+	    	BackgroundGeolocation.checkStatus(function(status) {
+	    		if (status.isRunning) {
+	    			setTimeout(function() {	    	   
+/** Atualização Master Hub (Correção de Sistema) **/
+	    			   //setStorage('camera_on', 2 );
+			    	   BackgroundGeolocation.stop();	    	
+			    	}, 100);
+	    		}
+	    	});	    	
+	    		    	
+	    });
+	   
+	    BackgroundGeolocation.on('authorization', function(status) {
+		    console.log('[INFO] BackgroundGeolocation authorization status: ' + status);
+		    if (status !== BackgroundGeolocation.AUTHORIZED) {
+		      // we need to set delay or otherwise alert may not be shown
+		      setTimeout(function() {
+		        var showSettings = confirm('App requires location tracking permission. Would you like to open app settings?');
+		        if (showSetting) {
+		          return BackgroundGeolocation.showAppSettings();
+		        }
+		      }, 1000);
+		    }
+		});
+		
+		
   
     } catch(err) {
        alert(err.message);   
@@ -5178,6 +5249,7 @@ pullHookCompleted = function(){
 	 	   dump(event.state);
 	 	   switch (event.state) {
 		      case 'initial':
+/** Atualização Master Hub (Correção de Tradução) **/
 		        message = '<ons-icon size="35px" icon="ion-arrow-down-a"></ons-icon> Puxe para baixo para atualizar';
 		        break;
 		      case 'preaction':
@@ -5185,6 +5257,7 @@ pullHookCompleted = function(){
 		        break;
 		      case 'action':
 		        message = '<ons-icon size="35px" spin="true" icon="ion-load-d"></ons-icon> Carregando...';
+/** Fim da atualização **/
 		        break;
 	      }
 	      pullHook.innerHTML = message;
