@@ -102,7 +102,7 @@ function formatTask(data)
 			               html+='</div>';
 
 			                   html+='<div class="col text-right">';
-			                   html+="<b class='amout'>"+prettyPrice(val.valor_entrega)+"</b>";
+			                   html+="<b class='amout'>" + prettyPrice(val.valor_entrega) + "</b>";
 			                   html+='</div>';
 			            html+='</div>';
 			html+='<div class="table" style="text-align: center; margin-top: -5px;">';
@@ -260,7 +260,16 @@ function formatTask(data)
 		             html+='</div>';
 		          html+='</div>';
 				} else {
-		            //não mostra nada
+				html+='<div class="table">';
+		             html+='<div class="col a">';
+		             // html+='<ons-icon icon="ion-home" size="20px"></ons-icon>';
+			 		 html+="<img class='opaque svg-task' src='lib/images/profile--vehicle/vehicle.svg' onerror='this.src='vehicle.png''>";
+		             html+='</div>';
+		             html+='<div class="col">';
+		             // html+='<p>'+ data.merchant_name +'</p>';
+			 		 html+='<p><b class="opaque trn" data-trn-key="tipo_transportador">'+ getTrans('Tipo do Transportador: ','tipo_transportador') +'</b>'+val.tipo_veiculo+'</p>';
+		             html+='</div>';
+		          html+='</div>';
 				}            
 			            html+='<div class="table">';
 			                html+='<div class="col a">';
@@ -421,7 +430,16 @@ function formatTaskDetails(data)
 		             html+='</div>';
 		          html+='</div>';
 				} else {
-		            //não mostra nada
+				html+='<div class="table mtb5">';
+		             html+='<div class="col a">';
+		             // html+='<ons-icon icon="ion-home" size="20px"></ons-icon>';
+			 		 html+="<img class='opaque svg-task' src='lib/images/profile--vehicle/vehicle.svg' onerror='this.src='vehicle.png''>";
+		             html+='</div>';
+		             html+='<div class="col">';
+		             // html+='<p>'+ data.merchant_name +'</p>';
+			 		 html+='<p><b class="opaque trn" data-trn-key="tipo_transportador">'+ getTrans('Tipo do Transportador: ','tipo_transportador') +'</b>'+data.tipo_veiculo+'</p>';
+		             html+='</div>';
+		          html+='</div>';
 				}            
 	
 			  if (data.tempo_entrega >= 0){
@@ -1625,8 +1643,6 @@ function pickupDetails(data)
 			 		 html+='<p style="font-size: 22px;">'+data.resgate_entrega+'</p>';
 		             html+='</div>';
 		          html+='</div>';   
-				} else if (data.trans_type_raw == 'delivery' || data.trans_type_raw == 'coleta' || data.trans_type_raw == 'coleta_retorno' || data.trans_type_raw == 'pre_coleta' || data.trans_type_raw == 'pre_coleta_retorno'){
-					//não mostra nada
 				} else {
 		         html+='<div class="table">';
 		             html+='<div class="col a">';
@@ -1639,7 +1655,31 @@ function pickupDetails(data)
 		             html+='</div>';
 		          html+='</div>';   
 				}
-	         }
+	         } else if (!empty(data.dropoff_merchant_name)){
+		 if (!empty(data.resgate_entrega)){ 
+		         html+='<div class="table">';
+		             html+='<div class="col a">';
+		             // html+='<ons-icon icon="ion-home" size="20px"></ons-icon>';
+			 		 html+="<img class='opaque svg-task' src='lib/images/profile--vehicle/vehicle.svg' onerror='this.src='merchant-name.png''>";
+		             html+='</div>';
+		             html+='<div class="col">';
+		             // html+='<p>'+ data.merchant_name +'</p>';
+			 		 html+='<p style="font-size: 22px;">'+data.resgate_entrega+'</p>';
+		             html+='</div>';
+		          html+='</div>';   
+				} else {
+		         html+='<div class="table">';
+		             html+='<div class="col a">';
+		             // html+='<ons-icon icon="ion-home" size="20px"></ons-icon>';
+			 		 html+="<img class='opaque svg-task' src='lib/images/menu--order-details/merchant-name.svg' onerror='this.src='merchant-name.png''>";
+		             html+='</div>';
+		             html+='<div class="col">';
+		             // html+='<p>'+ data.merchant_name +'</p>';
+			 		 html+='<p><b class="opaque trn" data-trn-key="merchant_name">'+ getTrans('Merchant name: ','merchant_name') +'</b>'+data.dropoff_merchant_name+'</p>';
+		             html+='</div>';
+		          html+='</div>';   
+				}
+			 }
 	          
 	         if (!empty(data.dropoff_contact_name)){
 	          html+='<div class="table mtb5">';

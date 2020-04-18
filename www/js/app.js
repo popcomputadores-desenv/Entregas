@@ -3485,11 +3485,11 @@ function showDistanceInfo(data)
    var dialog = document.getElementById('trackDistanceDialog');
    var html='';
 /** Atualização Master Hub (Cobrança por km adicional e dinamico) **/
-   	/* var distance_merchant=parseFloat(data.merchant_distance.distance.replace(/\km/,''), 10);
+   	var distance_merchant=parseFloat(data.merchant_distance.distance.replace(/\km/,''), 10);
 	var delivery_distance=parseFloat(data.delivery_distance.distance.replace(/\km/,''), 10);
 	var soma_distance=delivery_distance + distance_merchant;
 	var soma_duration=somaHora(data.delivery_distance.duration, data.merchant_distance.duration, false);
-	var tipo_do_veiculo ='';*/
+	var tipo_do_veiculo ='';
 	if (data.tipo_do_veiculo=='car'){tipo_do_veiculo='Carro'} else
 	if (data.tipo_do_veiculo=='truck'){tipo_do_veiculo='Caminhao'} else
 	if (data.tipo_do_veiculo=='scooter'){tipo_do_veiculo='Moto'} else
@@ -5072,7 +5072,12 @@ document.addEventListener('prechange', function(event) {
 	
 	switch (event.index){
 		case 0:
-		
+		 if(current_page=="home"){
+			 raw_date=getStorage('kr_todays_date_raw');
+	         callAjax("getTaskByDate","date="+raw_date);
+		 } else if (current_page=="profilePage") {		 	 
+		 	TransLatePage();
+		 }
 		break;
 		
 		case 1:
