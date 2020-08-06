@@ -73,7 +73,7 @@
       
     <preference name="phonegap-version" value="cli-8.1.1" />
     <preference name="android-minSdkVersion" value="19" />
-    <preference name="android-targetSdkVersion" value="28" />
+    <preference name="android-targetSdkVersion" value="29" />
     <preference name="DisallowOverscroll" value="true" />
     
     <platform name="ios">    
