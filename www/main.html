@@ -1,0 +1,2429 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="lib/onsen/css/onsenui.css"/>
+    <link rel="stylesheet" href="lib/onsen/css/old-onsen-css-components.min.css"/>
+    
+    <link rel="stylesheet" href="css/app.css?ver=1.0">
+	<link href="lib/mobiscroll/css/mobiscroll.frame.css" rel="stylesheet" type="text/css" />
+	<link href="lib/mobiscroll/css/mobiscroll.frame.android.css" rel="stylesheet" type="text/css" />
+	<link href="lib/mobiscroll/css/mobiscroll.frame.android-holo.css" rel="stylesheet" type="text/css" />
+	<link href="lib/mobiscroll/css/mobiscroll.frame.ios-classic.css" rel="stylesheet" type="text/css" />
+	<link href="lib/mobiscroll/css/mobiscroll.frame.ios.css" rel="stylesheet" type="text/css" />
+	<link href="lib/mobiscroll/css/mobiscroll.scroller.css" rel="stylesheet" type="text/css" />
+	<link href="lib/mobiscroll/css/mobiscroll.scroller.android.css" rel="stylesheet" type="text/css" />
+	<link href="lib/mobiscroll/css/mobiscroll.scroller.android-holo.css" rel="stylesheet" type="text/css" />
+	<link href="lib/mobiscroll/css/mobiscroll.scroller.ios-classic.css" rel="stylesheet" type="text/css" />
+	<link href="lib/mobiscroll/css/mobiscroll.scroller.ios.css" rel="stylesheet" type="text/css" />
+	<link href="lib/mobiscroll/css/mobiscroll.android-holo-light.css" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous"> 
+
+	
+	<link rel="stylesheet" href="lib/fullcalendar/fullcalendar.css"/>	
+	        
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/onsen/js/onsenui.js"></script> 
+    <script src="lib/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+           
+    <script src="lib/mobiscroll/js/mobiscroll.core.js"></script>
+    <script src="lib/mobiscroll/js/mobiscroll.frame.js"></script>
+    <script src="lib/mobiscroll/js/mobiscroll.scroller.js"></script>
+    <script src="lib/mobiscroll/js/mobiscroll.util.datetime.js"></script>
+    <script src="lib/mobiscroll/js/mobiscroll.datetimebase.js"></script>
+    <script src="lib/mobiscroll/js/mobiscroll.datetime.js"></script>
+    <script src="lib/mobiscroll/js/mobiscroll.frame.android-holo.js"></script>
+    
+    
+    <script src="lib/jquery.translate.js"></script>
+    <script src="lib/imagesloaded.pkgd.min.js"></script>
+    <script src="js/jquery.geocomplete.min.js"></script>
+    
+    <script src="lib/jsignature/jSignature.min.js"></script>   
+    <script src="lib/fullcalendar/moment.min.js"></script>
+    <script src="lib/fullcalendar/fullcalendar.min.js"></script>
+    <script src="lib/fullcalendar/lang/pt-br.js"></script>
+    <script src="lib/validate.min.js"></script>
+    
+    <link href="lib/intel/build/css/intlTelInput.css" rel="stylesheet" type="text/css" />
+   <script type="text/javascript" src="lib/intel/build/js/intlTelInput.js"></script>
+   
+   <script src="http://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyCjgZJOBT5K3Ms5ns20Q3lbopscSoGt3aI"></script>
+   <script src="lib/gmaps.js?version=1.0.0"></script>
+   
+   <script src="lib/leaflet/leaflet.js"></script>
+   <link href="lib/leaflet/leaflet.css" rel="stylesheet" type="text/css" />
+   
+   <script src="lib/leaflet/plugin/routing/leaflet-routing-machine.min.js"></script>
+   <link href="lib/leaflet/plugin/routing/leaflet-routing-machine.css" rel="stylesheet" type="text/css" />
+   
+    
+    <script src="js/config.js?ver=1.0"></script>
+    <script src="js/tpl.js?ver=1.0"></script>    
+    <script src="js/masterhub.js?ver=1.0"></script>    
+    <script src="js/app.js?ver=1.0"></script> 
+    <script src="js/mapbox.js?ver=1.0"></script> 
+             
+  </head>
+  <body>
+    
+
+   <ons-modal id="loader">
+     <ons-progress-circular indeterminate></ons-progress-circular>
+   </ons-modal>
+
+     <ons-navigator id="kNavigator" page="pageGetSettings.html"></ons-navigator>            
+    
+     <ons-template id="pageGetSettings.html"> 
+      <ons-page id="pageGetSettings" modifier="login-page" >
+      
+          <div class="loading-getsettings">
+	           <img src="images/logo.png" alt="" title="">
+	           <p>
+	           <span class="trn loading_settings" data-trn-key="loading_settings" >
+	           Carregando Configs</span> ...
+	           </p>
+	           <p class="refresh_net">
+	            <ons-button modifier="quiet" onclick="refreshCon('GetAppSettings')">
+                  <ons-icon icon="ion-android-refresh" size="30px"></ons-icon>
+                </ons-button>
+	           </p>
+           </div>    
+           
+      </ons-page>    
+     </ons-template>  
+      
+     <ons-template id="pagelogin.html"> 
+      <ons-page id="pageLogin" modifier="login-page" ng-device-backbutton="closeApp()" >
+             
+       <div class="home-header login-header">
+          <span class="uppercase trn" data-trn-key="signin" >Sign In</span>
+       </div> 
+       
+       <div class="inner">
+       <form id="frm-login" class="frm" method="post" onsubmit="return false;">
+       
+           <p class="field-wrap">
+           <ons-input type="text" name="username" id="username_field"  class="username_field"          
+           modifier="underbar" placeholder="Username" data-trn-key="username" float></ons-input>
+           </p>
+                                 
+           <p class="field-wrap">
+           <ons-input type="password" name="password" modifier="underbar" class="password_field" 
+           placeholder="Password" data-trn-key="password" float ></ons-input>
+           </p>
+           
+           <p class="text-left">     
+             <ons-row>      
+                <ons-col width="30px">
+                   <!--<ons-input type="checkbox" name="remember" checked input-id="check-1"></ons-input> -->    
+                    <ons-checkbox input-id="remember" name="remember" checked ></ons-checkbox>
+                </ons-col>  
+                <ons-col>
+                  <span class="trn" data-trn-key="remember_me" >Remember me</span>
+                </ons-col>  
+              </ons-row>
+           </p>
+           
+           <p class="text-left">
+            <ons-if platform="android">
+	           <ons-button modifier="large" onclick="login()" >
+	           <span class="trn" data-trn-key="signin">Sign In</span>
+	           </ons-button>          
+	        </ons-if>
+	        <ons-if platform="ios other">
+	           <ons-button modifier="large green-button" onclick="login()" >
+	           <span class="trn" data-trn-key="signin">Sign In</span>
+	           </ons-button>          
+	        </ons-if>
+           </p>              
+               
+           <ons-row>
+            <ons-col>
+             <p class="text-left">
+	            <ons-if platform="android">
+	              <ons-button modifier="quiet" onclick="showPage('forgotpass.html');">
+	                <span class="trn" data-trn-key="forgot_password" >Forgot Password?</span>
+	              </ons-button>
+	            </ons-if>
+	            
+	            <ons-if platform="ios other">
+	              <ons-button modifier="quiet" onclick="showPage('forgotpass.html');">
+	                <span class="trn white-text" data-trn-key="forgot_password" >Forgot Password?</span>
+	              </ons-button>
+	            </ons-if>                       
+	           </p>
+            </ons-col>
+            
+            <ons-col>
+             <p class="text-right sign-wrap">
+             <ons-button modifier="quiet" onclick="showPage('signup.html');">
+                <span class="trn" data-trn-key="signup" >Sign Up</span>
+             </ons-button>
+             </p>
+            </ons-col>
+           
+           </ons-row>
+           
+           </form>    
+                      
+           <div class="auto-login-wrap">
+	           <img src="images/logo.png" alt="" title="">
+	           <p>
+	           <span class="trn" data-trn-key="login_in" >Logging in</span> ...
+	           </p>
+           </div>
+                 
+       </div>
+              
+      </ons-page>    
+      </ons-template>
+    
+         
+    <ons-template id="forgotpass.html"> 
+    <ons-page id="pageforgotpass" modifier="login-page"  >
+    
+       <ons-toolbar class="nav-transparent" modifier="ktransparent-toolbar">        
+         <div class="left"><ons-back-button></ons-back-button></div>          
+       </ons-toolbar>
+    
+       <div class="home-header">
+          <span class="uppercase trn" data-trn-key="forgot_password">Forgot Password</span>
+       </div> 
+                     
+       <div class="inner">    
+       
+          <form id="frm-forgotpass"  method="post" onsubmit="return false;"> 
+          <p class="field-wrap">
+           <ons-input type="text" id="email_field" name="email" modifier="underbar"	class="email_field"
+            placeholder="Email" data-trn-key="email" float></ons-input>
+          </p>
+
+          <p class="text-left field-wrap">
+            <span class="info-txt trn" data-trn-key="enter_your_email">
+            Enter your email address and we'll send you a code to reset your password
+            </span>
+          </p>           
+          
+          <p class="text-left">
+            <ons-if platform="android">  
+             <ons-button modifier="large" onclick="forgotPass()"  >
+              <span class="trn" data-trn-key="submit" >Submit</span>
+             </ons-button>
+            </ons-if>
+            
+            <ons-if platform="ios other">
+             <ons-button modifier="large green-button" onclick="forgotPass()"  >
+              <span class="trn" data-trn-key="submit" >Submit</span>
+             </ons-button>
+            </ons-if>
+            
+          </p>
+          </form>
+          
+          <p class="text-left">
+          
+            <ons-if platform="android">
+		        <ons-button modifier="quiet" onclick="showChangePassword()">
+		        <span class="trn" data-trn-key="already_have_password" >Already have Password Code?</span>
+		        </ons-button>
+            </ons-if>
+            
+            <ons-if platform="ios other">
+		        <ons-button modifier="quiet" onclick="showChangePassword()">
+		        <span class="trn white-text" data-trn-key="already_have_password" >Already have Password Code?</span>
+		        </ons-button>
+            </ons-if>
+            
+          </p>
+          
+       </div>
+    
+    </ons-page>    
+    </ons-template>
+    
+    
+    <ons-template id="changePassword.html">
+      <ons-dialog id="dialogChangePass" cancelable > 
+              
+        <form id="frm-changepass"  method="post" onsubmit="return false;"> 
+        <div class="inner">
+           <p class="field-wrap">
+             <ons-input type="text" name="email_address"  class="email_field"           
+              modifier="underbar" placeholder="Email" data-trn-key="email"  float></ons-input>
+           </p>
+           <p class="field-wrap">
+             <ons-input type="text" name="code"  class="code_field"          
+              modifier="underbar" placeholder="Code" data-trn-key="code" float></ons-input>
+           </p>
+           
+           <p class="field-wrap">
+             <ons-input type="password" name="newpass"  class="new_password_field"
+              modifier="underbar" placeholder="New Password" data-trn-key="new_password" float></ons-input>
+           </p>
+           
+           <p class="text-left">
+           <ons-button modifier="large" onclick="changePassword()" >
+           <span class="trn" data-trn-key="submit">Submit</span>
+           </ons-button>          
+           </p>       
+           
+        </div>
+        </form>
+      
+      </ons-dialog>
+    </ons-template>
+    
+    
+    <ons-template id="home.html"> 
+    <ons-page id="home" modifier="grey-page" >
+    
+<!-- Atualização Master Hub (Correção de Tradução) -->
+    <ons-toolbar modifier="toolbar-noshadow" style="background-color: #999;">
+<!-- Fim da atualização -->
+
+        <div class="left">        
+          <ons-toolbar-button onclick="showMenu(this)">
+            <img class="svg" src="lib/images/menu--navigation-bar/menu.svg" onerror="this.src='menu.png'">
+            <!-- <ons-icon icon="ion-android-more-vertical" size="1.2em"></ons-icon> -->
+          </ons-toolbar-button>
+        </div>
+
+        <div class="center in-flex">        
+          <img src="images/banner.png" >
+        </div>
+
+        <div class="right">
+          <ons-toolbar-button onclick="showPage('Notification.html')" >
+            <div class="notification baloon-notification">4</div>
+            <img class="svg" src="lib/images/menu--navigation-bar/notification.svg" onerror="this.src='notification.png'">
+            <!-- <ons-icon icon="ion-android-notifications-none" size="1.2em"></ons-icon>             -->
+          </ons-toolbar-button>
+          
+<!--           <ons-toolbar-button onclick="showCalendarView()">
+            <ons-icon icon="ion-android-calendar" size="1.2em"></ons-icon>
+          </ons-toolbar-button> -->
+        </div>
+
+    </ons-toolbar>
+    
+        <!--<ons-pull-hook id="pull-hook">           
+        </ons-pull-hook>            -->
+    
+       <!-- <ons-row class="orange-bar home-sub-nav">
+	       <ons-col width="70px" >
+	         <p class="todays_date"></p>
+	       </ons-col>
+	       <ons-col width="70px" >
+	         <p class="duty_status"></p>
+	       </ons-col>
+	       
+	       <ons-col width="70px" >
+	          <ons-switch input-id="onduty" class="on-duty" onchange="changeDuty()"   ></ons-switch>
+	       </ons-col>
+	       
+	       <ons-col class="text-right">
+	         <span class="bold total_order_total concat-text"></span>
+	       </ons-col>	       
+	    </ons-row>-->
+    
+        <!--<div class="list-wrapper" id="task-wrapper">
+        </div>-->
+                
+        <!--<div class="no-task-wrap inner">
+          <ons-button modifier="quiet" onclick="getTodayTask()">
+            <ons-icon icon="ion-android-refresh" modifier="grey-icon" size="30px"></ons-icon>
+          </ons-button>
+          <p></p>
+        </div>-->
+        
+        <ons-tabbar id="tabbar_bottom" position="top">
+        
+        <ons-tab page="pending_task_list.html">
+		  <input type="radio" style="display: none">
+		  <button class="tabbar__button in-flex">
+		    <div class="tabbar__icon none">
+		      <ons-icon icon="ion-android-alert" size="0.8em"></ons-icon>
+		    </div>
+		    <div class="tabbar__label trn" data-trn-key="pending_task" >Pending Task</div>    
+		  </button>
+		 </ons-tab>
+		 
+		<ons-tab page="completed_task_list.html" id="completed">
+		  <input type="radio" style="display: none">
+		  <button class="tabbar__button in-flex">
+		    <div class="tabbar__icon none">
+		      <ons-icon icon="ion-checkmark-circled" size="0.8em"></ons-icon>
+		    </div>
+		    <div class="tabbar__label trn" data-trn-key="completed_task" >Completed Task</div>    
+		  </button>
+		 </ons-tab> 
+	  
+        </ons-tabbar>
+    
+    </ons-page>
+    </ons-template>
+    
+    
+	<ons-popover direction="left" id="popover" cancelable >	  
+	  <ons-list>	    
+	    <ons-list-item modifier="normal-menu" tappable onclick="showPage('profilePage.html',1)" >
+        <img class="svg pr10" src="lib/images/menu--home/profile.svg" onerror="this.src='profile.png'">    
+        <span class="trn" data-trn-key="profile" >Profile</span>
+      </ons-list-item>
+      
+      <ons-list-item modifier="normal-menu" onclick="showPage('CalendarView.html',1)"  tappable>
+        <img class="svg pr10" src="lib/images/menu--home/calendar.svg" onerror="this.src='calendar.png'">    
+        <span class="trn" data-trn-key="calendar">Calendar</span>
+      </ons-list-item>
+
+      <ons-list-item modifier="normal-menu" onclick="showPage('MeusRendimentos.html',1)"  tappable>
+        <img class="svg pr10" src="lib/images/profile--bank/wallet.svg" onerror="this.src='wallet.png'">    
+        <span class="trn" data-trn-key="rendimentos">Meus Rendimentos</span>
+      </ons-list-item>
+
+      <ons-list-item modifier="normal-menu" onclick="showPage('SettingPage.html',1)"  tappable>
+        <img class="svg pr10" src="lib/images/menu--home/settings.svg" onerror="this.src='settings.png'">    
+        <span class="trn" data-trn-key="settings">Settings</span>
+      </ons-list-item>
+      
+      <ons-list-item modifier="normal-menu" tappable onclick="Logout()">
+        <img class="svg pr10" src="lib/images/menu--home/logout.svg" onerror="this.src='logout.png'">    
+	      <span class="trn" data-trn-key="logout">Logout</span>
+	    </ons-list-item>
+	    
+	  </ons-list>	  
+	</ons-popover>
+	
+	
+	<ons-template id="taskDetails.html"> 
+    <ons-page id="taskDetails"  >
+    
+       <ons-toolbar modifier="ktransparent-toolbar">        
+         <div class="left"><ons-back-button onclick="reloadHome()"></ons-back-button></div>          
+         <div class="center toolbar-title"></div>
+       </ons-toolbar>
+       
+       <input type="hidden" name="task_id_global" class="task_id_global">
+       <input type="hidden" name="task_id_details" class="task_id_details">
+       
+       <div id="task-details" class="inner normal-inner list-wrapper">
+       
+       </div>   
+       
+     <ons-bottom-toolbar class="button-toolbar-action" id="task-action-wrap" >
+     </ons-bottom-toolbar>
+    
+    </ons-page>
+    </ons-template>
+<!-- Atualização Master Hub (Personalização - Oculta dados do entregador) -->
+	<ons-template id="taskDetailsBlock.html"> 
+    <ons-page id="taskDetailsBlock"  >
+    
+       <ons-toolbar modifier="ktransparent-toolbar">        
+         <div class="left"><ons-back-button onclick="reloadHome()"></ons-back-button></div>          
+         <div class="center toolbar-title"></div>
+       </ons-toolbar>
+       
+       <input type="hidden" name="task_id_global" class="task_id_global">
+       <input type="hidden" name="task_id_details" class="task_id_details">
+       
+       <div id="task-details-block" class="inner normal-inner list-wrapper">
+       
+       </div>   
+       
+     <ons-bottom-toolbar class="button-toolbar-action" id="task-action-wrap" >
+     </ons-bottom-toolbar>
+    
+    </ons-page>
+    </ons-template>
+    
+	<ons-template id="taskDetailsMerchant.html"> 
+    <ons-page id="taskDetailsMerchant"  >
+    
+       <ons-toolbar modifier="ktransparent-toolbar">        
+         <div class="left"><ons-back-button onclick="reloadHome()"></ons-back-button></div>          
+         <div class="center toolbar-title"></div>
+       </ons-toolbar>
+       
+       <input type="hidden" name="task_id_global" class="task_id_global">
+       <input type="hidden" name="task_id_details" class="task_id_details">
+       
+       <div id="task-details-merchant" class="inner normal-inner list-wrapper">
+       
+       </div>   
+       
+     <ons-bottom-toolbar class="button-toolbar-action" id="task-action-wrap" >
+     </ons-bottom-toolbar>
+    
+    </ons-page>
+    </ons-template>
+    
+	<ons-template id="taskDetailsClient.html"> 
+    <ons-page id="taskDetailsClient"  >
+    
+       <ons-toolbar modifier="ktransparent-toolbar">        
+         <div class="left"><ons-back-button onclick="reloadHome()"></ons-back-button></div>          
+         <div class="center toolbar-title"></div>
+       </ons-toolbar>
+       
+       <input type="hidden" name="task_id_global" class="task_id_global">
+       <input type="hidden" name="task_id_details" class="task_id_details">
+       
+       <div id="task-details-client" class="inner normal-inner list-wrapper">
+       
+       </div>   
+       
+     <ons-bottom-toolbar class="button-toolbar-action" id="task-action-wrap" >
+     </ons-bottom-toolbar>
+    
+    </ons-page>
+    </ons-template>
+<!-- Fim da atualização -->
+   
+    <ons-template id="viewTaskDescription.html"> 
+    <ons-page id="viewTaskDescription" modifier="grey-page"  >
+    
+       <ons-toolbar modifier="ktransparent-toolbar">        
+         <div class="left"><ons-back-button></ons-back-button></div>          
+         <div class="center toolbar-title"></div>
+       </ons-toolbar>
+       
+        <div class="list-wrapper" id="task-description">
+        </div>
+                
+    </ons-page>
+    </ons-template>
+    
+    
+   <ons-template id="reasonTask.html">
+      <ons-dialog id="reasonTask" cancelable > 
+              
+        <form id="frm-reasontask"  method="post" onsubmit="return false;"> 
+        <input type="hidden" name="reason_task_id" id="reason_task_id">
+        <input type="hidden" name="reason_status_raw" id="reason_status_raw">
+        <div class="inner">
+           <p class="field-wrap mb0">
+             <ons-input type="text" id="reason" name="reason"            
+<!-- Atualização Master Hub (Correção de Tradução) -->
+              modifier="underbar" class="reason" placeholder="Qual o motivo..."  data-trn-key="add_reason"  float></ons-input>
+<!-- Fim da atualização -->
+           </p>           
+           <p class="text-left mt0">
+           <ons-button modifier="large" onclick="AddReasonTask()" >
+            <span class="trn" data-trn-key="submit" >Submit</span>
+           </ons-button>          
+           </p>       
+           
+        </div>
+        </form>
+      
+      </ons-dialog>
+    </ons-template>    
+<!-- Atualização Master Hub (Botão DEU RUIM) -->
+   <ons-template id="reasonTaskDeuRuim.html">
+      <ons-dialog id="reasonTaskDeuRuim" cancelable > 
+              
+        <form id="frm-reasontask"  method="post" onsubmit="return false;"> 
+        <input type="hidden" name="reason_task_id" id="reason_task_id">
+        <input type="hidden" name="reason_status_raw" id="reason_status_raw">
+        <div class="inner">
+           <p class="field-wrap mb0">
+             <ons-input type="text" id="reason" name="reason"            
+              modifier="underbar" class="reason" placeholder="Qual o PROBLEMA..."  data-trn-key="add_reason"  float></ons-input>
+           </p>           
+           <p class="text-left mt0">
+           <ons-button modifier="large" onclick="AddReasonTaskDeuRuim()" >
+            <span class="trn" data-trn-key="submit" >Submit</span>
+           </ons-button>          
+           </p>       
+           
+        </div>
+        </form>
+      
+      </ons-dialog>
+    </ons-template>    
+<!-- Fim da atualização -->
+        
+   <ons-template id="Signature.html"> 
+    <ons-page id="Signature" modifier="grey-page" >
+	
+	
+       <ons-toolbar modifier="ktransparent-toolbar">        
+         <div class="left"><ons-back-button></ons-back-button></div>          
+         <div class="center toolbar-title-signature"></div>
+       </ons-toolbar>
+       
+       <div class="inner"> 
+<!-- Atualização Master Hub (Correção de Layout) -->
+       <span type="text" name="recipient_name" class="recipient_name trn"            
+         modifier="underbar" placeholder="Recipient name" data-trn-key="recipient_name" float></span>
+         <p class="field-wrap">
+         <!--<ons-input type="text" name="recipient_name" class="recipient_name trn"            
+         modifier="underbar" placeholder="Recipient name" data-trn-key="recipient_name" float></ons-input>-->
+                  
+          <ons-input id="recipient_name" class="recipient_name trn"  modifier="underbar" float></ons-input>
+<!-- Fim da atualização -->
+         </p>
+       
+         <div id="signature-pan"></div>
+         
+         <input type="hidden" name="task_id_signature" class="task_id_signature">
+         <input type="hidden" name="signature_id" class="signature_id">
+
+         <ons-bottom-toolbar class="button-toolbar-action">
+           <p class="signature-action action-btn">
+             <ons-button class="success" modifier="large" onclick="AddSignatureToTask()" >
+              <span class="trn" data-trn-key="done" >Done</span>
+             </ons-button>          
+           </p>
+           <p class="signature-action action-btn">
+           <ons-button class="cancel" modifier="large" onclick="resetSignature();">
+             <span class="trn" data-trn-key="reset" >Reset</span>
+           </ons-button>
+           </p>
+         </ons-bottom-toolbar>
+
+       </div>
+              
+       
+	  </ons-page>
+    </ons-template>    
+    
+    <ons-template id="MeusRendimentos.html"> 
+    <ons-page id="MeusRendimentos" >
+		
+       <ons-toolbar modifier="ktransparent-toolbar">        
+         <div class="left"><ons-back-button></ons-back-button></div>          
+         <div class="center toolbar-title-rendimentos trn" data-trn-key="rendimentos" >Meus Rendimentos</div>
+       </ons-toolbar>
+       
+       <div class="inner">     
+         <div id="rendimentos"></div>     
+       </div>              
+       
+	  </ons-page>
+    </ons-template>    
+    
+    <ons-template id="CalendarView.html"> 
+    <ons-page id="CalendarView" >
+		
+       <ons-toolbar modifier="ktransparent-toolbar">        
+         <div class="left"><ons-back-button></ons-back-button></div>          
+         <div class="center toolbar-title-calendar trn" data-trn-key="calendar" >Calendar View</div>
+       </ons-toolbar>
+       
+       <div class="inner">     
+         <div id="calendar"></div>     
+       </div>              
+       
+	  </ons-page>
+    </ons-template>    
+    
+    <ons-template id="profilePage.html"> 
+    <ons-page id="profilePage" >
+		
+       <ons-toolbar modifier="toolbar-noshadow">        
+         <div class="left"><ons-back-button></ons-back-button></div>          
+         <div class="center toolbar-title-profile">
+<!-- Atualização Master Hub (Correção de Layout) -->
+         <span class="center toolbar-title-profile trn" data-trn-key="profile" >Profile</span>
+<!-- Fim da atualização -->
+         </div>
+       </ons-toolbar>
+       
+       <div class="inner-profile">          
+         
+         <!--<ons-tabbar position="top">
+           <ons-tab page="profile.html" label="Personal" active="true" data-trn-key="personal" ></ons-tab>
+           <ons-tab page="vehicle.html" label="Vehicle" data-trn-key="vehicle" ></ons-tab>
+           <ons-tab page="changepassword.html" label="Password" data-trn-key="password" ></ons-tab>
+         </ons-tabbar>-->
+         
+         
+     <ons-tabbar id="tabbar_bottom" position="top">
+        
+<!-- Atualização Master Hub (Envio de Documentação do Entregador) -->
+     <ons-tab page="profilePessoal.html">
+<!-- Fim da atualização -->
+		  <input type="radio" style="display: none">
+		  <button class="tabbar__button in-flex">
+		    <div class="tabbar__icon none">
+		      <ons-icon icon="ion-android-contact"></ons-icon>
+		    </div>
+		    <div class="tabbar__label trn" data-trn-key="personal">Personal</div>    
+		  </button>
+		 </ons-tab>
+		 
+		<ons-tab page="vehicle.html">
+		  <input type="radio" style="display: none">
+		  <button class="tabbar__button in-flex">
+		    <div class="tabbar__icon none">
+		      <ons-icon icon="ion-android-car"></ons-icon>
+		    </div>
+		    <div class="tabbar__label trn" data-trn-key="vehicle" >Vehicle</div>    
+		  </button>
+		 </ons-tab> 
+		 
+		<ons-tab page="changepassword.html">
+		  <input type="radio" style="display: none">
+		  <button class="tabbar__button in-flex">
+		    <div class="tabbar__icon none">
+		      <ons-icon icon="ion-unlocked"></ons-icon>
+		    </div>
+		    <div class="tabbar__label trn" data-trn-key="password" >Password</div>    
+		  </button>
+		 </ons-tab>  
+		 
+    </ons-tabbar>
+                          
+       </div>              
+       
+	  </ons-page>
+    </ons-template>    
+<!-- Atualização Master Hub (Envio de Documentação do Entregador) -->
+    <ons-template id="profilePessoal.html"> 
+    <ons-page id="profilePagePessoal" >
+       
+       <div class="inner-profile">          
+         
+         <!--<ons-tabbar position="top">
+           <ons-tab page="profile.html" label="Personal" active="true" data-trn-key="personal" ></ons-tab>
+           <ons-tab page="vehicle.html" label="Vehicle" data-trn-key="vehicle" ></ons-tab>
+           <ons-tab page="changepassword.html" label="Password" data-trn-key="password" ></ons-tab>
+         </ons-tabbar>-->
+         
+         
+     <ons-tabbar id="tabbar_bottom" position="top">
+        
+     <ons-tab page="profile.html">
+		  <input type="radio" style="display: none">
+		  <button class="tabbar__button in-flex">
+		    <div class="tabbar__icon none">
+		      <ons-icon icon="ion-android-contact"></ons-icon>
+		    </div>
+		    <div class="tabbar__label trn" data-trn-key="dados_pessoais">Personal</div>    
+		  </button>
+		 </ons-tab>
+		 
+		<ons-tab page="endereco.html">
+		  <input type="radio" style="display: none">
+		  <button class="tabbar__button in-flex">
+		    <div class="tabbar__icon none">
+		      <ons-icon icon="ion-android-car"></ons-icon>
+		    </div>
+		    <div class="tabbar__label trn" data-trn-key="endereco" >Endereco</div>    
+		  </button>
+		 </ons-tab> 
+		 
+		<ons-tab page="financeiro.html">
+		  <input type="radio" style="display: none">
+		  <button class="tabbar__button in-flex">
+		    <div class="tabbar__icon none">
+		      <ons-icon icon="ion-android-car"></ons-icon>
+		    </div>
+		    <div class="tabbar__label trn" data-trn-key="financeiro" >Financeiro</div>    
+		  </button>
+		 </ons-tab> 
+		 
+    </ons-tabbar>
+                          
+       </div>              
+       
+	  </ons-page>
+    </ons-template>    
+	  
+    <ons-template id="profilePageChangeData.html"> 
+    <ons-page id="profilePageChangeData" >
+		
+       <ons-toolbar modifier="toolbar-noshadow">        
+         <div class="left"><ons-back-button></ons-back-button></div>          
+         <div class="center toolbar-title-profile">
+         <span class="center toolbar-title-profile trn" data-trn-key="profile" >Profile</span>
+         </div>
+       </ons-toolbar>
+       
+       <div class="inner-profile">          
+         
+         <!--<ons-tabbar position="top">
+           <ons-tab page="profile.html" label="Personal" active="true" data-trn-key="personal" ></ons-tab>
+           <ons-tab page="vehicle.html" label="Vehicle" data-trn-key="vehicle" ></ons-tab>
+           <ons-tab page="changepassword.html" label="Password" data-trn-key="password" ></ons-tab>
+         </ons-tabbar>-->
+         
+         
+     <ons-tabbar id="tabbar_bottom" position="top">
+        
+     <ons-tab page="profilePageChange.html">
+		  <input type="radio" style="display: none">
+		  <button class="tabbar__button in-flex">
+		    <div class="tabbar__icon none">
+		      <ons-icon icon="ion-android-contact"></ons-icon>
+		    </div>
+		    <div class="tabbar__label trn" data-trn-key="personal">Personal</div>    
+		  </button>
+		 </ons-tab>
+		 
+		<ons-tab page="vehiclechange.html">
+		  <input type="radio" style="display: none">
+		  <button class="tabbar__button in-flex">
+		    <div class="tabbar__icon none">
+		      <ons-icon icon="ion-android-car"></ons-icon>
+		    </div>
+		    <div class="tabbar__label trn" data-trn-key="vehicle" >Vehicle</div>    
+		  </button>
+		 </ons-tab> 
+		 
+		<ons-tab page="changepasswordchange.html">
+		  <input type="radio" style="display: none">
+		  <button class="tabbar__button in-flex">
+		    <div class="tabbar__icon none">
+		      <ons-icon icon="ion-unlocked"></ons-icon>
+		    </div>
+		    <div class="tabbar__label trn" data-trn-key="password" >Password</div>    
+		  </button>
+		 </ons-tab>  
+		 
+    </ons-tabbar>
+                          
+       </div>              
+       
+	  </ons-page>
+    </ons-template>  
+	  
+    <ons-template id="profilePageChange.html"> 
+    <ons-page id="profilePageChange" >
+       
+       <div class="inner-profile">          
+         
+         <!--<ons-tabbar position="top">
+           <ons-tab page="profile.html" label="Personal" active="true" data-trn-key="personal" ></ons-tab>
+           <ons-tab page="vehicle.html" label="Vehicle" data-trn-key="vehicle" ></ons-tab>
+           <ons-tab page="changepassword.html" label="Password" data-trn-key="password" ></ons-tab>
+         </ons-tabbar>-->
+         
+         
+     <ons-tabbar id="tabbar_bottom" position="top">
+        
+     <ons-tab page="profilechange.html">
+		  <input type="radio" style="display: none">
+		  <button class="tabbar__button in-flex">
+		    <div class="tabbar__icon none">
+		      <ons-icon icon="ion-android-contact"></ons-icon>
+		    </div>
+		    <div class="tabbar__label trn" data-trn-key="dados_pessoais">Personal</div>    
+		  </button>
+		 </ons-tab>
+		 
+		<ons-tab page="enderecochange.html">
+		  <input type="radio" style="display: none">
+		  <button class="tabbar__button in-flex">
+		    <div class="tabbar__icon none">
+		      <ons-icon icon="ion-android-car"></ons-icon>
+		    </div>
+		    <div class="tabbar__label trn" data-trn-key="endereco" >Endereco</div>    
+		  </button>
+		 </ons-tab>
+		 
+		<ons-tab page="financeirochange.html">
+		  <input type="radio" style="display: none">
+		  <button class="tabbar__button in-flex">
+		    <div class="tabbar__icon none">
+		      <ons-icon icon="ion-android-car"></ons-icon>
+		    </div>
+		    <div class="tabbar__label trn" data-trn-key="financeiro" >Financeiro</div>    
+		  </button>
+		 </ons-tab> 
+		 
+    </ons-tabbar>
+                          
+       </div>              
+       
+	  </ons-page>
+    </ons-template>    
+<!-- Fim da atualização -->
+<!-- Atualização Master Hub (Envio de Documentação do Entregador) -->
+    <ons-template id="profile.html"> 
+    <ons-page id="profile" >
+    
+    <div class="profile-bg mt20">
+      <div>
+       <ons-fab position="top right" class="right" onclick="showDeviceGallery(1);">
+          <img class="svg" src="lib/images/others/camera-w.svg" onerror="this.src='camera-w.png'">
+       </ons-fab>
+      </div>
+      <div class="img_loader" id="img_loader_wrap">
+      
+        <div class="spinner">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+    </div>
+         <img class="avatar" src=""/>
+      </div>
+    </div>
+    
+    
+      <div class="inner">
+      
+        <form id="frm-profile" class="shadow bg-white forms"  method="post" onsubmit="return false;"> 
+           <div class="table w85 equipe">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--main/team.svg" onerror="this.src='team.png'">
+            </div>
+             <div class="col border"> 
+               <b class="opaque black inline trn" data-trn-key="team" >Team: </b>
+               <p class="inline team-name"></p>
+             </div>
+           </div>
+           <div class="table w85">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--main/driver.svg" onerror="this.src='driver.png'">
+            </div>
+             <div class="col border"> 
+               <b class="opaque black inline trn" data-trn-key="nome_apelido">Apelido: </b>
+               <p class="first_name inline"></p>
+             </div>
+           </div>
+           
+           <div class="table w85">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--main/driver.svg" onerror="this.src='driver.png'">
+            </div>
+             <div class="col border"> 
+               <b class="opaque black inline trn" data-trn-key="nome_completo">Nome Completo: </b>
+               <p class="last_name inline"></p>
+             </div>
+           </div>
+           
+           <div class="table w85">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--main/email.svg" onerror="this.src='email.png'">
+            </div>
+             <div class="col border"> 
+               <b class="opaque black inline trn" data-trn-key="email">E-mail: </b>
+               <p class="driver-email inline"></p>
+             </div>
+           </div>
+           <div class="table w85 vtop">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--vehicle/docs.svg" onerror="this.src='docs.png'">
+              </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="cpf" >CPF:</b>
+               <p class="driver-cpf inline"></p> 
+             </div>
+           </div>
+			
+           <div class="table w85 vtop cnpj_cpf">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--vehicle/docs.svg" onerror="this.src='docs.png'">
+              </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="cnpj_perfil" >CNPJ:</b>
+               <p class="cnpj inline"></p>  
+             </div>
+           </div>
+			           
+            <div class="table w85">
+             <div class="col a border vtop">
+              <img class="opaque svg" src="lib/images/profile--main/phone.svg" onerror="this.src='phone.png'">
+             </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="contact" >Contact</b>
+               <p class="driver-phone inline"></p>
+             </div>
+           </div>
+           
+        </form>
+      
+      </div>
+		<div class="mt20 mlr5"> 
+               <b class="opaque black inline trn" data-trn-key="cnh" >CNH: </b>
+               <p class="inline"></p>
+             </div>
+    <div class="cnh-bg mt20 mlr5">
+      <div>
+       
+      </div>
+      <div class="img_loader" id="img_loader_wrap">
+      
+        <div class="spinner">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+    </div>
+         <img class="avatar-cnh" src=""/>
+      </div>
+    </div>
+      
+      </ons-page>
+    </ons-template>    
+<!-- Fim da atualização -->
+<!-- Atualização Master Hub (Envio de Documentação do Entregador) -->
+    <ons-template id="endereco.html"> 
+    <ons-page id="endereco" >
+    
+    <div class="endereco-bkg mt20"></div>
+    
+      <div class="inner">
+        <form id="frm-endereco" class="shadow bg-white forms" method="post" onsubmit="return false;"> 
+			
+           <div class="table with-car w85">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--address/address.svg" onerror="this.src='color.png'">
+             </div>
+             <div class="col border"> 
+               <b class="opaque black trn"  data-trn-key="cep"  >CEP</b>
+               <p class="cep inline"></p>  
+             </div>
+           </div>
+			
+           <div class="table w85 with-car">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--address/street.svg" onerror="this.src='info.png'">
+              </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="endereco_bairro" >Endereco</b>
+               <p class="street inline"></p>  
+             </div>
+           </div>
+			
+           <div class="table w85 with-car">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--address/location.svg" onerror="this.src='info.png'">
+              </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="numero" >Numero</b>
+               <p class="numero inline"></p>  
+             </div>
+           </div>
+           <div class="table w85 with-car">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--address/number.svg" onerror="this.src='info.png'">
+              </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="bairro" >Bairro</b>
+               <p class="area_name inline"></p> 
+             </div>
+           </div>
+           <div class="table w85 with-car">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--address/local.svg" onerror="this.src='info.png'">
+              </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="city" >Cidade</b>
+               <p class="city inline"></p>  
+             </div>
+           </div>
+           <div class="table w85 with-car">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--address/local.svg" onerror="this.src='info.png'">
+              </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="estado" >Estado</b>
+               <p class="state inline"></p>  
+             </div>
+           </div>
+			
+						
+        </form>   
+      </div>
+      
+    		 <div class="mt20 mlr5"> 
+               <b class="opaque black inline trn" data-trn-key="Comprovante_endereco" >Comprovante de endereço: </b>
+               <p class="inline "></p>
+             </div>		
+
+    <div class="endereco-bg mt20 mlr5">
+
+      <div class="img_loader" id="img_loader_wrap">
+      
+        <div class="spinner">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+    </div>
+        <img class="avatar-endereco" src=""/>
+      </div>
+    </div>		
+    
+      </ons-page>
+    </ons-template> 
+<!-- Fim da atualização -->
+<!-- Atualização Master Hub (Envio de Documentação do Entregador) -->
+    <ons-template id="financeiro.html"> 
+    <ons-page id="financeiro" >
+    
+    <div class="financeiro-bkg mt20"></div>
+    
+      <div class="inner">
+        <form id="frm-financeiro" class="shadow bg-white forms" method="post" onsubmit="return false;"> 
+			
+           <div class="table with-car w85">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--bank/bank.svg" onerror="this.src='color.png'">
+             </div>
+             <div class="col border"> 
+               <b class="opaque black trn"  data-trn-key="nome_banco"  >Nome do Banco</b>
+               <p class="nome_banco inline"></p>  
+             </div>
+           </div>
+			
+           <div class="table w85 with-car">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--bank/credit_card.svg" onerror="this.src='info.png'">
+              </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="numero_banco" >Numero do Banco</b>
+               <p class="numero_banco inline"></p>  
+             </div>
+           </div>
+			
+           <div class="table w85 with-car">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--bank/cheque.svg" onerror="this.src='info.png'">
+              </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="agencia" >Agencia</b>
+               <p class="agencia inline"></p>  
+             </div>
+           </div>
+           			
+           <div class="table w85 with-car">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--bank/cheque.svg" onerror="this.src='info.png'">
+              </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="conta_bancaria" >Conta</b>
+               <p class="conta_bancaria inline"></p>  
+             </div>
+           </div>
+			
+           <div class="table w85 with-car">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--bank/delivery.svg" onerror="this.src='info.png'">
+              </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="modo_conta" >Modo</b>
+               <p class="modo_conta inline"></p>  
+             </div>
+           </div>
+			
+           <div class="table w85 with-car">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--bank/wallet.svg" onerror="this.src='info.png'">
+              </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="email_mercadopago" >E-mail da conta Mercado Pago</b>
+               <p class="email_mercadopago inline"></p> 
+             </div>
+           </div>
+           <div class="table w85 with-car">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--bank/delivery.svg" onerror="this.src='info.png'">
+              </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="ciclo_recebimento" >Ciclo Reebimento</b>
+               <p class="ciclo_recebimento inline"></p>  
+             </div>
+           </div>
+        </form>   
+      </div>
+    </div>		
+      </ons-page>
+    </ons-template> 
+<!-- Fim da atualização -->
+<!-- Atualização Master Hub (Envio de Documentação do Entregador) -->
+    <ons-template id="vehicle.html"> 
+    <ons-page id="vehicle" >
+    
+    <div class="profile-bg mt20"></div>
+    
+      <div class="inner">
+        <form id="frm-vehicle" class="shadow bg-white forms" method="post" onsubmit="return false;"> 
+        <!--<input type="hidden" name="transport_type_id" class="transport_type_id">-->
+           <div class="table w85">
+             <div class="col a border">
+            <img class="opaque svg" src="lib/images/profile--vehicle/vehicle.svg" onerror="this.src='vehicle.png'">
+            </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="type" >Type</b>
+              <!-- <ons-list>
+                    <ons-list-item class="p0"> -->
+                   <span class="transport_type_id2"></span>
+                    
+                  <!--  <div class="transport_wrap w100"></div>
+                   
+                   </ons-list-item>
+               </ons-list>-->
+             </div>
+           </div>
+			
+           <div class="table w85 with-car">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--vehicle/info.svg" onerror="this.src='info.png'">
+              </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="renavam" >Renavam</b>
+               <p class="renavam inline"></p>
+             </div>
+           </div>
+           
+           <div class="table w85 with-car">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--vehicle/info.svg" onerror="this.src='info.png'">
+              </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="description" >Description</b>
+               <p class="transport_description inline"></p>  
+             </div>
+           </div>
+           
+           <div class="table with-car w85">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--vehicle/docs.svg" onerror="this.src='docs.png'">
+             </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="license_plate">License Plate</b>
+               <p class="driver-license_plate inline"></p>  
+             </div>
+           </div>
+           
+           <div class="table with-car w85">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--vehicle/color.svg" onerror="this.src='color.png'">
+             </div>
+             <div class="col border"> 
+               <b class="opaque black trn"  data-trn-key="color"  >Color</b>
+               <p class="color inline"></p>  
+             </div>
+           </div>
+			
+           <div class="table with-car w85">
+             <div class="col a border">
+            <img class="opaque svg" src="lib/images/profile--vehicle/vehicle.svg" onerror="this.src='vehicle.png'">
+            </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="cidade" >Cidade</b>
+               <ons-list>
+                   <ons-list-item class="p0">
+                   <div class="cidade_wrap w100"></div>
+                   
+                   </ons-list-item>
+               </ons-list>
+             </div>
+           </div>
+           
+        </form>   
+      </div>
+		
+		<div class="mt20 mlr5"> 
+               <b class="opaque black inline trn" data-trn-key="crlv" >CRLV: </b>
+               <p class="inline"></p>
+             </div>
+		
+    <div class="documento-bg mt20 mlr5">
+      <div>
+       
+      </div>
+      <div class="img_loader" id="img_loader_wrap">
+      
+        <div class="spinner">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+    </div>
+       <img class="avatar-documento" src=""/>
+      </div>
+    </div>
+		<div class="mt20 mlr5"> 
+               <b class="opaque black inline trn" data-trn-key="bag" >Foto da Bag: </b>
+               <p class="inline"></p>
+             </div>
+		
+    <div class="bag-bg mt20 mlr5">
+      <div>
+       
+      </div>
+      <div class="img_loader" id="img_loader_wrap">
+      
+        <div class="spinner">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+    </div>
+      <img class="avatar-bag" src=""/>
+      </div>
+    </div>
+      
+       <ons-bottom-toolbar class="button-toolbar-action2"> 
+         <ons-button modifier="large" onclick="UpdateForms('frm-vehicle','UpdateVehicle')" >
+         <span class="trn" data-trn-key="update_vehicle" >Update Vehicle</span>
+         </ons-button>         
+      </ons-bottom-toolbar>
+    
+      </ons-page>
+    </ons-template> 
+<!-- Fim da atualização -->
+<!-- Atualização Master Hub (Envio de Documentação do Entregador) -->
+    <ons-template id="changepassword.html"> 
+    <ons-page id="changepassword" >
+    
+    <div class="profile-bg mt20"></div>
+    
+      <div class="inner">      
+       <form id="frm-changepassword" class="shadow bg-white forms" method="post" onsubmit="return false;"> 
+           <div class="table w85">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--password/current-pass.svg" onerror="this.src='current-pass.png'">
+             </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="current_password">Current Password</b>
+               <p>
+                <ons-input type="password" id="password" name="current_pass" modifier="underbar"></ons-input>
+              </p> 
+             </div>
+           </div>
+           
+          <div class="table w85">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--password/new-pass.svg" onerror="this.src='new-pass.png'">
+             </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="new_password">New Password</b>
+               <p>
+                <ons-input type="password" id="password" name="new_pass" modifier="underbar"></ons-input>
+              </p> 
+             </div>
+           </div>
+           
+           <div class="table w85">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--password/confirm-pass.svg" onerror="this.src='confirm-pass.png'">
+             </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="confirm_password" >Confirm Password</b>
+               <p>
+                <ons-input type="password" id="password" name="confirm_pass" modifier="underbar"></ons-input>
+              </p> 
+             </div>
+           </div>
+           
+      </form>     
+      </div>
+      
+       <ons-bottom-toolbar class="button-toolbar-action2"> 
+         <ons-button modifier="large" onclick="UpdateForms('frm-changepassword','ProfileChangePassword')" >
+         <span class="trn" data-trn-key="change_password" >Change Password</span>
+         </ons-button>         
+      </ons-bottom-toolbar>
+    
+      </ons-page>
+    </ons-template> 
+<!-- Fim da atualização -->
+<!-- Atualização Master Hub (Envio de Documentação do Entregador) -->
+    <ons-template id="transporType.html">
+      <ons-dialog id="transporType" cancelable > 
+
+     <div id="transport-list"></div>
+             
+      </ons-dialog>
+    </ons-template>    
+<!-- Fim da atualização -->
+<!-- Atualização Master Hub (Envio de Documentação do Entregador) -->
+    <ons-template id="profilechange.html"> 
+    <ons-page id="profilechange" modifier="page-endereco">
+    
+    <div class="profile-bg mt20">
+      <div>
+       <ons-fab position="top right" class="right" onclick="showDeviceGallery(1);">
+          <img class="svg" src="lib/images/others/camera-w.svg" onerror="this.src='camera-w.png'">
+       </ons-fab>
+      </div>
+      <div class="img_loader" id="img_loader_wrap">
+      
+        <div class="spinner">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+    </div>
+         <img class="avatar" src=""/>
+      </div>
+    </div>
+    <div style="margin-top: 27px;">
+          <div class="mt20" style="position: absolute; width: 77%; margin-left: 26px; font-size: 13px; margin-top: -23px;"> 
+               <b class="opaque black trn" data-trn-key="envie_cnh_rg" >Envie uma foto da CNH ou RG!</b>
+				 </div><div>
+       <ons-fab position="top right" class="right enviodocs" onclick="showDeviceGallery(3);">
+          <img class="svg" src="lib/images/others/camera-w.svg" onerror="this.src='camera-w.png'">
+       </ons-fab>
+      </div></div>
+
+      <div class="inner">
+      
+        <form id="frm-profile" class="shadow bg-white forms"  method="post" onsubmit="return false;"> 
+           <div class="table w85">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--main/team.svg" onerror="this.src='team.png'">
+            </div>
+             <div class="col border"> 
+               <b class="opaque black inline trn" data-trn-key="team" >Team: </b>
+               <p class="inline team-name"></p>
+             </div>
+           </div>
+			
+           <div class="table w85">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--main/driver.svg" onerror="this.src='driver.png'">
+            </div>
+             <div class="col border"> 
+               <b class="opaque black inline trn" data-trn-key="nome_apelido">Apelido: </b>
+               <p class="first_name inline"></p>
+             </div>
+           </div>
+           
+           <div class="table w85">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--main/driver.svg" onerror="this.src='driver.png'">
+            </div>
+             <div class="col border"> 
+               <b class="opaque black inline trn" data-trn-key="nome_completo">Nome Completo: </b>
+               <p class="last_name inline"></p>
+             </div>
+           </div>
+           
+           <div class="table w85">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--main/email.svg" onerror="this.src='email.png'">
+            </div>
+             <div class="col border"> 
+               <b class="opaque black inline trn" data-trn-key="email">E-mail: </b>
+               <p class="driver-email inline"></p>
+             </div>
+           </div>
+			
+           <div class="table w85 vtop">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--vehicle/docs.svg" onerror="this.src='docs.png'">
+              </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="cpf" >CPF:</b>
+               <p class="driver-cpf inline"></p>  
+             </div>
+           </div>
+			
+           <div class="table w85 vtop">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--vehicle/docs.svg" onerror="this.src='docs.png'">
+              </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="cnpj" >CNPJ:</b>
+               <p>
+                <ons-input type="text" name="cnpj" class="cnpj p0" modifier="underbar" onfocus="javascript: retirarFormatacao(this);" onblur="javascript: formatarCampo(this);" ng-maxlength="14" max="14"></ons-input>
+              </p>  
+             </div>
+           </div>
+			           
+            <div class="table w85">
+             <div class="col a border vtop">
+              <img class="opaque svg" src="lib/images/profile--main/phone.svg" onerror="this.src='phone.png'">
+             </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="contact" >Contact</b>
+               <p>
+               <ons-input type="text" name="phone" class="mobile_inputs phone p0" modifier="underbar" onfocus="javascript: retirarFormatacao(this);" onblur="javascript: formatarTelefone(this);" ng-maxlength="11" max="11"></ons-input>
+               </p>
+             </div>
+           </div>
+			
+           <div class="table with-car w85">
+             <div class="col a border">
+            <img class="opaque svg" src="lib/images/profile--address/number.svg" onerror="this.src='vehicle.png'">
+            </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="cidade" >Cidade</b>
+               <ons-list>
+                   <ons-list-item class="p0">
+                   <div class="cidade_wrap w100"></div>
+                   
+                   </ons-list-item>
+               </ons-list>
+             </div>
+           </div>
+           
+        </form>
+      
+      </div>
+		<div class="mt20 mlr5"> 
+               <b class="opaque black inline trn" data-trn-key="cnh" >CNH: </b>
+               <p class="inline"></p>
+             </div>
+    <div class="cnh-bg mt20 mlr5">
+      <div class="img_loader" id="img_loader_wrap">
+      
+        <div class="spinner">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+    </div>
+         <img class="avatar-cnh" src=""/>
+      </div>
+    </div>
+		
+      <ons-bottom-toolbar class="button-toolbar-action-assinatura"> 
+		  <section style="padding: 8px">
+		 <ons-bottom class="" id="assinatura" ></ons-bottom>         
+<p></p>
+         <ons-button modifier="large" onclick="UpdateForms('frm-profile','UpdateProfile')" >
+         <span class="trn" data-trn-key="update_profile" >Update Profile</span>
+         </ons-button>  
+			  </section>
+      </ons-page>
+    </ons-template>    
+    
+    <ons-template id="enderecochange.html"> 
+    <ons-page id="enderecochange" >
+    
+    <div class="endereco-bkg mt20"></div>
+      <div>
+    		 <div class="mt20" style="position: absolute; width: 77%; margin-left: 26px; font-size: 13px; margin-top: -23px;"> 
+               <b class="opaque black trn" data-trn-key="envie_comprovante_endereco" >Envie o comprovante de endereço aqui!</b>
+				 </div><div>
+       <ons-fab position="top right" class="right enviodocs" onclick="showDeviceGallery(4);">
+     <img class="svg" src="lib/images/others/camera-w.svg" onerror="this.src='camera-w.png'"></ons-fab></div>
+      </div>
+
+      <div class="inner">
+        <form id="frm-endereco" class="shadow bg-white forms" method="post" onsubmit="return false;"> 
+			
+           <div class="table with-car w85">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--address/address.svg" onerror="this.src='color.png'">
+             </div>
+             <div class="col border"> 
+               <b class="opaque black trn"  data-trn-key="cep"  >CEP</b>
+               <p>
+                <ons-input type="text" id="cep" name="zipcode" class="cep" modifier="underbar" value="" onblur="pesquisacep(this.value);"></ons-input>
+              </p>  
+             </div>
+           </div>
+			
+           <div class="table w85 with-car">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--address/street.svg" onerror="this.src='info.png'">
+              </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="endereco_bairro" >Endereco</b>
+               <p>
+                <ons-input type="text" name="street" id="street" class="street" modifier="underbar"></ons-input>
+              </p>  
+             </div>
+           </div>
+			
+           <div class="table w85 with-car">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--address/location.svg" onerror="this.src='info.png'">
+              </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="numero" >Numero</b>
+               <p>
+                <ons-input type="text" name="numero"  id="numero" class="numero" modifier="underbar"></ons-input>
+              </p>  
+             </div>
+           </div>
+			
+           <div class="table w85 with-car">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--address/number.svg" onerror="this.src='info.png'">
+              </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="bairro" >Bairro</b>
+               <p>
+                <ons-input type="text" name="area_name"  id="area_name" class="area_name" modifier="underbar"></ons-input>
+              </p>  
+             </div>
+           </div>
+			
+           <div class="table w85 with-car">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--address/local.svg" onerror="this.src='info.png'">
+              </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="city" >Cidade</b>
+               <p>
+                <ons-input type="text" name="city"  id="city" class="city" modifier="underbar"></ons-input>
+              </p>  
+             </div>
+           </div>
+           			
+           <div class="table w85 with-car">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--address/local.svg" onerror="this.src='info.png'">
+              </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="estado" >Estado</b>
+               <p>
+                <ons-input type="text" name="state"  id="state" class="state" modifier="underbar"></ons-input>
+              </p>  
+             </div>
+           </div>
+			
+			
+			
+        </form>   
+      </div>
+      
+    		 <div class="mt20 mlr5"> 
+               <b class="opaque black inline trn" data-trn-key="Comprovante_endereco" >Comprovante de endereço: </b>
+               <p class="inline "></p>
+             </div>		
+
+    <div class="endereco-bg mt20 mlr5">
+      <div class="img_loader" id="img_loader_wrap">
+      
+        <div class="spinner">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+    </div>
+        <img class="avatar-endereco" src=""/>
+      </div>
+    </div>		
+       <ons-bottom-toolbar class="button-toolbar-action2"> 
+         <ons-button modifier="large" onclick="UpdateForms('frm-endereco','UpdateEndereco')" >
+         <span class="trn" data-trn-key="update_endereco" >Update Endereco</span>
+         </ons-button>         
+      </ons-bottom-toolbar>
+    
+      </ons-page>
+    </ons-template> 
+		
+    <ons-template id="financeirochange.html"> 
+    <ons-page id="financeirochange" >
+    
+    <div class="financeiro-bkg mt20"></div>
+    
+      <div class="inner">
+        <form id="frm-financeirochange" class="shadow bg-white forms" method="post" onsubmit="return false;"> 
+			
+           <div class="table w85 with-car">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--bank/credit_card.svg" onerror="this.src='info.png'">
+              </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="numero_banco" >Numero do Banco</b>
+               <p>
+                <ons-input type="text" name="numero_banco" id="numero_banco" class="numero_banco" modifier="underbar"></ons-input>
+              </p>  
+             </div>
+           </div>
+			
+           <div class="table with-car w85">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--bank/bank.svg" onerror="this.src='color.png'">
+             </div>
+             <div class="col border"> 
+               <b class="opaque black trn"  data-trn-key="nome_banco"  >Nome do Banco</b>
+               <p>
+                <ons-input type="text" name="nome_banco" id="nome_banco" class="nome_banco" modifier="underbar"></ons-input>
+              </p>  
+             </div>
+           </div>
+						
+           <div class="table w85 with-car">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--bank/cheque.svg" onerror="this.src='info.png'">
+              </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="agencia" >Agencia</b>
+               <p>
+                <ons-input type="text" name="agencia" id="agencia" class="agencia" modifier="underbar"></ons-input>
+              </p>  
+             </div>
+           </div>
+           			
+           <div class="table w85 with-car">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--bank/cheque.svg" onerror="this.src='info.png'">
+              </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="conta_bancaria" >Conta</b>
+               <p>
+                <ons-input type="text" name="conta_bancaria" id="conta_bancaria" class="conta_bancaria" modifier="underbar"></ons-input>
+              </p>  
+             </div>
+           </div>
+			
+           <div class="table w85 with-car">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--bank/delivery.svg" onerror="this.src='info.png'">
+              </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="modo_conta" >Modo</b>
+               <ons-list>
+                   <ons-list-item class="p0">
+                   <div class="modoconta_wrap w100"></div>
+                   </ons-list-item>
+               </ons-list>
+             </div>
+           </div>
+			
+           <div class="table w85 with-car">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--bank/wallet.svg" onerror="this.src='info.png'">
+              </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="email_mercadopago" >E-mail da conta Mercado Pago</b>
+               <p>
+                <ons-input type="text" name="email_mercadopago" id="email_mercadopago" class="email_mercadopago" modifier="underbar"></ons-input>
+              </p>  
+             </div>
+           </div>
+			
+           <div class="table w85 with-car">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--bank/delivery.svg" onerror="this.src='info.png'">
+              </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="ciclo_recebimento" >Ciclo do Recebimento</b>
+               <ons-list>
+                   <ons-list-item class="p0">
+                   <div class="ciclorecebimento_wrap w100"></div>
+                   </ons-list-item>
+               </ons-list>
+             </div>
+           </div>
+			
+        </form>   
+      </div>
+    </div>		
+		
+       <ons-bottom-toolbar class="button-toolbar-action2"> 
+         <ons-button modifier="large" onclick="UpdateForms('frm-financeirochange','UpdateFinanceiro')" >
+         <span class="trn" data-trn-key="update_financeiro" >Update Financeiro</span>
+         </ons-button>         
+      </ons-bottom-toolbar>
+
+		</ons-page>
+    </ons-template> 
+		
+    <ons-template id="vehiclechange.html"> 
+    <ons-page id="vehiclechange" >
+    
+    <div class="profile-bg mt20"></div>
+		
+    <div style="margin-top: 27px;">
+          <div class="mt20" style="position: absolute; width: 77%; margin-left: 26px; font-size: 13px; margin-top: -23px;"> 
+               <b class="opaque black trn" data-trn-key="envie_crlv" >Envie uma foto do documento do veículo aqui!</b>
+				 </div><div>
+       <ons-fab position="top right" class="right enviodocs" onclick="showDeviceGallery(5);">
+          <img class="svg" src="lib/images/others/camera-w.svg" onerror="this.src='camera-w.png'">
+       </ons-fab>
+      </div></div>    
+    <div style="margin-top: 90px;">
+          <div class="mt20" style="position: absolute; width: 77%; margin-left: 26px; font-size: 13px; margin-top: -23px;"> 
+               <b class="opaque black trn" data-trn-key="envie_bag" >Envie uma foto da sua Bag aqui!</b>
+				 </div><div>
+       <ons-fab position="top right" class="right enviodocs" onclick="showDeviceGallery(6);">
+          <img class="svg" src="lib/images/others/camera-w.svg" onerror="this.src='camera-w.png'">
+       </ons-fab>
+      </div></div>      <div class="inner">
+        <form id="frm-vehicle" class="shadow bg-white forms" method="post" onsubmit="return false;"> 
+        <!--<input type="hidden" name="transport_type_id" class="transport_type_id">-->
+           <div class="table w85">
+             <div class="col a border">
+              <!-- <ons-icon icon="ion-android-car" size="30px"></ons-icon> -->
+            <img class="opaque svg" src="lib/images/profile--vehicle/vehicle.svg" onerror="this.src='vehicle.png'">
+            </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="type" >Type</b>
+               <ons-list>
+                   <ons-list-item class="p0">
+                   <!--<span class="transport_type_id2"></span>-->
+                    
+                   <div class="transport_wrap w100"></div>
+                   
+                   </ons-list-item>
+               </ons-list>
+             </div>
+           </div>
+			
+           <div class="table w85 with-car">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--vehicle/info.svg" onerror="this.src='info.png'">
+              </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="renavam" >Renavam</b>
+               <p>
+                <ons-input type="text" name="renavam" class="renavam" modifier="underbar"></ons-input>
+              </p>  
+             </div>
+           </div>
+           
+           <div class="table w85 with-car">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--vehicle/info.svg" onerror="this.src='info.png'">
+              </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="description" >Description</b>
+               <p>
+                <ons-input type="text" name="transport_description" class="transport_description" modifier="underbar"></ons-input>
+              </p>  
+             </div>
+           </div>
+           
+           <div class="table with-car w85">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--vehicle/docs.svg" onerror="this.src='docs.png'">
+             </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="license_plate">License Plate</b>
+               <p>
+                <ons-input type="text" name="licence_plate" class="licence_plate" modifier="underbar" onfocus="javascript: retirarFormatacao(this);" onblur="javascript: formatarCampo(this);" ng-maxlength="7" max="7" ></ons-input>
+              </p>  
+             </div>
+           </div>
+           
+           <div class="table with-car w85">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--vehicle/color.svg" onerror="this.src='color.png'">
+             </div>
+             <div class="col border"> 
+               <b class="opaque black trn"  data-trn-key="color"  >Color</b>
+               <p>
+                <ons-input type="text" name="color" class="color" modifier="underbar"></ons-input>
+              </p>  
+             </div>
+           </div>
+			           
+        </form>   
+      </div>
+		
+		<div class="mt20 mlr5"> 
+               <b class="opaque black inline trn" data-trn-key="crlv" >CRLV: </b>
+               <p class="inline"></p>
+             </div>
+		
+    <div class="documento-bg mt20 mlr5">
+      <div class="img_loader" id="img_loader_wrap">
+      
+        <div class="spinner">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+    </div>
+       <img class="avatar-documento" src=""/>
+      </div>
+    </div>
+		<div class="mt20 mlr5"> 
+               <b class="opaque black inline trn" data-trn-key="bag" >Foto da Bag: </b>
+               <p class="inline"></p>
+             </div>
+		
+    <div class="bag-bg mt20 mlr5">
+      <div class="img_loader" id="img_loader_wrap">
+      
+        <div class="spinner">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+    </div>
+      <img class="avatar-bag" src=""/>
+      </div>
+    </div>
+      
+       <ons-bottom-toolbar class="button-toolbar-action2"> 
+         <ons-button modifier="large" onclick="UpdateForms('frm-vehicle','UpdateVehicle')" >
+         <span class="trn" data-trn-key="update_vehicle" >Update Vehicle</span>
+         </ons-button>         
+      </ons-bottom-toolbar>
+    
+      </ons-page>
+    </ons-template> 
+    
+    <ons-template id="changepasswordchange.html"> 
+    <ons-page id="changepasswordchange" >
+    
+    <div class="profile-bg mt20"></div>
+    
+      <div class="inner">      
+       <form id="frm-changepassword" class="shadow bg-white forms" method="post" onsubmit="return false;"> 
+           <div class="table w85">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--password/current-pass.svg" onerror="this.src='current-pass.png'">
+             </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="current_password">Current Password</b>
+               <p>
+                <ons-input type="password" id="password" name="current_pass" modifier="underbar"></ons-input>
+              </p> 
+             </div>
+           </div>
+           
+          <div class="table w85">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--password/new-pass.svg" onerror="this.src='new-pass.png'">
+             </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="new_password">New Password</b>
+               <p>
+                <ons-input type="password" id="password" name="new_pass" modifier="underbar"></ons-input>
+              </p> 
+             </div>
+           </div>
+           
+           <div class="table w85">
+             <div class="col a border">
+              <img class="opaque svg" src="lib/images/profile--password/confirm-pass.svg" onerror="this.src='confirm-pass.png'">
+             </div>
+             <div class="col border"> 
+               <b class="opaque black trn" data-trn-key="confirm_password" >Confirm Password</b>
+               <p>
+                <ons-input type="password" id="password" name="confirm_pass" modifier="underbar"></ons-input>
+              </p> 
+             </div>
+           </div>
+           
+      </form>     
+      </div>
+      
+       <ons-bottom-toolbar class="button-toolbar-action2"> 
+         <ons-button modifier="large" onclick="UpdateForms('frm-changepassword','ProfileChangePassword')" >
+         <span class="trn" data-trn-key="change_password" >Change Password</span>
+         </ons-button>         
+      </ons-bottom-toolbar>
+    
+      </ons-page>
+    </ons-template> 
+    	  
+    <ons-template id="cidadeLista.html">
+      <ons-dialog id="cidadeLista" cancelable > 
+
+     <div id="cidade-lista"></div>
+             
+      </ons-dialog>
+    </ons-template>  
+	
+    <ons-template id="modocontaLista.html">
+      <ons-dialog id="modocontaLista" cancelable > 
+
+     <div id="modoconta-lista"></div>
+             
+      </ons-dialog>
+    </ons-template>    
+    
+    <ons-template id="ciclorecebimentoLista.html">
+      <ons-dialog id="ciclorecebimentoLista" cancelable > 
+
+     <div id="ciclorecebimento-lista"></div>
+             
+      </ons-dialog>
+    </ons-template>    
+<!-- Fim da atualização -->
+   <ons-template id="SettingPage.html"> 
+    <ons-page id="SettingPage" modifier="grey-page" >
+		
+       <ons-toolbar modifier="ktransparent-toolbar">        
+         <div class="left"><ons-back-button></ons-back-button></div>          
+         <div class="center toolbar-title-settings">
+          <span class="trn" data-trn-key="settings" >Settings</span>
+         </div>
+       </ons-toolbar>
+       
+       <div class="list-wrapper">
+         <ons-list class="shadow">
+         
+            <ons-list-header class="top10 trn" data-trn-key="device_id" >Device ID</ons-list-header>            
+            <ons-list-item modifier="settings-list" >		      
+		      <ons-row>
+		         <ons-col><span class="device_id concat-text"></span></ons-col>
+		      </ons-row>
+		    </ons-list-item>
+         
+		    <ons-list-header>
+             <span class="trn" data-trn-key="software_version" >Software version</span>
+            </ons-list-header>   
+             <ons-list-item modifier="settings-list" >		      
+		      <ons-row>
+		         <ons-col><span class="software_version"></span></ons-col>
+		      </ons-row>
+		    </ons-list-item>
+		    
+            <ons-list-header>
+             <span class="trn" data-trn-key="notifications" >Notifications</span>
+            </ons-list-header>   
+                     
+            <ons-list-item modifier="settings-list">
+		      <div class="center">
+		        <span class="f13 trn" data-trn-key="enabled_push" >Enabled Push Notification</span>
+		      </div>
+		      <div class="right pr0">
+		        <ons-switch input-id="enabled_push" onchange="UpdatePush()"></ons-switch>
+		      </div>
+		    </ons-list-item>
+		    
+		    <ons-list-header class="trn" data-trn-key="language" >Language</ons-list-header>            
+            <ons-list-item class="language-wrap" modifier="settings-list" tappable ripple onclick="ShowLanguageOption()" >
+		      <p class="trn" data-trn-key="select_language" >Select Language</p>		      
+		      <div class="table">
+		        <div class="col">
+		          <span class="language_selected"></span>
+		        </div>
+		      </div>
+		    </ons-list-item>
+            
+         </ons-list>
+       </div>         
+       
+	  </ons-page>
+    </ons-template>       
+    
+    
+   <ons-template id="LanguageList.html">
+      <ons-dialog id="LanguageList" cancelable > 
+
+     <div id="language-list"></div>
+             
+      </ons-dialog>
+    </ons-template>        
+    
+    
+    <ons-template id="OrderDetails.html">
+    <ons-page id="OrderDetails" modifier="grey-page" >
+		
+       <ons-toolbar modifier="ktransparent-toolbar">        
+         <div class="left"><ons-back-button></ons-back-button></div>          
+         <div class="center toolbar-title-orderdetails">
+          <span class="trn" data-trn-key="order_details" >Order Details</span>
+         </div>
+       </ons-toolbar>
+       
+       <div class="list-wrapper" id="order-details">
+       </div>
+         
+    </ons-page>   
+    </ons-template>        
+    
+    
+    <ons-template id="Notification.html">
+    <ons-page id="Notification" modifier="grey-page" >
+		
+       <ons-toolbar modifier="ktransparent-toolbar">        
+         <div class="left"><ons-back-button></ons-back-button></div>          
+         <div class="center toolbar-title-orderdetails">
+          <span class="trn" data-trn-key="notifications" >Notifications</span>
+         </div>
+         <div class="inherit right clear_notification_wrap">           
+           <ons-toolbar-button onclick="callAjax('clearNofications')">
+            <span class="clear-btn f12 uppercase trn" data-trn-key="clear" >Clear</span>
+          </ons-toolbar-button>
+         </div>
+       </ons-toolbar>
+       
+       <ons-pull-hook id="pull-hook-notification">           
+       </ons-pull-hook>            
+       
+       <div class="list-wrapper" id="notifications-details">
+       </div>
+         
+    </ons-page>   
+    </ons-template> 
+    
+    
+    <ons-template id="Map.html">
+    <ons-page id="Map" modifier="map-page" >
+		
+       <ons-toolbar modifier="ktransparent-toolbar">        
+         <div class="left"><ons-back-button></ons-back-button></div>          
+         <div class="center">
+          <span class="trn" data-trn-key="map">Map</span>
+         </div>
+         
+         <div class="right inherit">
+          
+         <ons-toolbar-button onclick="setMapCenter();">
+             <img class="svg" src="lib/images/menu--navigation-bar/pin.svg" onerror="this.src='pin.png'">
+           </ons-toolbar-button>
+           
+          <ons-toolbar-button onclick="getDirections();">
+            <img class="svg" src="lib/images/menu--navigation-bar/direction.svg" onerror="this.src='direction.png'">
+          </ons-toolbar-button>
+        </div>
+         
+       </ons-toolbar>
+       
+        <input type="hidden" name="task_lat" id="task_lat" >
+        <input type="hidden" name="task_lng" id="task_lng" >
+        
+        <input type="hidden" name="your_lat" id="your_lat" >
+        <input type="hidden" name="your_lng" id="your_lng" >
+        
+        <div id="map_canvas"></div> 
+       
+         
+    </ons-page>   
+    </ons-template> 
+     
+    
+   <ons-template id="Notes.html"> 
+    <ons-page id="Notes" modifier="grey-page"  >
+		
+       <ons-toolbar modifier="ktransparent-toolbar">        
+         <div class="left"><ons-back-button></ons-back-button></div>          
+         <div class="center toolbar-title-notes trn" data-trn-key="add_notes" >
+         Add Notes
+         </div>
+       </ons-toolbar>
+
+              
+       <div class="list-wrapper" id="list-notes" >       
+       </div>
+       
+       
+       <ons-bottom-toolbar class="button-toolbar-action2 add_notes_wrapper"> 
+       <div class="addnotes-wrapper">
+       <form id="frm-notes" class="frm-notes" method="post" onsubmit="return false;">
+       <input type="hidden" name="task_id" class="task_id">
+       <ons-row>      
+          <ons-col class="note-field chadow" width="80%">
+             <ons-input type="text" name="notes" class="notes_fields" modifier="material" float></ons-input>
+          </ons-col>
+          <ons-col width="17%">
+              <ons-button class="send-btn" modifier="quiet" onclick="addNotes();">
+                <ons-icon icon="ion-android-send" style="color:#fff; vertical-align: -50%;" size="20px"></ons-icon>
+              </ons-button>
+          </ons-col>
+       </ons-row>        
+                
+       
+       </form>
+       </div>
+       </ons-bottom-toolbar>
+                    
+	  </ons-page>
+    </ons-template>    
+
+    
+    <ons-popover direction="down" id="notes_popover" cancelable>	 
+    <input type="hidden" name="notes_id" class="notes_id"> 
+    <input type="hidden" name="notes_value" class="notes_value"> 
+      <ons-list>	    
+      
+	    <ons-list-item modifier="normal-menu" tappable onclick="editNotes()" >
+        <img class="svg pr10" src="lib/images/others/edit.svg" onerror="this.src='edit.png'">
+	      <span class="trn" data-trn-key="edit" >Edit</span>
+	    </ons-list-item>
+	    	    
+	    <ons-list-item modifier="normal-menu" tappable onclick="deleteNotes()">
+        <img class="svg pr10" src="lib/images/others/delete.svg" onerror="this.src='delete.png'">
+        <span class="trn" data-trn-key="delete">Delete</span>
+	    </ons-list-item>
+	    
+	  </ons-list>	  
+    </ons-popover>
+    
+    
+    <ons-template id="editNotes.html">
+      <ons-dialog id="editNotes" cancelable > 
+
+        <form id="frm-editnotes"  method="post" onsubmit="return false;"> 
+        <div class="inner">
+        
+           <p class="field-wrap">
+             <ons-input type="text" name="edit_notes_fields" class="edit_notes_fields"            
+              modifier="underbar" float></ons-input>
+           </p>
+           
+           <p class="text-left">
+           <ons-button modifier="large" onclick="updateNotes()" >
+           <span class="trn" data-trn-key="submit">Submit</span>
+           </ons-button>          
+           </p>       
+           
+        </div>
+        </form>
+             
+      </ons-dialog>
+    </ons-template>        
+    
+    
+     <ons-template id="trackDistanceDialog.html">
+      <ons-dialog id="trackDistanceDialog" cancelable > 
+ 
+      <div class="inner inner-left">   
+        <div class="distance_info">
+        </div>    
+      </div> 
+      
+      </ons-dialog>
+    </ons-template>       
+    
+    
+    <ons-template id="signup.html"> 
+    <ons-page id="signup" modifier="login-page"  >
+    
+       <ons-toolbar class="nav-transparent" modifier="ktransparent-toolbar">        
+         <div class="left"><ons-back-button></ons-back-button></div>          
+       </ons-toolbar>
+       
+       <div class="home-header page-signup">
+          <span class="uppercase trn" data-trn-key="signup">Sign Up</span>
+       </div> 
+       
+       <div class="inner">   
+       
+         <form id="frm-signup"  method="post" onsubmit="return false;"> 
+         <!--<input type="hidden" name="transport_type_id" class="transport_type_id">-->
+<!-- Atualização Master Hub (Correção de Layout) -->
+         <p class="top25">
+	         <ons-row>      
+            <ons-col class="col-margin field-wrap">
+              <ons-input type="text" name="first_name" modifier="underbar" class="first_name_fields"
+               placeholder="First Name" data-trn-key="first_name_apelido" float></ons-input>
+            </ons-col>
+			 </ons-row>
+			 </p> 
+			 <p class="top25">
+	         <ons-row> 
+            <ons-col class="col-margin field-wrap">
+               <ons-input type="text" name="last_name" modifier="underbar" class="last_name_fields"
+                placeholder="Last Name" data-trn-key="last_name_completo" float></ons-input> 
+            </ons-col>
+         </ons-row>        
+         </p>     
+			 
+	         <p class="top25">
+	         <ons-row>      
+	            <ons-col class="col-margin field-wrap">
+	              <ons-input type="text" name="cpf" modifier="underbar" class="cpf cpf_field"
+	               placeholder="CPF" data-trn-key="cpf" onfocus="javascript: retirarFormatacao(this);" onblur="javascript: formatarCampo(this);" ng-maxlength="11" max="11" float></ons-input>
+	            </ons-col>            
+	         </ons-row>   
+	         </p>
+			 
+	         <p class="top25">
+	         <ons-row>      
+	            <ons-col class="col-margin field-wrap">
+	              <ons-input type="text" name="cnpj" modifier="underbar" class="cnpj cnpj_field"
+	               placeholder="CNPJ (Micro Empreendedor Individual)" data-trn-key="cnpj" onfocus="javascript: retirarFormatacao(this);" onblur="javascript: formatarCampo(this);" ng-maxlength="14" max="14" float></ons-input>
+	            </ons-col> 
+				 <p class="trn" data-trn-key="cnpj_desc">Obs. Preencha este campo se voce tiver uma Micro Empresa (MEI) em atividade!</p>
+	         </ons-row>   
+	         </p>
+         
+         <p class="top25">
+         <ons-row>      
+            <ons-col class="col-margin field-wrap">
+              <ons-input type="text" name="email" modifier="underbar" class="email_address_field"
+               placeholder="Email" data-trn-key="email_address" float></ons-input>
+            </ons-col>
+			 
+            <ons-col class="field-wrap">
+               <ons-input type="text" name="phone"  placeholder="Celular" modifier="underbar" class="mobile_inputs" onfocus="javascript: retirarFormatacao(this);" onblur="javascript: formatarTelefone(this);" ng-maxlength="11" max="11" float></ons-input>
+            </ons-col>
+         </ons-row>   
+         </p>
+         <br>
+         <span class="uppercase trn" data-trn-key="credenciais_sistema">Suas Credenciais no Sistema</span>
+			 <p class="trn" data-trn-key="credenciais_sistema_desc">Obs. Estes dados sao para sua entrada no sistema, o Nome de Usuario nao deve ter acentos, cedilhas ou espacos</p>	 
+         <p class="top25">
+         <ons-row>      
+            <ons-col class="col-margin field-wrap">
+              <ons-input type="text" name="username" modifier="underbar" class="username_field"
+               placeholder="Username" data-trn-key="username" onblur="javascript: formatarUsuario(this);" float></ons-input>
+            </ons-col>
+            <ons-col class="field-wrap">
+               <ons-input type="password" name="password" modifier="underbar" class="password_field"
+                 placeholder="Password" data-trn-key="password" float></ons-input> 
+            </ons-col>
+         </ons-row>   
+         </p>
+			 <br>
+         <span class="uppercase trn" data-trn-key="dados_veiculo">Dados do Veiculo</span>
+         <p class="top25">
+         <div class="transport_wrap" style="background:#fff;padding:3px;"></div>
+         </p>
+         
+         <div class="with-car">
+	         <p class="top25">
+	         <ons-row>      
+	            <ons-col class="col-margin field-wrap">
+	              <ons-input type="text" name="renavam" modifier="underbar" class="renavam_field"
+	               placeholder="Cod. Renavam" data-trn-key="renavam_field" float></ons-input>
+	            </ons-col>            
+	         </ons-row>   
+	         </p>
+          
+	         <p class="top25">
+	         <ons-row>      
+	            <ons-col class="col-margin field-wrap">
+	              <ons-input type="text" name="transport_description" modifier="underbar" class="transport_description_field"
+	               placeholder="Transport Description (Year,Model)" data-trn-key="transport_description" float></ons-input>
+	            </ons-col>            
+	         </ons-row>   
+	         </p>
+	         
+	         <p class="top25">
+	         <ons-row>      
+	            <ons-col class="col-margin field-wrap">
+	              <ons-input type="text" name="licence_plate" modifier="underbar" class="licence_plate_field"
+	               placeholder="License Plate" data-trn-key="licence_plate" onfocus="javascript: retirarFormatacao(this);" onblur="javascript: formatarCampo(this);" ng-maxlength="7" max="7" float></ons-input>
+	            </ons-col>
+	            <ons-col class="field-wrap">
+	               <ons-input type="text" name="color" modifier="underbar" class="color_field"
+	                 placeholder="Color" data-trn-key="color" float></ons-input> 
+	            </ons-col>
+	         </ons-row>   
+	         </p>
+         </div>
+         <p class="top25">
+         <div class="cidade_wrap" style="background:#fff;padding:3px;"></div>
+         </p>
+<!-- Fim da atualização -->
+         
+         <p class="text-left top40">
+            <ons-button modifier="large" onclick="signup()" >
+	           <span class="trn" data-trn-key="signup">Sign Up</span>
+	        </ons-button>          
+         </p>
+         
+         </form>
+       
+       </div>
+    
+    </ons-page>    
+    </ons-template>
+    
+    
+    <ons-modal id="uploadLoader" modifier="uploader">
+        <div class="inner">
+        <p class="bytes_send"></p>
+        <ons-progress-circular indeterminate></ons-progress-circular>
+        </div>
+    </ons-modal>
+    
+    
+   <ons-template id="addphotoSelection.html">
+      <ons-dialog id="addphotoSelection" cancelable > 
+              
+      <ons-list>	    
+      
+	    <ons-list-item modifier="normal-menu" tappable onclick="showCemara();" >
+        <img class="svg pr10" src="lib/images/others/camera.svg" onerror="this.src='camera.png'">
+	      <span class="trn" data-trn-key="take_picture" >Take Picture</span>
+	    </ons-list-item>
+	    
+	    <ons-list-item modifier="normal-menu" onclick="showDeviceGallery(2);"  tappable>
+        <img class="svg pr10" src="lib/images/others/picture.svg" onerror="this.src='picture.png'">
+	      <span class="trn" data-trn-key="upload_picture">Upload Picture</span>
+	    </ons-list-item>
+	    	    
+	  </ons-list>	  
+	        
+      </ons-dialog>
+    </ons-template>        
+    
+    
+     <ons-template id="photoPage.html"> 
+    <ons-page id="photoPage" modifier="grey-page"  >
+		
+       <ons-toolbar modifier="ktransparent-toolbar">        
+         <div class="left"><ons-back-button></ons-back-button></div>          
+         <div class="center toolbar-title-notes trn" data-trn-key="photos" >
+         Photos
+         </div>
+       </ons-toolbar>
+
+              
+       <div class="list-photos" id="list-photos" >       
+       </div>
+                   
+       </div>
+       </ons-bottom-toolbar>
+                    
+	  </ons-page>
+    </ons-template>    
+    
+    
+   <ons-template id="map_dropoff.html">
+    <ons-page id="map_dropoff" modifier="map-page" >
+		
+       <ons-toolbar modifier="ktransparent-toolbar">        
+         <div class="left"><ons-back-button></ons-back-button></div>          
+         <div class="center">
+          <span class="trn" data-trn-key="map">Map</span>
+         </div>
+         
+         <div class="right inherit">                    
+           <ons-toolbar-button onclick="setMapCenter();">
+             <img class="svg" src="lib/images/menu--navigation-bar/pin.svg" onerror="this.src='pin.png'">
+           </ons-toolbar-button>
+           
+           <ons-toolbar-button onclick="getDirectionsDropoff();">
+             <img class="svg" src="lib/images/menu--navigation-bar/direction.svg" onerror="this.src='direction.png'">
+           </ons-toolbar-button>
+         </div>
+         
+       </ons-toolbar>
+                     
+        <input type="hidden" name="driver_location_lat" id="driver_location_lat" class="driver_location_lat">  
+        <input type="hidden" name="driver_location_lng" id="driver_location_lng" class="driver_location_lng">  
+        <div id="map_canvas"></div> 
+       
+         
+    </ons-page>   
+    </ons-template> 
+    
+    
+    <ons-template id="pending_task_list.html">
+    <ons-page id="pending_task_list"  >
+     
+       <ons-pull-hook id="pull-hook">           
+       </ons-pull-hook>   
+       
+        <ons-row class="orange-bar home-sub-nav">
+<!-- Atualização Master Hub (Correção de Layout) -->
+	       <ons-col width="70px" >
+	         <p class="uppercase todays_date"></p>
+<!-- Fim da atualização -->
+         </ons-col>
+
+         <ons-col class="text-right" >
+           <p class="uppercase inline duty_status"></p>
+           <ons-switch input-id="onduty" class="on-duty" style="margin-top: 2px;" onchange="changeDuty()"> 
+           </ons-switch>
+         </ons-col>     
+	      </ons-row>
+       
+       <div class="list-wrapper" id="task-wrapper">
+       </div>
+    
+    </ons-page>   
+    </ons-template> 
+    
+    <ons-template id="completed_task_list.html">
+    <ons-page id="completed_task_list"  >
+    
+    
+      <ons-pull-hook id="pull-hook-completed">           
+      </ons-pull-hook>   
+    
+        <ons-row class="orange-bar home-sub-nav">
+<!-- Atualização Master Hub (Correção de Layout) -->
+         <ons-col width="70px" >
+           <p class="uppercase todays_date2"></p>
+         </ons-col>
+<!--          <ons-col class="text-right" >
+           <p class="uppercase inline duty_status"></p>
+           <ons-switch input-id="onduty" class="on-duty" style="margin-top: 2px;" onchange="changeDuty()"> 
+           </ons-switch>
+         </ons-col> -->
+         
+         <ons-col class="col text-right">
+           <i class="text-center">Lucro do dia! </i> <b class="total_order_total2 amout"></b>
+<!-- Fim da atualização -->
+         </ons-col>
+        </ons-row>
+    
+       <div class="list-wrapper" id="task_completed">         
+       </div>   
+    
+    </ons-page>   
+    </ons-template> 
+     
+
+  </body>
+</html>

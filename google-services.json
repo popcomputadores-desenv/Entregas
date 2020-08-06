@@ -1,0 +1,407 @@
+{
+  "project_info": {
+    "project_number": "700766185398",
+    "firebase_url": "https://app-masterhub.firebaseio.com",
+    "project_id": "app-masterhub",
+    "storage_bucket": "app-masterhub.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:700766185398:android:6f051d9f17d7992b",
+        "android_client_info": {
+          "package_name": "app.masterhub.cliente"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "700766185398-f1vu9pld5pb1f1hnb5eoupidoeo6aukv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.masterhub.cliente",
+            "certificate_hash": "ee4f7032ae92e4914e85c767615624641a31e343"
+          }
+        },
+        {
+          "client_id": "700766185398-4vsdvvhcah9k4q1485d88sm77p6o703g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjgZJOBT5K3Ms5ns20Q3lbopscSoGt3aI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "700766185398-4vsdvvhcah9k4q1485d88sm77p6o703g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "700766185398-lpjlp9ic6838tksf5se26kgm3ne5ri91.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "app.masterhub.empresa0003"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:700766185398:android:83cbee341019625a",
+        "android_client_info": {
+          "package_name": "app.masterhub.clientev2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "700766185398-c727v0im6lfn2qt8n96q1u12jko6uhch.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.masterhub.clientev2",
+            "certificate_hash": "ee4f7032ae92e4914e85c767615624641a31e343"
+          }
+        },
+        {
+          "client_id": "700766185398-4vsdvvhcah9k4q1485d88sm77p6o703g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjgZJOBT5K3Ms5ns20Q3lbopscSoGt3aI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "700766185398-4vsdvvhcah9k4q1485d88sm77p6o703g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "700766185398-lpjlp9ic6838tksf5se26kgm3ne5ri91.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "app.masterhub.empresa0003"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:700766185398:android:cff53a0e7943951c070317",
+        "android_client_info": {
+          "package_name": "app.masterhub.empresa0001"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "700766185398-mmeo6h54s6rboohqk972uic0dtb1s39p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.masterhub.empresa0001",
+            "certificate_hash": "ee4f7032ae92e4914e85c767615624641a31e343"
+          }
+        },
+        {
+          "client_id": "700766185398-4vsdvvhcah9k4q1485d88sm77p6o703g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjgZJOBT5K3Ms5ns20Q3lbopscSoGt3aI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "700766185398-4vsdvvhcah9k4q1485d88sm77p6o703g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "700766185398-lpjlp9ic6838tksf5se26kgm3ne5ri91.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "app.masterhub.empresa0003"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:700766185398:android:5cc2807baae95e30070317",
+        "android_client_info": {
+          "package_name": "app.masterhub.empresa0002"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "700766185398-9g0s0oqrfg3vliqelshtv8g3ja4breu6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.masterhub.empresa0002",
+            "certificate_hash": "ee4f7032ae92e4914e85c767615624641a31e343"
+          }
+        },
+        {
+          "client_id": "700766185398-4vsdvvhcah9k4q1485d88sm77p6o703g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjgZJOBT5K3Ms5ns20Q3lbopscSoGt3aI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "700766185398-4vsdvvhcah9k4q1485d88sm77p6o703g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "700766185398-lpjlp9ic6838tksf5se26kgm3ne5ri91.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "app.masterhub.empresa0003"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:700766185398:android:5a0239f7a7dfc1e0070317",
+        "android_client_info": {
+          "package_name": "app.masterhub.empresa0003"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "700766185398-mspthutbe2ei9rnb44haqd46js0gnp16.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.masterhub.empresa0003",
+            "certificate_hash": "ee4f7032ae92e4914e85c767615624641a31e343"
+          }
+        },
+        {
+          "client_id": "700766185398-4vsdvvhcah9k4q1485d88sm77p6o703g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjgZJOBT5K3Ms5ns20Q3lbopscSoGt3aI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "700766185398-4vsdvvhcah9k4q1485d88sm77p6o703g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "700766185398-lpjlp9ic6838tksf5se26kgm3ne5ri91.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "app.masterhub.empresa0003"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:700766185398:android:c78a5a1ff0bc4142",
+        "android_client_info": {
+          "package_name": "app.masterhub.entrega"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "700766185398-q2qfpv5m9vupu6ij7kkfbsb6vdk859dr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.masterhub.entrega",
+            "certificate_hash": "cfe9f7de464a06ac94d61787a555d86b02f8fb35"
+          }
+        },
+        {
+          "client_id": "700766185398-4vsdvvhcah9k4q1485d88sm77p6o703g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjgZJOBT5K3Ms5ns20Q3lbopscSoGt3aI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "700766185398-4vsdvvhcah9k4q1485d88sm77p6o703g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "700766185398-lpjlp9ic6838tksf5se26kgm3ne5ri91.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "app.masterhub.empresa0003"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:700766185398:android:cf7e463f34b9b9a7",
+        "android_client_info": {
+          "package_name": "app.masterhub.venda"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "700766185398-6ase892uo079bvn8k2tbdaa8flpifjap.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.masterhub.venda",
+            "certificate_hash": "b714b909838b1b6577b1b3f23696f495c59a149e"
+          }
+        },
+        {
+          "client_id": "700766185398-4vsdvvhcah9k4q1485d88sm77p6o703g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjgZJOBT5K3Ms5ns20Q3lbopscSoGt3aI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "700766185398-4vsdvvhcah9k4q1485d88sm77p6o703g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "700766185398-lpjlp9ic6838tksf5se26kgm3ne5ri91.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "app.masterhub.empresa0003"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:700766185398:android:248a3d4d66cfbf92070317",
+        "android_client_info": {
+          "package_name": "app.masterhub.wjk.cliente"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "700766185398-je142fo342fq8rtcg8lpakmai1c3dic5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.masterhub.wjk.cliente",
+            "certificate_hash": "ee4f7032ae92e4914e85c767615624641a31e343"
+          }
+        },
+        {
+          "client_id": "700766185398-4vsdvvhcah9k4q1485d88sm77p6o703g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjgZJOBT5K3Ms5ns20Q3lbopscSoGt3aI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "700766185398-4vsdvvhcah9k4q1485d88sm77p6o703g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "700766185398-lpjlp9ic6838tksf5se26kgm3ne5ri91.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "app.masterhub.empresa0003"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:700766185398:android:fd72b94b8d20c1db070317",
+        "android_client_info": {
+          "package_name": "app.masterhub.wjk.entregador"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "700766185398-6kib5e3groj74r14e9p2tad1gglrur39.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.masterhub.wjk.entregador",
+            "certificate_hash": "cfe9f7de464a06ac94d61787a555d86b02f8fb35"
+          }
+        },
+        {
+          "client_id": "700766185398-4vsdvvhcah9k4q1485d88sm77p6o703g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjgZJOBT5K3Ms5ns20Q3lbopscSoGt3aI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "700766185398-4vsdvvhcah9k4q1485d88sm77p6o703g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "700766185398-lpjlp9ic6838tksf5se26kgm3ne5ri91.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "app.masterhub.empresa0003"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
